@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8" />
+      <title>Javascript test page</title>
+  </head>
+  <body>
+    <h1 id="title">Hello username</h1>
+    <script>
+
+      
+        //string test
+        var myString = "\"string test\"";
+        console.log(myString);
+        console.log("my " + myString);
+
+        //number test
+        var myNumber = 42;
+        console.log(myNumber);
+
+        myNumber = myNumber * 10;
+        console.log(myNumber);
+
+        //boolean test
+        var bigNumber = myNumber < 1000;
+        console.log(bigNumber);
+        
+        //array test
+        var myArray = ["one", "two", "three", "four"];
+        console.log(myArray);
+        console.log(myArray[0], myArray[myArray.length - 1]);
+
+        //object test
+        var myObject = {
+            name: "joe",
+            color: "red",
+            gender: "m",
+            hasPet: false
+            
+        };
+        console.log(myObject.name, myObject.gender, myObject.hasPet);
+
+
+        //function test
+        var sayHello = function() {
+            console.log("hello!")
+        };
+        sayHello();
+
+        var sayText = function(txt) {
+            console.log(txt)
+        };
+        sayText("hellohello");
+
+        var plusTen = function(num) {
+            return num + 10;
+        };
+        var number = plusTen(10);
+        console.log(number);
+
+        //if else test
+        if(number > myNumber) {
+            number = number + 10;
+        }
+        else {
+            console.log(myNumber);
+        }
+
+        //document
+        var pageTitle = document.getElementById("title");
+        pageTitle.innerHTML = "hello " + myObject.name;
+
+      
+    </script>
+  </body>
+</html>
