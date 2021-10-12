@@ -4,6 +4,7 @@
     <style>
         .myDiv{
               text-align: center;
+              font-family: Verdana, Geneva, Tahoma, sans-serif,serif;
         }
     </style>
     <meta charset="utf-8" />
@@ -14,6 +15,8 @@
         <br>
         <button onclick ="getZodiac()" id = "button">Confirm</button>
         <p id = "p1"></p>
+        <img src="/chinese zodiac.png" id = "myImage" style="width: 600px;height: 900px;" >
+
 
     </head>
     </div>
@@ -21,41 +24,57 @@
     
     <script>
 
-        //modify the data, get the chinese zodiac based on year of birth
+        //modify the data, get the chinese zodiac based on year of birth, and display the image for each zodiac
         function getZodiac(){
             var yearOfBirth = document.getElementById("inputbox").value;
             var startYear = 1996;
-            console.log(yearOfBirth);
+            //console.log(yearOfBirth);
             var zVal = Math.abs((yearOfBirth - startYear) % 12);
-            console.log(zVal);
+            //console.log(zVal);
+            var image =  document.getElementById('myImage');
+            image.style.with = '300px';
+            image.style.height = '500px';
             var zSign = "Rat";
             if(zVal == 0){
                 zSign = "Rat";
+                image.src = "/rat zodiac.png"; 
             } else if(zVal == 1){
                 zSign = "Ox";
+                image.src = "/ox zodiac.png";
             } else if(zVal == 2){
                 zSign = "Tiger";
+                image.src = "/tiger zodiac.png";
             } else if(zVal == 3){
                 zSign = "Hare";
+                image.src = "/hare zodiac.png";
             } else if(zVal == 4){
                 zSign = "Dragon";
+                image.src = "/dragon zodiac.png";
             } else if(zVal == 5){
                 zSign = "Snake";
+                image.src = "/snake zodiac.png";
             } else if(zVal == 6){
                 zSign = "Horse";
+                image.src = "/horse zodiac.png";
             } else if(zVal == 7){
                 zSign = "Sheep";
+                image.src = "/sheep zodiac.png";
             } else if(zVal == 8){
                 zSign = "Monkey";
+                image.src = "/monkey zodiac.png";
             } else if(zVal == 9){
                 zSign = "Rooster";
+                image.src = "/rooster zodiac.png";
             } else if(zVal == 10){
                 zSign = "Dog";
+                image.src = "/dog zodiac.png";
             } else if(zVal == 11){
                 zSign = "Boar";
+                image.src = "/boar zodiac.png";
             }
             //print out the text
             document.getElementById("p1").innerHTML = "Your Chinese Zodiac is " + zSign + "!";
+            
         }   
         
         
