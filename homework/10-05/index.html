@@ -1,76 +1,66 @@
 <!DOCTYPE html>
 <html>
-  <head>
-      <meta charset="utf-8" />
-      <title>Javascript test page</title>
-  </head>
-  <body>
-    <h1 id="title">Hello username</h1>
+    <head>
+    <style>
+        .myDiv{
+              text-align: center;
+        }
+    </style>
+    <meta charset="utf-8" />
+    <title>Javascript</title>
+    <div class = myDiv>
+        <h1 id="title">What is your Chinese Zodiac</h1>
+        <input id = "inputbox" placeholder = "enter your year of birth" />
+        <br>
+        <button onclick ="getZodiac()" id = "button">Confirm</button>
+        <p id = "p1"></p>
+
+    </head>
+    </div>
+    <body>
+    
     <script>
 
-      
-        //string test
-        var myString = "\"string test\"";
-        console.log(myString);
-        console.log("my " + myString);
-
-        //number test
-        var myNumber = 42;
-        console.log(myNumber);
-
-        myNumber = myNumber * 10;
-        console.log(myNumber);
-
-        //boolean test
-        var bigNumber = myNumber < 1000;
-        console.log(bigNumber);
+        //modify the data, get the chinese zodiac based on year of birth
+        function getZodiac(){
+            var yearOfBirth = document.getElementById("inputbox").value;
+            var startYear = 1996;
+            console.log(yearOfBirth);
+            var zVal = Math.abs((yearOfBirth - startYear) % 12);
+            console.log(zVal);
+            var zSign = "Rat";
+            if(zVal == 0){
+                zSign = "Rat";
+            } else if(zVal == 1){
+                zSign = "Ox";
+            } else if(zVal == 2){
+                zSign = "Tiger";
+            } else if(zVal == 3){
+                zSign = "Hare";
+            } else if(zVal == 4){
+                zSign = "Dragon";
+            } else if(zVal == 5){
+                zSign = "Snake";
+            } else if(zVal == 6){
+                zSign = "Horse";
+            } else if(zVal == 7){
+                zSign = "Sheep";
+            } else if(zVal == 8){
+                zSign = "Monkey";
+            } else if(zVal == 9){
+                zSign = "Rooster";
+            } else if(zVal == 10){
+                zSign = "Dog";
+            } else if(zVal == 11){
+                zSign = "Boar";
+            }
+            //print out the text
+            document.getElementById("p1").innerHTML = "Your Chinese Zodiac is " + zSign + "!";
+        }   
         
-        //array test
-        var myArray = ["one", "two", "three", "four"];
-        console.log(myArray);
-        console.log(myArray[0], myArray[myArray.length - 1]);
-
-        //object test
-        var myObject = {
-            name: "joe",
-            color: "red",
-            gender: "m",
-            hasPet: false
-            
-        };
-        console.log(myObject.name, myObject.gender, myObject.hasPet);
-
-
-        //function test
-        var sayHello = function() {
-            console.log("hello!")
-        };
-        sayHello();
-
-        var sayText = function(txt) {
-            console.log(txt)
-        };
-        sayText("hellohello");
-
-        var plusTen = function(num) {
-            return num + 10;
-        };
-        var number = plusTen(10);
-        console.log(number);
-
-        //if else test
-        if(number > myNumber) {
-            number = number + 10;
-        }
-        else {
-            console.log(myNumber);
-        }
-
-        //document
-        var pageTitle = document.getElementById("title");
-        pageTitle.innerHTML = "hello " + myObject.name;
+        
 
       
     </script>
-  </body>
+    </body>
 </html>
