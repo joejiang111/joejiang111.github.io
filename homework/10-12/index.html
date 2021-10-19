@@ -6,88 +6,170 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <style>
         .funkyText {
-            font-family: fantasy;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             font-size: 50px;
             font-weight: bold;
+            text-align: center;
+            color: darkslategrey;
         }
+
     </style>
     </head>
     
     <body>
-    <h1 id="title">My Title</h1>
+    <h1 id="title">Draw Squares</h1>
 
 
-    <svg id="circle-viz" >
+    <svg id="rect-viz" height = "500px", width = "2000px">
         
     </svg>
-    <button id="btn1" onclick="drawCircles(data1)">Data 1</button>
-    
-    <button id="btn2" onclick="drawCircles(data2)">Data 2</button>
+    <div id = "button" style="text-align: center;">
+    <button id="btn1" onclick="drawRects(data1)">Data 1</button>
+    <button id="btn2" onclick="drawRects(data2)">Data 2</button>
+    <button id="btn3" onclick="drawRects(data3)">Data 3</button>
+    </div>
     <script>
-        var color = "red";
+        
         var title = d3.select("#title");
         title
-            .style("color", "red")
             .attr("class", "funkyText");
+            
 
 
-
+        // define data
         var data1 = [
             {
-                country:"usa",
-                value:2131241
+                squareSize:"small",
+                squarePos:"left",
+                squareId:"1"
             },{
-                country:"mxn",
-                value:1231941
+                squareSize:"medium",
+                squarePos:"middle",
+                squareId:"2"
+            },{
+                squareSize:"big",
+                squarePos:"right",
+                squareId:"3"
             }
         ]
         var data2 = [
             {
-                country:"chn",
-                value:8273169
+                squareSize:"medium",
+                squarePos:"middle",
+                squareId:"3"
             },{
-                country:"mxn",
-                value:1728731
+                squareSize:"small",
+                squarePos:"right",
+                squareId:"2"
+            }
+        ]
+        var data3 = [
+            {
+                squareSize:"big",
+                squarePos:"right",
+                squareId:"2"
+            },{
+                squareSize:"medium",
+                squarePos:"left",
+                squareId:"1"            
             }
         ]
         
-        function drawCircles(dataArray){
-            function circlePos(){
-                return Math.random() * 200 + 50;
-            }
-
-
-            var circles = d3.select("#circle-viz").selectAll("circle")
+        function drawRects(dataArray){
+            var rects = d3.select("#rect-viz").selectAll("rect")
                 .data(dataArray, function(d){
-                    return d.country;
+                    return d.squareId;
                 });
-
-                circles.enter().append("circle")
+            
+                // enter rect
+                rects.enter().append("rect")
                     .attr("fill", function(d){
-                        if(d.country == "usa"){
+                        if(d.squareId == "1"){
                             return "blue";
-                        }else if(d.country == "chn"){
+                        }else if(d.squareId == "2"){
                             return "red";
-                        }else if(d.country == "mxn"){
+                        }else if(d.squareId == "3"){
                             return "green";
                         }
                     })
-                    .attr("cy", "100")
-                    .attr("cx", circlePos)
-                    .attr("r", "0")
+                    .attr("x", function(d){
+                        if(d.squarePos == "left"){
+                            return "0";
+                        } else if(d.squarePos == "middle"){
+                            return "200";
+                        } else if(d.squarePos == "right") {
+                            return "400";
+                        }
+                    })
+                    .attr("y", 100)
+                    .attr("width", 0)
+                    .attr("height", 0)
                     .transition().duration(1000)
-                    .attr("r", "100")
-                    .transition().duration(300)
-                        .attr("r", "25");
-
-                circles
-                    .transition().duration(1000)
-                    .attr("cx", circlePos)
-                    
+                    .attr("width", function(d){
+                        if(d.squareSize == "small"){
+                            return "100";
+                        } else if(d.squareSize == "medium"){
+                            return "200";
+                        } else if(d.squareSize == "big"){
+                            return "300"
+                        }
+                    })
+                    .attr("height", function(d){
+                        if(d.squareSize == "small"){
+                            return "100";
+                        } else if(d.squareSize == "medium"){
+                            return "200";
+                        } else if(d.squareSize == "big"){
+                            return "300"
+                        }
+                    })
                 
-                circles.exit()
+                // update
+                rects
+                    .attr("y", "100")
                     .transition().duration(1000)
-                    .attr("r", "0")
+                    .attr("fill", function(d){
+                        if(d.squareId == "1"){
+                            return "blue";
+                        }else if(d.squareId == "2"){
+                            return "red";
+                        }else if(d.squareId == "3"){
+                            return "green";
+                        }
+                    })
+                    .attr("x", function(d){
+                        if(d.squarePos == "left"){
+                            return "0";
+                        } else if(d.squarePos == "middle"){
+                            return "200";
+                        } else if(d.squarePos == "right") {
+                            return "400";
+                        }
+                    })
+                    .attr("width", function(d){
+                        if(d.squareSize == "small"){
+                            return "100";
+                        } else if(d.squareSize == "medium"){
+                            return "200";
+                        } else if(d.squareSize == "big"){
+                            return "300"
+                        }
+                    })
+                    .attr("height", function(d){
+                        if(d.squareSize == "small"){
+                            return "100";
+                        } else if(d.squareSize == "medium"){
+                            return "200";
+                        } else if(d.squareSize == "big"){
+                            return "300"
+                        }
+                    })
+                    
+                // exit
+                rects.exit()
+                    .transition().duration(1000)
+                    .attr("height", "0")
+                    .attr("width", 0)
                     .remove();
 
         }
