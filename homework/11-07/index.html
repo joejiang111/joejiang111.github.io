@@ -102,13 +102,14 @@
             .call(xAxis);
 
             function getRandomColor() {
-                var r = Math.floor(Math.random() * 256); // range is 0-255
+                var r = Math.floor(Math.random() * 256); 
                 var g = Math.floor(Math.random() * 256);
                 var b = Math.floor(Math.random() * 256);
                 var thergb = "rgb(" + r + "," + g + "," + b + ")"; 
                 console.log(thergb);
                 return thergb;
             }
+
             function startState(selection){
                 selection
                     .attr("height", 0)
