@@ -2,12 +2,14 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <title>bar chart with random color bars</title>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <style>
         body {
             margin: 0;
         }
     </style>
+    
   </head>
   <body>
     <svg id = "chart">
@@ -18,7 +20,7 @@
 
     <script>
         var url = "https://whiteboard.datawheel.us/api/google-analytics/realtime/random";
-        var frequency = 10 * 1000; // 10 seconds
+        var frequency = 2 * 1000; 
         var margin = {
             top: 100,
             right: 100,
