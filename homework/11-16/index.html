@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <style>
+
+        .box {
+          fill: transparent;
+          stroke: red;
+          stroke-width: 2px;
+        }
+      
+      </style>
+    </head>
+    <body>
+        <svg id="chart" width="100%" height="100vh"></svg>
+
+        <script>
+        
+        var svg = d3.select("#chart");
+        
+        var data1 = [
+            "Hello Class, my name is Dave",
+            "Test Title",
+            "Some really long text that we will probably have fun working with."
+        ];
+        
+        var data2 = [
+            "One little string...",
+            "Second line of data 2, a longer string"
+        ];
+        
+        var columnWidth = 100;
+      
+        function drawBoxes(currentData) {
+
+            var boxes = svg.selectAll(".box").data(currentData);
+
+            boxes.enter().append("rect")
+                .attr("class", "box")
+                .attr("x", function(d, i){
+                    return i * columnWidth;
+                })
+                .attr("y", 0)
+                .attr("width", columnWidth)
+                .attr("height", 200);
+            
+            boxes.exit().remove();
+            
+            var labels = svg.selectAll(".label").data(currentData);
+            
+            var fontSize = 20;
+            var enterLabels = labels.enter().append("text")
+                .attr("class", "label")
+                .attr("fontSize", fontSize)
+                .attr("baseline-shift", "-100%")
+                .attr("y", 0)
+                .attr("x", function(d, i) {
+                    return i * columnWidth;
+                })
+                .attr("width", columnWidth)
+                .attr("height", 200);
+            
+                labels.merge(enterLabels)
+                .each(function(d) {
+                    var textElement = d3.select(this);
+                    textElement.text("");      
+                    
+                    var words = d.split(" ");
+                    var tspan = textElement.append("tspan");
+
+                    var line = 0;
+                    words.forEach(function(word) {
+                        var text = tspan.text();
+                        tspan.text(text + " " + word);
+                        var lineWidth = tspan.node().getBoundingClientRect().width;
+                        
+                        if(lineWidth > columnWidth) {
+                            line++;
+
+                            tspan.text(text);
+                            
+                            tspan = textElement.append("tspan")
+                            .attr("baseline-shift", "-100%")
+                            .attr("y", fontSize * line)
+                            .attr("x", function(d, i){
+                                return i * columnWidth;
+                            })
+                            .text(word);
+                        }
+                    });
+
+                });
+            
+                labels.exit().remove();
+
+
+        }
+        drawBoxes(data1);
+
+
+
+
+
+
+
+
+
+         </script>
+
+         
+
+
+
+
+
+
+
+
+
+
+    </body>
+</html>
