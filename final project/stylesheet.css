@@ -37,10 +37,19 @@ h1{
 .section p {
     flex: 1;
 }
+.section canvas {
+  border:2px solid rgb(0, 0, 0);
+  flex: 2;
+  background-color: #fcee09;
+  height:500px;
+  margin: 20px;
+  
+}
   
 .section svg {
-    border: 1px solid rgb(0, 0, 0);
+    border: 2px solid rgb(0, 0, 0);
     flex: 2;
+    background-color: #fcee09;
     height: 500px;
     margin: 20px;
 }
@@ -260,3 +269,5 @@ h1{
       opacity: 1;
     }
   }
+
+  

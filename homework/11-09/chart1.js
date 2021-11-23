@@ -1,8 +1,8 @@
-d3.select("#chart1") 
+d3.select("#chart1")
     .on("mousemove", function(){
         console.log(d3.event);
     
-
+    
     var tooltip = d3.select("#tooltip")
         .style("display", "block")
         .style("top", d3.event.pageY + 20 + "px")
@@ -14,3 +14,4 @@ d3.select("#chart1")
             .style("display", "none");
         
     });
+    
