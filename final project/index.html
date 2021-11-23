@@ -38,49 +38,50 @@
            Click the buttons below to see 8 categories' most popular 10 games throughout steam history!
            <br>
            <br>
-            <button class="btn" style="font-weight: bold">
+            <button class="btn" style="font-weight: bold" onclick="actions()">
                 <span class="btn__content" >Action!!</span>
                 <span class="btn__glitch"></span>
+                
             </button>
 
-            <button class="btn" style="font-weight: bold">
+            <button class="btn" style="font-weight: bold" onclick="adventures()">
                 <span class="btn__content">Adventure!</span>
                 <span class="btn__glitch"></span>
             </button>
 
             <br>
             
-            <button class="btn" style="font-weight: bold;">
+            <button class="btn" style="font-weight: bold;" onclick="casuals()">
                 <span class="btn__content">Casual~</span>
                 <span class="btn__glitch"></span>
             </button>
 
-            <button class="btn" style="font-weight: bold">
+            <button class="btn" style="font-weight: bold" onclick="strategies()"> 
                 <span class="btn__content">$trategy</span>
                 <span class="btn__glitch"></span>
             </button>
 
             <br>
             
-            <button class="btn" style="font-weight: bold">
+            <button class="btn" style="font-weight: bold" onclick = "multiplayer()">
                 <span class="btn__content">MultiPlayer...</span>
                 <span class="btn__glitch"></span>
             </button>
 
-            <button class="btn" style="font-weight: bold">
+            <button class="btn" style="font-weight: bold" onclick="sports()">
                 <span class="btn__content">Sp000rts</span>
                 <span class="btn__glitch"></span>
             </button>
             
             <br>
 
-            <button class="btn" style="font-weight: bold">
+            <button class="btn" style="font-weight: bold" onclick="rpg()">
                 <span class="btn__content">R P G</span>
                 <span class="btn__glitch"></span>
             </button>
 
-            <button class="btn" style="font-weight: bold">
-                <span class="btn__content">S1ngle Player</span>
+            <button class="btn" style="font-weight: bold" onclick="simulation()">
+                <span class="btn__content">SSimulation</span>
                 <span class="btn__glitch"></span>
             </button>
 
@@ -140,7 +141,7 @@
             </button>
 
             <button class="btn" style="font-weight: bold">
-                <span class="btn__content">S1ngle Player</span>
+                <span class="btn__content">SSimulation</span>
                 <span class="btn__glitch"></span>
             </button>
         </p>
@@ -153,7 +154,7 @@
             Fun Facts!
         </p>
         <svg id = "chart3"></svg>
-
+        
 
 
 
@@ -172,11 +173,215 @@
 
 
     <script>
-        d3.csv("/homework/11/11-02/games-features.csv", function(error, data) {
-            console.log(data);
-           
-        });
+       //filter action games data
+        function actions(){
+            d3.csv("./games-features.csv", function(data) {
+            var actionGames = data.filter(function(row){
+                return row["GenreIsAction"] == 'TRUE';
+                })
+                
+                //sort the action games by players
+                actionGames.sort(function(x, y){
+                    return y["SteamSpyPlayersEstimate"] - x["SteamSpyPlayersEstimate"];
+
+                })
+                console.log(actionGames);
+                var topTenActions = actionGames.slice(0,10);
+                console.log(topTenActions);
+                drawBars(topTenActions);
+            });
+        }
         
+        function adventures(){
+            d3.csv("./games-features.csv", function(data){
+                var adventureGames = data.filter(function(row){
+                    return row["GenreIsAdventure"] == 'TRUE';
+                })
+
+                adventureGames.sort(function(x, y){
+                    return y["SteamSpyPlayersEstimate"] - x["SteamSpyPlayersEstimate"];
+                })
+                console.log(adventureGames);
+                var topTenAdven = adventureGames.slice(0, 10);
+                console.log(topTenAdven);
+                drawBars(topTenAdven);
+            })
+        }
+
+        function casuals(){
+            d3.csv("./games-features.csv", function(data){
+                var casualGames = data.filter(function(row){
+                    return row["GenreIsCasual"] == 'TRUE';
+                })
+
+                casualGames.sort(function(x, y){
+                    return y["SteamSpyPlayersEstimate"] - x["SteamSpyPlayersEstimate"];
+                })
+                console.log(casualGames);
+                var topTenCasual = casualGames.slice(0, 10);
+                console.log(topTenCasual);
+                drawBars(topTenCasual);
+            })
+        }
+
+        function strategies(){
+            d3.csv("./games-features.csv", function(data){
+                var stratGames = data.filter(function(row){
+                    return row["GenreIsStrategy"] == 'TRUE';
+                })
+
+                stratGames.sort(function(x, y){
+                    return y["SteamSpyPlayersEstimate"] - x["SteamSpyPlayersEstimate"];
+                })
+                console.log(stratGames);
+                var topTenStrat = stratGames.slice(0, 10);
+                console.log(topTenStrat);
+                drawBars(topTenStrat);
+            })
+        }
+
+        function multiplayer(){
+            d3.csv("./games-features.csv", function(data){
+                var multiGames = data.filter(function(row){
+                    return row["GenreIsMassivelyMultiplayer"] == 'TRUE';
+                })
+
+                multiGames.sort(function(x, y){
+                    return y["SteamSpyPlayersEstimate"] - x["SteamSpyPlayersEstimate"];
+                })
+                console.log(multiGames);
+                var topTenMulti = multiGames.slice(0, 10);
+                console.log(topTenMulti);
+                drawBars(topTenMulti);
+            })
+        }
+
+        function sports(){
+            d3.csv("./games-features.csv", function(data){
+                var sportsGames = data.filter(function(row){
+                    return row["GenreIsSports"] == 'TRUE';
+                })
+
+                sportsGames.sort(function(x, y){
+                    return y["SteamSpyPlayersEstimate"] - x["SteamSpyPlayersEstimate"];
+                })
+                console.log(sportsGames);
+                var topTenSports = sportsGames.slice(0, 10);
+                console.log(topTenSports);
+                drawBars(topTenSports);
+            })
+        }
+
+        
+        function rpg() {
+
+            d3.csv("./games-features.csv", function(data){
+                var rpgGames = data.filter(function(row){
+                    return row["GenreIsRPG"] == 'TRUE';
+                })
+
+                rpgGames.sort(function(x, y){
+                    return y["SteamSpyPlayersEstimate"] - x["SteamSpyPlayersEstimate"];
+                })
+                console.log(rpgGames);
+                var topTenRpg = rpgGames.slice(0, 10);
+                console.log(topTenRpg);
+                drawBars(topTenRpg);
+            })
+        }
+
+        function simulation() {
+            d3.csv("./games-features.csv", function(data){
+                var simGames = data.filter(function(row){
+                    return row["GenreIsSimulation"] == 'TRUE';
+                })
+
+                simGames.sort(function(x, y){
+                    return y["SteamSpyPlayersEstimate"] - x["SteamSpyPlayersEstimate"];
+                })
+                console.log(simGames);
+                var topTenSim = simGames.slice(0, 10);
+                console.log(topTenSim);
+                drawBars(topTenSim);
+            })
+
+
+
+        }
+        
+        //take an array and draw the bars displaying name and player estimate
+        var svg = d3.select("#chart1")
+        function drawBars(data){
+            svg.selectAll("g")
+            .remove();
+
+
+
+            console.log(data);
+            svg = d3.select("#chart1");
+            
+            
+            var margin = 20;
+            var width = 800 - margin;
+            var height = 400 - margin;
+            console.log(height);
+
+            var g = svg.append("g")
+                .attr("transform", "translate(" + 70 + "," + 50 + ")");
+            
+            
+            var xScale = d3.scaleBand().range([0, width]).padding(1);
+            var yScale = d3.scaleLinear().range([height, 0]);
+
+            xScale.domain(data.map(function(d){
+                return d.QueryName;
+            }));
+            
+            yScale.domain([0, 100000000]);
+
+            g.append("g")
+                .transition().duration(500)
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(xScale));
+            
+            g.append("g")
+                .transition().duration(500)
+                .call(d3.axisLeft(yScale).tickFormat(function(d){
+                    return d;
+                }).ticks(10));
+                
+            g.selectAll(".bar")
+                .data(data)
+                .enter().append("rect")
+                .attr("fill", "black")
+                .attr("class", "bar")
+                .attr("x", xScale(data.QueryName))
+                .attr("y", function(d){
+                    return yScale(d.SteamSpyPlayersEstimate)})
+                .attr("width", xScale.bandwidth())
+                .attr("height", function(d){
+                    return height - yScale(d.SteamSpyPlayersEstimate)});
+                
+            
+        
+
+
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+        
+       
       
         
 
@@ -186,6 +391,7 @@
 
     <script src="./background.js"></script>
     <script src="./data.js"></script>
+    <script src="./chart1.js"></script>
    
 
   </body>
