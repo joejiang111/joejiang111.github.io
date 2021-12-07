@@ -263,4 +263,16 @@ h1{
     }
   }
 
+  #tooltip {
+    background: var(--red-color);
+   
+    border-radius: 5px;
+    display: none;
+    padding: 5px;
+    position: absolute;
+    color:white;
+    font-size: 20px;
+    font-family: Tomorrow, sans-serif;
+  }
+
   

@@ -188,7 +188,8 @@
                 console.log(actionGames);
                 var topTenActions = actionGames.slice(0,10);
                 console.log(topTenActions);
-                drawBars(topTenActions);
+                var title = "Action";
+                drawBars(topTenActions, title);
             });
         }
         
@@ -204,7 +205,8 @@
                 console.log(adventureGames);
                 var topTenAdven = adventureGames.slice(0, 10);
                 console.log(topTenAdven);
-                drawBars(topTenAdven);
+                var title = "Adventure";
+                drawBars(topTenAdven,title);
             })
         }
 
@@ -220,7 +222,8 @@
                 console.log(casualGames);
                 var topTenCasual = casualGames.slice(0, 10);
                 console.log(topTenCasual);
-                drawBars(topTenCasual);
+                var title = "Casual";
+                drawBars(topTenCasual,title);
             })
         }
 
@@ -236,7 +239,8 @@
                 console.log(stratGames);
                 var topTenStrat = stratGames.slice(0, 10);
                 console.log(topTenStrat);
-                drawBars(topTenStrat);
+                var title = "Strategy";
+                drawBars(topTenStrat, title);
             })
         }
 
@@ -252,7 +256,8 @@
                 console.log(multiGames);
                 var topTenMulti = multiGames.slice(0, 10);
                 console.log(topTenMulti);
-                drawBars(topTenMulti);
+                var title = "Multiplayer";
+                drawBars(topTenMulti, title);
             })
         }
 
@@ -268,7 +273,8 @@
                 console.log(sportsGames);
                 var topTenSports = sportsGames.slice(0, 10);
                 console.log(topTenSports);
-                drawBars(topTenSports);
+                var title = "Sport";
+                drawBars(topTenSports, title);
             })
         }
 
@@ -286,7 +292,8 @@
                 console.log(rpgGames);
                 var topTenRpg = rpgGames.slice(0, 10);
                 console.log(topTenRpg);
-                drawBars(topTenRpg);
+                var title = "RPG";
+                drawBars(topTenRpg, title);
             })
         }
 
@@ -302,7 +309,8 @@
                 console.log(simGames);
                 var topTenSim = simGames.slice(0, 10);
                 console.log(topTenSim);
-                drawBars(topTenSim);
+                var title = "Simulation";
+                drawBars(topTenSim, title);
             })
 
 
@@ -311,8 +319,9 @@
         
         //take an array and draw the bars displaying name and player estimate
         var svg = d3.select("#chart1")
-
-        function drawBars(data){
+        
+        function drawBars(data, title){
+           
             svg.selectAll("g")
             .remove();
             svg.selectAll(".bar")
@@ -322,7 +331,21 @@
 
             console.log(data);
             
+            var mean = 0;
+            console.log(mean);
+            function getMean(data) {
+                for(let i = 0; i < data.length; i++) {
+                    mean = parseInt(mean);
+                    var dataInt = parseInt(data[i].SteamSpyPlayersEstimate);
+                    mean = mean + dataInt;
+                }
+                return mean;
+            }
             
+            
+            getMean(data);
+            mean = Math.floor(mean/10);
+            console.log(mean);
             
             var margin = 20;
             var width = 400 - margin;
@@ -343,7 +366,7 @@
 
             
             var xScale = d3.scaleLinear()
-                .range([width * 1.5, 0])
+                .range([width * 1.7, 0])
                 .domain([data[0].SteamSpyPlayersEstimate, 0]);
 
             yScale.domain(data.map(function(d){
@@ -372,15 +395,39 @@
             console.log(data);
 
 
-         
-     
+            function getColor(){
+                var r = Math.floor(Math.random() * 256); 
+                var g = Math.floor(Math.random() * 256);
+                var b = Math.floor(Math.random() * 256);
+                var thergb = "rgb(" + r + "," + g + "," + b + ")"; 
+                console.log(thergb);
+                return thergb;
+                
+            }
+            
 
             var bars = svg.selectAll(".bar")
             .data(data)
             .enter().append("rect")
             .attr("class", "bar")
             .call(startState)
-            .transition().duration(1000)
+            
+           
+            
+            .on("mouseover", function(d){
+                var tooltip = d3.select("#tooltip")
+                .style("display", "block")
+                .style("top", d3.event.pageY + 20 +"px")
+                .style("left", d3.event.pageX + 20 + "px");
+
+                tooltip
+                .html(d.QueryName + "<br> <br> Estimate Players :" + d.SteamSpyPlayersEstimate + "<br> Estimate Owners : " + d.SteamSpyOwners + "<br> Rating by Metacritic :" + d.Metacritic);
+            })
+            .on("mouseout", function(d){
+                d3.select("#tooltip")
+                .style("display", "none");
+            })
+            .transition().duration(500)
             .attr("width", function(d){
                 return xScale(d.SteamSpyPlayersEstimate)
             })
@@ -388,10 +435,45 @@
             .attr("x", 200)
             .attr("y", function(d){
                 return yScale(d.QueryName) + 50;
+            })
+            .attr("fill", function(d){
+                var dInt = parseInt(d.SteamSpyPlayersEstimate);
+                if(dInt >= mean){
+                    return "blue";
+                } else {
+                    return "black";
+                }
             });
-            
 
-            
+            g.append("text")
+            .attr("x", -60)
+            .attr("y", -10)
+            .text("Games")
+            .style("font-family", "tomorrow, sans-serif")
+            .style("fill", "red")
+            .style("stroke", "black")
+            .style("stroke-width", "1px");
+
+            g.append("text")
+            .attr("x", 240)
+            .attr("y", 430)
+            .text("Estimate Players")
+            .style("font-family", "tomorrow, sans-serif")
+            .style("fill", "red")
+            .style("stroke", "black")
+            .style("stroke-width", "1px");
+
+            g.append("text")
+            .transition().duration(500)
+            .attr("x", 300)
+            .attr("y", 350)
+            .text(title)
+            .style("font-size", "80px")
+            .style("font-family", "Tomorrow, sans-serif")
+            .style("fill", "black")
+            .style("opacity", "0.7")
+
+
 
 
 
