@@ -173,7 +173,7 @@
 
 
     <script>
-       //filter action games data
+       //filter each category's games data 
         function actions(){
             d3.csv("./games-features.csv", function(data) {
             var actionGames = data.filter(function(row){
@@ -405,7 +405,7 @@
                 
             }
             
-
+            // append the bars
             var bars = svg.selectAll(".bar")
             .data(data)
             .enter().append("rect")
@@ -427,7 +427,7 @@
                 d3.select("#tooltip")
                 .style("display", "none");
             })
-            .transition().duration(500)
+            .transition().duration(1000)
             .attr("width", function(d){
                 return xScale(d.SteamSpyPlayersEstimate)
             })
@@ -445,6 +445,7 @@
                 }
             });
 
+            //label and the title of the chart
             g.append("text")
             .attr("x", -60)
             .attr("y", -10)
@@ -464,12 +465,13 @@
             .style("stroke-width", "1px");
 
             g.append("text")
-            .transition().duration(500)
+            .transition().duration(1000)
             .attr("x", 300)
             .attr("y", 350)
             .text(title)
             .style("font-size", "80px")
             .style("font-family", "Tomorrow, sans-serif")
+            .style("font-weight", "bold")
             .style("fill", "black")
             .style("opacity", "0.7");
 
