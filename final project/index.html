@@ -405,13 +405,8 @@
             console.log(data);
 
 
-            function getColor(){
-                var r = Math.floor(Math.random() * 256); 
-                var g = Math.floor(Math.random() * 256);
-                var b = Math.floor(Math.random() * 256);
-                var thergb = "rgb(" + r + "," + g + "," + b + ")"; 
-                console.log(thergb);
-                return thergb;
+            function getColor(data){
+                
                 
             }
             
@@ -447,10 +442,15 @@
                 return yScale(d.QueryName) + 50;
             })
             .attr("fill", function(d){
-                var dInt = parseInt(d.SteamSpyPlayersEstimate);
-                if(dInt >= mean){
-                    return "blue";
-                } else {
+                var reco = parseInt(d.RecommendationCount);
+                var player = parseInt(d.SteamSpyPlayersEstimate);
+                console.log(reco/player);
+                var recoRate = reco/player;
+                if(recoRate >= 0.02){
+                    return "red";
+                } else if(recoRate >= 0.01 && recoRate < 0.02){
+                    return "DarkRed";
+                }else{
                     return "black";
                 }
             });
@@ -485,46 +485,67 @@
             .style("fill", "black")
             .style("opacity", "0.7");
 
+            g.append("text")
+            .transition().duration(1000)
+            .attr("x", 600)
+            .attr("y", 150)
+            .text("Recommandation rate")
+            .style("fill", "black")
+            .style("font-size", "13px")
+            .style("font-family", "Tomorrow, sans-serif")
+            .style("font-weight", "bold");
 
 
+            g.append("rect")
+            .transition().duration(1000)
+            .attr("width", 10)
+            .attr("height", 10)
+            .attr("x", 600)
+            .attr("y", 160)
+            .style("fill", "red");
 
+            g.append("text")
+            .transition().duration(1000)
+            .attr("x", 620)
+            .attr("y", 170)
+            .text(">=2%")
+            .style("font-family", "Tomorrow, sans-serif")
+            .style("font-size", "12px");
 
+            g.append("rect")
+            .transition().duration(1000)
+            .attr("width", 10)
+            .attr("height", 10)
+            .attr("x", 600)
+            .attr("y", 180)
+            .style("fill", "DarkRed");
 
+            g.append("text")
+            .transition().duration(1000)
+            .attr("x", 620)
+            .attr("y", 190)
+            .text("1%-2%")
+            .style("font-family", "Tomorrow, sans-serif")
+            .style("font-size", "12px");
 
-            
-            
+            g.append("rect")
+            .transition().duration(1000)
+            .attr("width", 10)
+            .attr("height", 10)
+            .attr("x", 600)
+            .attr("y", 200)
+            .style("fill", "Black");
 
-
-
-
-
-           
-                
-            
-        
-
-
-
-
-
-
-
-
+            g.append("text")
+            .transition().duration(1000)
+            .attr("x", 620)
+            .attr("y", 210)
+            .text("0%-1%")
+            .style("font-family", "Tomorrow, sans-serif")
+            .style("font-size", "12px");
 
 
         }
-
-
-
-
-
-        
-       
-      
-        
-
-        
-
     </script>
 
     <script src="./background.js"></script>
