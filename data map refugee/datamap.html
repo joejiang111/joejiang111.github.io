@@ -8,15 +8,13 @@
     <script src="https://d3js.org/d3-queue.v3.min.js"></script>
     <style>
         svg{
-            background: #efefef;
+            background:white;
         }
         
     </style>
     </head>
     <body>
-        <svg>
-            <rect x="150px" y="150px" width="1200px" height="600" fill="lightyellow"/>
-        </svg>
+        
         
 
         
@@ -26,24 +24,47 @@
             <br>
             <br>
             <br>
+            <br>
+            <br>
+            
 
-        <h1 style="font-size: 85px; color:black;">
-                European Refugee Report 2020
+        <h1 style="font-size: 75px; color:white;">
+                European Refugee<br> Report<br> 2020
 
         </h1>
 
         </div>
-            
+        <br>
+        <br>
+        <br> 
+        <br>
+        <br>
+        <br> 
         
     
-    <div style="text-align: center;">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit ad doloremque praesentium laboriosam. Voluptas quae, quibusdam velit, repellendus repudiandae excepturi, aspernatur tenetur et minus praesentium provident! Modi excepturi laudantium aut.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae incidunt, veniam neque excepturi voluptatibus delectus laboriosam quos labore eius est hic? Dicta, sit! Commodi magnam praesentium quam blanditiis non inventore.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur quidem quibusdam tempore soluta quasi aliquam accusantium molestiae explicabo dolores magnam culpa modi quae architecto error similique recusandae, reprehenderit ratione alias.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore vero necessitatibus deleniti animi quia labore vitae facere assumenda perferendis, nam officia fugit temporibus a non quibusdam eos voluptatem, ad optio.
+    <div style="font-family: Garamond, serif; font-size: 65px; text-align: start; font-weight:lighter;">
+        &emsp;&emsp;&emsp;Lorem ipsum dolor sit, amet <br>&emsp;&emsp;&emsp;adipisicing elit. 
+        Suscipit ad doloremque
+        <br>
+        <p style = "font-family: Garamond, serif; font-size: 30px; text-align: start;">
+            &ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Lorem ipsum dolor sit, amet adipisicing elit, Suscipit ad doloremeque
+            <br>
+            &ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Lorem ipsum dolor sit, amet adipisicing elit, Suscipit ad doloremeque
+            <br>
+            &ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Lorem ipsum dolor sit, amet adipisicing elit, Suscipit ad doloremeque
+            <br>
+            &ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Lorem ipsum dolor sit, amet adipisicing elit, Suscipit ad doloremeque
+            <br>
+            <br>
+            <br>
+            <br>
+        </p>
 
     </div>
-    <div id = "map"></div>
+    <div id = "map">
+       
+
+    </div>
     
       
     
@@ -52,8 +73,8 @@
         
 
 
-    var width = 800 - margin.right - margin.left;
-    var height = 400 - margin.top - margin.bottom;
+    var width = 900 - margin.right - margin.left;
+    var height = 1400 - margin.top - margin.bottom;
     var mapwidth = 1000;
     var mapheight = 1000;  
       
@@ -71,11 +92,12 @@
 
     var projection = d3.geoMercator()
         .translate([width / 2, height / 2 ])
-        .scale(250)
-        .center([50,60]);
+        .scale(400)
+        .center([30,70]);
 
     var path = d3.geoPath()
         .projection(projection);
+
     function ready(error, data){
         console.log(data)
 

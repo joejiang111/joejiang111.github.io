@@ -3,7 +3,7 @@
     padding-right: 0px;
     padding-bottom: 0px;
     padding-left: 00px;
-    height: 600px;
+    height: 1000px;
 
     font-family: Garamond, serif;
     background-position: center;
@@ -14,8 +14,8 @@
 }
 
 h1{
-    font-family: Garamond,serif;
-    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times,serif;
+    text-align:center;
 }
 
 
