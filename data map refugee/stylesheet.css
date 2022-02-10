@@ -5,17 +5,17 @@
     padding-left: 00px;
     height: 600px;
 
-    font-family:proxima nova, sans-serif;
+    font-family: Garamond, serif;
     background-position: center;
     background-size:cover;
     color: black;
     font-style:normal;
-    background-image: url(https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.migrationpolicy.org%2Fnews%2Feurope-pushes-outsource-asylum-again&psig=AOvVaw1T3kuRnmGdAc1ExJ6-Tp3m&ust=1644541957776000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCNChwa768_UCFQAAAAAdAAAAABAa);
+    background-image: url(https://images.pexels.com/photos/10613996/pexels-photo-10613996.jpeg?cs=srgb&dl=pexels-khaled-akacha-10613996.jpg&fm=jpg);
 }
 
 h1{
-    font-family: proxima nova,sans-serif;
+    font-family: Garamond,serif;
     text-align: center;
-
 }
+
 
