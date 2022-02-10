@@ -1,0 +1,21 @@
+#banner {
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 00px;
+    height: 600px;
+
+    font-family:proxima nova, sans-serif;
+    background-position: center;
+    background-size:cover;
+    color: black;
+    font-style:normal;
+    background-image: url(https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.migrationpolicy.org%2Fnews%2Feurope-pushes-outsource-asylum-again&psig=AOvVaw1T3kuRnmGdAc1ExJ6-Tp3m&ust=1644541957776000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCNChwa768_UCFQAAAAAdAAAAABAa);
+}
+
+h1{
+    font-family: proxima nova,sans-serif;
+    text-align: center;
+
+}
+
