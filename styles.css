@@ -2,6 +2,7 @@ p {
   font-size: 50px;
   font-style: italic;
   color: rgb(67, 17, 204);
+  text-align: center;
 }
 
 #main {
