@@ -250,22 +250,14 @@ effects.on('drawbars', function (name, value, value2018, value2019, value2020) {
       textMember.selectAll('text').remove();
       d3.select(this).attr('fill-opacity', 1);
     })
+
     .on('mouseover', function (d) {
       d3.select(this).attr('fill-opacity', 0.5);
       textMember.selectAll('text').remove();
-      let year = d.year;
+
       tooltip.style('opacity', 1).style('border-color', getBarColor(d.year));
-      // tooltip.attr('')
-      // textMember
-      //   .append('text')
-      //   .attr('x', width - 20)
-      //   .attr('y', height - 100)
-      //   .style('font-family', 'Arial')
-      //   .style('font-size', 30)
-      //   .style('font-weight', 'regular')
-      //   .attr('fill', 'black')
-      //   .text(d.year + ': ' + d.value);
     })
+
     .on('mousemove', function (d) {
       valueWithIndicator = d.value.toLocaleString('en-US');
       tooltip
