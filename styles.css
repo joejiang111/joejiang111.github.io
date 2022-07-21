@@ -1,6 +1,12 @@
-p{
-    font-size: 50px;
-    font-style: italic;
-    color:rgb(67, 17, 204);
+p {
+  font-size: 50px;
+  font-style: italic;
+  color: rgb(67, 17, 204);
 }
 
+#main {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 30px;
+  text-align: center;
+  color: black;
+}
