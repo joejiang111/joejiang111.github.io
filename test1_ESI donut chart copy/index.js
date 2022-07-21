@@ -254,7 +254,7 @@ effects.on('drawbars', function (name, value, value2018, value2019, value2020) {
       d3.select(this).attr('fill-opacity', 0.5);
       textMember.selectAll('text').remove();
       let year = d.year;
-      tooltip.style('opacity', 1);
+      tooltip.style('opacity', 1).style('border-color', getBarColor(d.year));
       // tooltip.attr('')
       // textMember
       //   .append('text')
@@ -327,7 +327,6 @@ var tooltip = d3
   .attr('class', 'tooltip')
   .style('border', 'solid')
   .style('border-width', '2px')
-  .style('border-color', 'orange')
   .style('border-radius', '10px')
   .style('padding', '3px');
 
