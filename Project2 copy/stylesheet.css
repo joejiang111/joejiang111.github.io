@@ -16,7 +16,7 @@
 }
 
 .step .title {
-  font-size: 30px;
+  font-size: 60px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: orange;
@@ -49,9 +49,45 @@
 }
 
 #p1 {
-  margin-bottom: 1000px;
+  margin-bottom: 500px;
   font-size: 20px;
   font-family: Arial, Helvetica, sans-serif;
   width: 450px;
   line-height: 150%;
+}
+
+hr {
+  border-radius: 10px;
+  color: red;
+}
+
+#arrow {
+  height: 0px;
+  position: absolute;
+  top: 20%;
+  left: -40%;
+  width: 100%;
+}
+
+#arrow::before {
+  animation: bounce 2s ease infinite;
+  bottom: 1rem;
+  color: black;
+  content: '╲╱';
+  font-size: 2rem;
+  height: 3rem;
+  left: 50%;
+  letter-spacing: -1px;
+  line-height: 4rem;
+  margin-left: -3rem;
+  opacity: 1;
+  position: absolute;
+  text-align: center;
+  width: 1rem;
+}
+
+@keyframes bounce {
+  50% {
+    transform: translateY(-50%);
+  }
 }
