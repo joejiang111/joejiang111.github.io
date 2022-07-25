@@ -1,10 +1,14 @@
 #sections {
   position: relative;
   display: inline-block;
-  width: 600px;
+  width: 500px;
   top: 10px;
   z-index: 90;
   left: 15%;
+}
+
+.setup p {
+  width: 600px;
 }
 
 .step {
