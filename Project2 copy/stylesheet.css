@@ -1,11 +1,10 @@
 #sections {
   position: relative;
   display: inline-block;
-  width: 500px;
+  width: 600px;
   top: 10px;
   z-index: 90;
-  left: 20%;
-  right: 10%;
+  left: 15%;
 }
 
 .step {
@@ -28,7 +27,7 @@
   position: fixed;
   top: 20%;
   z-index: 1;
-  left: 50%;
+  left: 60%;
   height: 600px;
   width: 600px;
   background-color: #ddd;
@@ -42,6 +41,7 @@
 #setup {
   font-size: 60px;
   font-family: Arial, Helvetica, sans-serif;
+  font-weight: -500;
   margin-top: 30px;
   margin-bottom: 1000px;
   line-height: normal;
