@@ -2,7 +2,13 @@
 
 // draw
 
-let svg = d3.select('#viz').append('svg');
+let svg = d3
+  .select('#viz')
+  .append('svg')
+  .attr('width', 600)
+  .attr('height', 600);
+
+let group1 = svg.append('g').attr('width', 600).attr('height', 600);
 
 function draw1() {
   // svg
@@ -15,18 +21,38 @@ function draw1() {
 }
 
 function draw2() {
-  svg
+  // cleanViz();
+  const debtPer = 0.17;
+
+  group1
+
     .append('rect')
-    .attr('x', 100)
-    .attr('y', 100)
+    .attr('x', 200)
+    .attr('y', 200)
     .transition()
-    .duration(2000)
-    .attr('width', 100)
-    .attr('height', 100)
-    .attr('fill', 'black');
+    .duration(1000)
+    .attr('width', 400)
+    .attr('height', 400)
+    .attr('rx', '20px')
+    .attr('fill', 'grey');
+
+  group1
+
+    .append('rect')
+    .attr('x', 200)
+    .attr('y', 200)
+    .transition()
+    .duration(1000)
+    .attr('width', 400 * debtPer)
+    .attr('height', 400 * debtPer)
+    .attr('rx', '20px')
+    .attr('fill', 'orange');
 }
 
-function draw3() {}
+function draw3() {
+  group1.selectAll('rect').attr('opacity', 0);
+  group2 = svg.append('g');
+}
 
 function draw4() {}
 
@@ -64,3 +90,7 @@ scroll.on('progress', function (index, progress) {
   if ((index == 2) & (progress > 0.7)) {
   }
 });
+
+// function cleanViz() {
+//   svg.selectAll('g').remove();
+// }
