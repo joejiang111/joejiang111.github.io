@@ -35,7 +35,8 @@
   left: 60%;
   height: 600px;
   width: 600px;
-  background-color: #ddd;
+  background-color: orange;
+  border-radius: 50px;
 }
 
 #graphic {
