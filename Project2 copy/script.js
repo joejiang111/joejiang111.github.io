@@ -51,10 +51,10 @@ function draw3() {
     .attr('height', 600)
     .selectAll('circle');
 
-  const col = 10;
+  const col = 5;
   const row = 10;
   let y = d3.scaleBand().range([0, 500]).domain(d3.range(row));
-  let x = d3.scaleBand().range([0, 500]).domain(d3.range(col));
+  let x = d3.scaleBand().range([0, 250]).domain(d3.range(col));
 
   let data = d3.range(col * row);
   console.log(data);
@@ -76,7 +76,7 @@ function draw3() {
       return y(Math.floor(d / col)) + 50;
     })
     .attr('r', 10)
-    .attr('fill', 'grey');
+    .attr('fill', 'lightgray');
 }
 
 function draw4() {}
