@@ -11,13 +11,7 @@ let svg = d3
 let group1 = svg.append('g').attr('width', 600).attr('height', 600);
 
 function draw1() {
-  // svg
-  //   .append('rect')
-  //   .attr('x', 100)
-  //   .attr('y', 100)
-  //   .attr('width', 100)
-  //   .attr('height', 100)
-  //   .attr('fill', 'black');
+  //title graph
 }
 
 function draw2() {
@@ -43,7 +37,7 @@ function draw2() {
     .attr('y', 200)
     .transition()
     .duration(1000)
-    .attr('width', 400 * debtPer)
+    .attr('width', 400)
     .attr('height', 400 * debtPer)
     .attr('rx', '20px')
     .attr('fill', 'orange');
@@ -51,7 +45,38 @@ function draw2() {
 
 function draw3() {
   group1.selectAll('rect').attr('opacity', 0);
-  group2 = svg.append('g');
+  let group2 = svg
+    .append('g')
+    .attr('width', 600)
+    .attr('height', 600)
+    .selectAll('circle');
+
+  const col = 10;
+  const row = 10;
+  let y = d3.scaleBand().range([0, 500]).domain(d3.range(row));
+  let x = d3.scaleBand().range([0, 500]).domain(d3.range(col));
+
+  let data = d3.range(col * row);
+  console.log(data);
+
+  group2
+    .data(data)
+    .enter()
+    .append('circle')
+    .transition()
+
+    .delay(function (d, i) {
+      return i * 20;
+    })
+    .duration(200)
+    .attr('cx', function (d) {
+      return x(d % col) + 50;
+    })
+    .attr('cy', function (d) {
+      return y(Math.floor(d / col)) + 50;
+    })
+    .attr('r', 10)
+    .attr('fill', 'grey');
 }
 
 function draw4() {}
