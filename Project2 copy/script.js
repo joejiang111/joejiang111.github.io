@@ -1,7 +1,25 @@
-// initial
+// initial colors
+
+//FPL
+let green1 = '#0A8A1F';
+let green2 = '#0A8A74';
+let green3 = '#0A5F8A';
+
+//Age group
+let blue1;
+let blue2;
+let blue3;
+
+//Health
+let yellow1, yello2, yello3;
 
 // draw
+const col = 10;
+const row = 10;
+let y = d3.scaleBand().range([0, 500]).domain(d3.range(row));
+let x = d3.scaleBand().range([0, 250]).domain(d3.range(col));
 
+let data = d3.range(col * row);
 let svg = d3
   .select('#viz')
   .append('svg')
@@ -9,6 +27,12 @@ let svg = d3
   .attr('height', 600);
 
 let group1 = svg.append('g').attr('width', 600).attr('height', 600);
+
+let group2 = svg
+  .append('g')
+  .attr('width', 600)
+  .attr('height', 600)
+  .selectAll('circle');
 
 function draw1() {
   //title graph
@@ -45,18 +69,7 @@ function draw2() {
 
 function draw3() {
   group1.selectAll('rect').attr('opacity', 0);
-  let group2 = svg
-    .append('g')
-    .attr('width', 600)
-    .attr('height', 600)
-    .selectAll('circle');
 
-  const col = 5;
-  const row = 10;
-  let y = d3.scaleBand().range([0, 500]).domain(d3.range(row));
-  let x = d3.scaleBand().range([0, 250]).domain(d3.range(col));
-
-  let data = d3.range(col * row);
   console.log(data);
 
   group2
@@ -75,7 +88,7 @@ function draw3() {
     .attr('cy', function (d) {
       return y(Math.floor(d / col)) + 50;
     })
-    .attr('r', 10)
+    .attr('r', 5)
     .attr('fill', 'lightgray');
 }
 
@@ -119,3 +132,28 @@ scroll.on('progress', function (index, progress) {
 // function cleanViz() {
 //   svg.selectAll('g').remove();
 // }
+function clickFPL() {
+  svg
+    .selectAll('circle')
+    .data(data)
+    .transition()
+    .delay(function (d, i) {
+      return i * 20;
+    })
+    .duration(1000)
+    // .attr('r', 8)
+    .attr('stroke-width', 4)
+    .attr('stroke', function (d) {
+      if (d <= 12) {
+        return green1;
+      } else if (13 <= d && d <= 37) {
+        return green2;
+      } else if (38 <= d && d <= 60) {
+        return green3;
+      } else {
+        return 'grey';
+      }
+    });
+}
+
+function getStroke() {}
