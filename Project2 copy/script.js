@@ -28,16 +28,14 @@ let svg = d3
 
 let group1 = svg.append('g').attr('width', 600).attr('height', 600);
 
-let group2 = svg
-  .append('g')
-  .attr('width', 600)
-  .attr('height', 600)
-  .selectAll('circle');
+let group2 = svg.append('g').attr('width', 600).attr('height', 600);
 
 function clean(chartType) {
-  let svg = d3.select('#vis').select('svg');
   if (chartType !== 'group1') {
     group1.selectAll('circle').transition().attr('opacity', 0);
+  }
+  if (chartType !== 'group2') {
+    group2.selectAll('text').transition().attr('opacity', 0);
   }
 }
 
@@ -75,24 +73,36 @@ function draw3() {
 
   console.log(data);
 
-  group2
-    .data(data)
-    .enter()
-    .append('circle')
-    .transition()
+  function drawMedi(col, row) {
+    group2
+      .append('text')
+      .attr('x', 400)
+      .attr('y', 100)
+      .style('font-size', 20)
+      .style('font-family', 'Helvetica')
+      .attr('fill', 'black')
+      .text('Medical Care');
+  }
 
-    .delay(function (d, i) {
-      return i * 20;
-    })
-    .duration(200)
-    .attr('cx', function (d) {
-      return x(d % col) + 50;
-    })
-    .attr('cy', function (d) {
-      return y(Math.floor(d / col)) + 50;
-    })
-    .attr('r', 5)
-    .attr('fill', 'lightgray');
+  drawMedi(10, 10);
+  // group2
+  //   .data(data)
+  //   .enter()
+  //   .append('circle')
+  //   .transition()
+
+  //   .delay(function (d, i) {
+  //     return i * 20;
+  //   })
+  //   .duration(200)
+  //   .attr('cx', function (d) {
+  //     return x(d % col) + 50;
+  //   })
+  //   .attr('cy', function (d) {
+  //     return y(Math.floor(d / col)) + 50;
+  //   })
+  //   .attr('r', 5)
+  //   .attr('fill', 'lightgray');
 }
 
 function draw4() {}
