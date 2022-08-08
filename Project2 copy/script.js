@@ -35,6 +35,8 @@ function clean(chartType) {
   }
   if (chartType !== 'group2') {
     group2.selectAll('text').transition().attr('opacity', 0);
+    group2.selectAll('circle').transition().attr('opacity', 0);
+    group2.selectAll('rect').transition().attr('opacity', 0);
   }
 }
 
@@ -88,9 +90,10 @@ function draw3() {
       .attr('y', 70)
       .attr('height', 60)
       .attr('width', 5)
-      .attr('fill', 'orange');
+      .attr('fill', '#f15a24');
 
     group2
+      .append('g')
       .selectAll('circle')
       .data(data)
       .enter()
@@ -108,10 +111,54 @@ function draw3() {
         return y(Math.floor(d / col)) + 80;
       })
       .attr('r', 8)
-      .attr('fill', 'lightgray');
+      .attr('fill', '#f15a24')
+      .attr('opacity', 0.5);
+  }
+  function drawOngoing(col, row) {
+    let data = d3.range(col * row);
+    console.log(data);
+    group2
+      .append('text')
+      .attr('x', 400)
+      .attr('y', 200)
+      .style('font-size', 30)
+      .style('font-family', 'Arial')
+      .attr('fill', 'black')
+      .text('Ongoing Care');
+
+    group2
+      .append('rect')
+      .attr('x', 380)
+      .attr('y', 170)
+      .attr('height', 60)
+      .attr('width', 5)
+      .attr('fill', '#f15a24');
+
+    group2
+      .append('g')
+      .selectAll('circle')
+      .data(data)
+      .enter()
+      .append('circle')
+      .transition()
+
+      .delay(function (d, i) {
+        return i * 20;
+      })
+      .duration(200)
+      .attr('cx', function (d) {
+        return x(d % col) + 200;
+      })
+      .attr('cy', function (d) {
+        return y(Math.floor(d / col)) + 180;
+      })
+      .attr('r', 8)
+      .attr('fill', '#f15a24')
+      .attr('opacity', 0.5);
   }
 
   drawMedi(2, 3);
+  drawOngoing(9, 3);
 }
 
 function draw4() {}
