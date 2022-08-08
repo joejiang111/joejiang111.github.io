@@ -16,15 +16,14 @@ let yellow1, yello2, yello3;
 // draw
 const col = 10;
 const row = 10;
-let y = d3.scaleBand().range([0, 500]).domain(d3.range(row));
-let x = d3.scaleBand().range([0, 250]).domain(d3.range(col));
+let y = d3.scaleBand().range([0, 200]).domain(d3.range(row));
+let x = d3.scaleBand().range([0, 200]).domain(d3.range(col));
 
-let data = d3.range(col * row);
 let svg = d3
   .select('#viz')
   .append('svg')
-  .attr('width', 600)
-  .attr('height', 600);
+  .attr('width', 1000)
+  .attr('height', 1000);
 
 let group1 = svg.append('g').attr('width', 600).attr('height', 600);
 
@@ -71,38 +70,48 @@ function draw2() {
 function draw3() {
   clean('group2');
 
-  console.log(data);
-
   function drawMedi(col, row) {
+    let data = d3.range(col * row);
+    console.log(data);
     group2
       .append('text')
       .attr('x', 400)
       .attr('y', 100)
-      .style('font-size', 20)
+      .style('font-size', 30)
       .style('font-family', 'Helvetica')
       .attr('fill', 'black')
       .text('Medical Care');
+
+    group2
+      .append('rect')
+      .attr('x', 380)
+      .attr('y', 70)
+      .attr('height', 60)
+      .attr('width', 5)
+      .attr('fill', 'orange');
+
+    group2
+      .selectAll('circle')
+      .data(data)
+      .enter()
+      .append('circle')
+      .transition()
+
+      .delay(function (d, i) {
+        return i * 20;
+      })
+      .duration(200)
+      .attr('cx', function (d) {
+        return x(d % col) + 340;
+      })
+      .attr('cy', function (d) {
+        return y(Math.floor(d / col)) + 80;
+      })
+      .attr('r', 8)
+      .attr('fill', 'lightgray');
   }
 
-  drawMedi(10, 10);
-  // group2
-  //   .data(data)
-  //   .enter()
-  //   .append('circle')
-  //   .transition()
-
-  //   .delay(function (d, i) {
-  //     return i * 20;
-  //   })
-  //   .duration(200)
-  //   .attr('cx', function (d) {
-  //     return x(d % col) + 50;
-  //   })
-  //   .attr('cy', function (d) {
-  //     return y(Math.floor(d / col)) + 50;
-  //   })
-  //   .attr('r', 5)
-  //   .attr('fill', 'lightgray');
+  drawMedi(2, 3);
 }
 
 function draw4() {}

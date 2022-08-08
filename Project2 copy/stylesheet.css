@@ -32,9 +32,9 @@
   position: fixed;
   top: 20%;
   z-index: 1;
-  left: 60%;
-  height: 600px;
-  width: 600px;
+  left: 50%;
+  height: 1000px;
+  width: 1000px;
   background-color: white;
   border-radius: 50px;
 }
