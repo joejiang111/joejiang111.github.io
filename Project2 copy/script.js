@@ -44,26 +44,23 @@ function draw2() {
 
   group1
 
-    .append('rect')
-    .attr('x', 200)
-    .attr('y', 200)
+    .append('circle')
+    .attr('cx', 0)
+    .attr('cy', 300)
     .transition()
     .duration(1000)
-    .attr('width', 400)
-    .attr('height', 400)
-    .attr('rx', '20px')
+    .attr('r', 100)
+
     .attr('fill', 'grey');
 
   group1
 
-    .append('rect')
-    .attr('x', 200)
-    .attr('y', 200)
+    .append('circle')
+    .attr('cx', 100)
+    .attr('cy', 200)
     .transition()
     .duration(1000)
-    .attr('width', 400)
-    .attr('height', 400 * debtPer)
-    .attr('rx', '20px')
+    .attr('r', 40)
     .attr('fill', 'orange');
 }
 
