@@ -34,38 +34,44 @@ let group2 = svg
   .attr('height', 600)
   .selectAll('circle');
 
+function clean(chartType) {
+  let svg = d3.select('#vis').select('svg');
+  if (chartType !== 'group1') {
+    group1.selectAll('circle').transition().attr('opacity', 0);
+  }
+}
+
 function draw1() {
   //title graph
 }
 
 function draw2() {
-  // cleanViz();
+  clean('group1');
   const debtPer = 0.17;
 
   group1
-
     .append('circle')
-    .attr('cx', 0)
+    .attr('cx', 200)
     .attr('cy', 300)
     .transition()
     .duration(1000)
-    .attr('r', 100)
+    .attr('r', 200)
 
     .attr('fill', 'grey');
 
   group1
-
     .append('circle')
-    .attr('cx', 100)
-    .attr('cy', 200)
+    .attr('cx', 200)
+    .attr('cy', 460)
+
     .transition()
-    .duration(1000)
+    .duration(1500)
     .attr('r', 40)
     .attr('fill', 'orange');
 }
 
 function draw3() {
-  group1.selectAll('rect').attr('opacity', 0);
+  clean('group2');
 
   console.log(data);
 
