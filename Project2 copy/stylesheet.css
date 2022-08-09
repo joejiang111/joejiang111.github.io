@@ -97,7 +97,7 @@ hr {
     transform: translateY(-50%);
   }
 }
-span {
+#btn {
   display: none;
   transition: 1s;
 }
@@ -126,6 +126,6 @@ button {
   width: 450px;
 }
 
-button:hover span {
+button:hover #btn {
   display: inline-block;
 }

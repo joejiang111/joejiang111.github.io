@@ -33,6 +33,8 @@ let group3 = svg.append('g').attr('width', 600).attr('height', 600);
 
 let group4 = svg.append('g').attr('width', 600).attr('height', 600);
 
+let group5 = svg.append('g').attr('width', 600).attr('height', 600);
+
 function clean(chartType) {
   if (chartType !== 'group1') {
     group1.selectAll('circle').transition().attr('opacity', 0);
@@ -52,6 +54,9 @@ function clean(chartType) {
     group4.selectAll('circle').transition().attr('opacity', 0);
     group4.selectAll('rect').transition().attr('opacity', 0);
   }
+  if (chartType !== 'group5') {
+    group5.selectAll('circle').transition().attr('opacity', 0);
+  }
 }
 
 function draw1() {
@@ -60,11 +65,11 @@ function draw1() {
 
 function draw2() {
   clean('group1');
-  const debtPer = 0.17;
+  const debtPer = 0.15;
 
   group1
     .append('circle')
-    .attr('cx', 200)
+    .attr('cx', 300)
     .attr('cy', 300)
     .transition()
     .duration(1000)
@@ -74,12 +79,14 @@ function draw2() {
 
   group1
     .append('circle')
-    .attr('cx', 200)
-    .attr('cy', 460)
+    .attr('cx', 300)
+    .attr('cy', 422)
 
     .transition()
     .duration(1500)
-    .attr('r', 40)
+    .attr('r', function () {
+      return Math.pow(debtPer * 200 * 200, 0.5);
+    })
     .attr('fill', 'orange');
 }
 
@@ -124,7 +131,7 @@ function draw3() {
       })
       .duration(200)
       .attr('cx', function (d) {
-        return x(d % col) + 100;
+        return x(d % col) + 110;
       })
       .attr('cy', function (d) {
         return y(Math.floor(d / col)) + 80;
@@ -169,7 +176,7 @@ function draw3() {
       })
       .duration(200)
       .attr('cx', function (d) {
-        return x(d % col) + 160;
+        return x(d % col) + 170;
       })
       .attr('cy', function (d) {
         return y(Math.floor(d / col)) + 180;
@@ -212,7 +219,7 @@ function draw3() {
       })
       .duration(200)
       .attr('cx', function (d) {
-        return x(d % col) + 180;
+        return x(d % col) + 190;
       })
       .attr('cy', function (d) {
         return y(Math.floor(d / col)) + 280;
@@ -254,7 +261,7 @@ function draw3() {
       })
       .duration(200)
       .attr('cx', function (d) {
-        return x(d % col) + 180;
+        return x(d % col) + 190;
       })
       .attr('cy', function (d) {
         return y(Math.floor(d / col)) + 380;
@@ -299,7 +306,7 @@ function draw3() {
       })
       .duration(200)
       .attr('cx', function (d) {
-        return x(d % col) + 260;
+        return x(d % col) + 270;
       })
       .attr('cy', function (d) {
         return y(Math.floor(d / col)) + 480;
@@ -593,19 +600,173 @@ function draw5() {
       })
       .duration(200)
       .attr('cx', function (d) {
-        return x(d % col) + 450;
+        return x(d % col) + 410;
       })
       .attr('cy', function (d) {
         return y(Math.floor(d / col)) + 180;
       })
       .attr('r', 8)
       .attr('fill', '#f15a24')
+      .attr('opacity', 0.5);
+  }
+  function drawFPL2(col, row) {
+    let data = d3.range(col * row);
+    group4
+      .append('text')
+      .attr('x', 510)
+      .attr('y', 310)
+      .style('font-size', 30)
+      .style('font-family', 'Arial')
+      .attr('fill', '#f15a24')
+      .text('300% – 400%');
+
+    group4
+      .append('rect')
+      .attr('x', 490)
+      .attr('y', 270)
+      .attr('height', 60)
+      .attr('width', 5)
+      .attr('fill', '#f15a24');
+
+    group4
+      .append('g')
+      .selectAll('circle')
+      .data(data)
+      .enter()
+      .append('circle')
+      .transition()
+
+      .delay(function (d, i) {
+        return i * 20;
+      })
+      .duration(200)
+      .attr('cx', function (d) {
+        return x(d % col) + 370;
+      })
+      .attr('cy', function (d) {
+        return y(Math.floor(d / col)) + 280;
+      })
+      .attr('r', 8)
+      .attr('fill', '#f15a24')
+      .attr('opacity', 0.5);
+  }
+
+  function drawFPL3(col, row) {
+    let data = d3.range(col * row);
+    group4
+      .append('text')
+      .attr('x', 510)
+      .attr('y', 410)
+      .style('font-size', 30)
+      .style('font-family', 'Arial')
+      .attr('fill', '#f15a24')
+      .text('139% – 300%');
+
+    group4
+      .append('rect')
+      .attr('x', 490)
+      .attr('y', 370)
+      .attr('height', 60)
+      .attr('width', 5)
+      .attr('fill', '#f15a24');
+
+    group4
+      .append('g')
+      .selectAll('circle')
+      .data(data)
+      .enter()
+      .append('circle')
+      .transition()
+
+      .delay(function (d, i) {
+        return i * 20;
+      })
+      .duration(200)
+      .attr('cx', function (d) {
+        return x(d % col) + 330;
+      })
+      .attr('cy', function (d) {
+        return y(Math.floor(d / col)) + 380;
+      })
+      .attr('r', 8)
+      .attr('fill', '#f15a24')
       .attr('opacity', 1);
   }
-  drawFPL1(2, 3);
+  function drawFPL4(col, row) {
+    let data = d3.range(col * row);
+    group4
+      .append('text')
+      .attr('x', 510)
+      .attr('y', 510)
+      .style('font-size', 30)
+      .style('font-family', 'Arial')
+      .attr('fill', '#f15a24')
+      .text('139% – 300%');
+
+    group4
+      .append('rect')
+      .attr('x', 490)
+      .attr('y', 470)
+      .attr('height', 60)
+      .attr('width', 5)
+      .attr('fill', '#f15a24');
+
+    group4
+      .append('g')
+      .selectAll('circle')
+      .data(data)
+      .enter()
+      .append('circle')
+      .transition()
+
+      .delay(function (d, i) {
+        return i * 20;
+      })
+      .duration(200)
+      .attr('cx', function (d) {
+        return x(d % col) + 430;
+      })
+      .attr('cy', function (d) {
+        return y(Math.floor(d / col)) + 480;
+      })
+      .attr('r', 8)
+      .attr('fill', '#f15a24')
+      .attr('opacity', 0.5);
+  }
+  drawFPL1(4, 3);
+  drawFPL2(6, 3);
+  drawFPL3(8, 3);
+  drawFPL4(3, 3);
 }
 
-let activationFunctions = [draw1, draw2, draw3, draw4, draw5];
+function draw6() {
+  clean('group5');
+  const debtPer = 0.37;
+
+  group5
+    .append('circle')
+    .attr('cx', 300)
+    .attr('cy', 300)
+    .transition()
+    .duration(1000)
+    .attr('r', 200)
+
+    .attr('fill', 'grey');
+
+  group5
+    .append('circle')
+    .attr('cx', 300)
+    .attr('cy', 380)
+
+    .transition()
+    .duration(1500)
+    .attr('r', function () {
+      return Math.pow(debtPer * 200 * 200, 0.5);
+    })
+    .attr('fill', 'orange');
+}
+
+let activationFunctions = [draw1, draw2, draw3, draw4, draw5, draw6];
 
 //All the scrolling function
 //Will draw a new graph based on the index provided by the scroll
