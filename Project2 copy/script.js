@@ -29,6 +29,10 @@ let group1 = svg.append('g').attr('width', 600).attr('height', 600);
 
 let group2 = svg.append('g').attr('width', 600).attr('height', 600);
 
+let group3 = svg.append('g').attr('width', 600).attr('height', 600);
+
+let group4 = svg.append('g').attr('width', 600).attr('height', 600);
+
 function clean(chartType) {
   if (chartType !== 'group1') {
     group1.selectAll('circle').transition().attr('opacity', 0);
@@ -346,7 +350,15 @@ function draw3() {
   drawFinal(24, 3);
 }
 
-function draw4() {}
+function draw4() {
+  clean('group3');
+  group3
+    .append('circle')
+    .attr('cx', 400)
+    .attr('cy', 400)
+    .attr('r', 100)
+    .attr('fill', '#f15a24');
+}
 
 function draw5() {}
 
