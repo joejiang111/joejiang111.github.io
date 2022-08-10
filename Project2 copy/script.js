@@ -375,7 +375,7 @@ function draw4() {
   group3
     .append('circle')
     .attr('cx', 400)
-    .attr('cy', 400)
+    .attr('cy', 300)
     .transition()
     .duration(1000)
     .attr('r', 100)
@@ -400,9 +400,9 @@ function draw4() {
   function drawCut(col, row) {
     const curve = d3.line().curve(d3.curveBasis);
     const points = [
-      [400, 400],
-      [400, 600],
-      [300, 600],
+      [350, 300],
+      [350, 500],
+      [300, 500],
       // [230, 540],
     ];
     path = group3
@@ -433,7 +433,7 @@ function draw4() {
         return x(d % col) + 80;
       })
       .attr('cy', function (d) {
-        return y(Math.floor(d / col)) + 570;
+        return y(Math.floor(d / col)) + 470;
       })
       .attr('r', 5)
       .attr('fill', '#f15a24')
@@ -442,7 +442,7 @@ function draw4() {
     text1 = group3
       .append('text')
       .attr('x', 75)
-      .attr('y', 550)
+      .attr('y', 450)
       .attr('opacity', 0)
       .style('font-size', 40)
       .style('font-family', 'Arial')
@@ -455,9 +455,9 @@ function draw4() {
   function drawCredit(col, row) {
     const curve = d3.line().curve(d3.curveBasis);
     const points = [
-      [400, 400],
-      [400, 600],
-      [500, 600],
+      [450, 300],
+      [450, 500],
+      [500, 500],
       // [230, 540],
     ];
     path = group3
@@ -488,7 +488,7 @@ function draw4() {
         return x(d % col) + 520;
       })
       .attr('cy', function (d) {
-        return y(Math.floor(d / col)) + 570;
+        return y(Math.floor(d / col)) + 470;
       })
       .attr('r', 5)
       .attr('fill', '#f15a24')
@@ -497,7 +497,7 @@ function draw4() {
     text1 = group3
       .append('text')
       .attr('x', 520)
-      .attr('y', 550)
+      .attr('y', 450)
       .attr('opacity', 0)
       .style('font-size', 40)
       .style('font-family', 'Arial')
@@ -511,8 +511,8 @@ function draw4() {
     const curve = d3.line().curve(d3.curveBasis);
     const points = [
       [400, 400],
-      [400, 200],
-      [500, 200],
+      [400, 100],
+      [500, 100],
       // [230, 540],
     ];
     path = group3
@@ -543,7 +543,7 @@ function draw4() {
         return x(d % col) + 520;
       })
       .attr('cy', function (d) {
-        return y(Math.floor(d / col)) + 170;
+        return y(Math.floor(d / col)) + 70;
       })
       .attr('r', 5)
       .attr('fill', '#f15a24')
@@ -552,7 +552,7 @@ function draw4() {
     text1 = group3
       .append('text')
       .attr('x', 520)
-      .attr('y', 150)
+      .attr('y', 50)
       .attr('opacity', 0)
       .style('font-size', 40)
       .style('font-family', 'Arial')

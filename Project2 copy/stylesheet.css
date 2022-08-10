@@ -104,28 +104,28 @@ hr {
 button {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
-  border: 2px solid;
+  border: none;
   border-radius: 5px;
-  width: 200px;
+  width: 300px;
   height: 50px;
   margin: 10 0px;
   transition: 1s;
   margin-bottom: 10px;
 }
 
-#explore1:hover {
+#explore1:hover,
+#explore1:focus {
   background-color: #f15a24;
-  width: 300px;
+  color: white;
 }
-#explore2:hover {
+#explore2:hover,
+#explore2:focus {
   background-color: #f15a24;
-  width: 400px;
-}
-#explore3:hover {
-  background-color: #f15a24;
-  width: 450px;
+  color: white;
 }
 
-button:hover #btn {
-  display: inline-block;
+#explore3:hover,
+#explore3:focus {
+  background-color: #f15a24;
+  color: white;
 }
