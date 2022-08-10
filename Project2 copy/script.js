@@ -69,6 +69,7 @@ function clean(chartType) {
   if (chartType !== 'group7') {
     group7.selectAll('rect').transition().remove();
     group7.selectAll('text').transition().remove();
+    group7.selectAll('image').remove();
     // textGroup.remove();
   }
 }
@@ -920,6 +921,27 @@ function draw8() {
     .attr('width', 100)
     .attr('height', (500 / 42) * 32)
     .style('rx', '15px');
+
+  let icon1 = group7
+    .append('svg:image')
+    .attr('x', 230)
+    .attr('y', 450)
+    .attr('width', 100)
+    .attr('height', 100)
+    .style('opacity', 0)
+    .attr('xlink:href', 'assets/SVG/Asset25.svg');
+
+  let icon2 = group7
+    .append('svg:image')
+    .attr('x', 510)
+    .attr('y', 450)
+    .attr('width', 100)
+    .attr('height', 100)
+    .style('opacity', 0)
+    .attr('xlink:href', 'assets/SVG/Asset26.svg');
+
+  icon1.transition().duration(1000).style('opacity', 1);
+  icon2.transition().duration(1000).style('opacity', 1);
 }
 
 let activationFunctions = [
