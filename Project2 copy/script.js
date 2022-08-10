@@ -66,6 +66,11 @@ function clean(chartType) {
     group6.selectAll('text').transition().remove();
     // textGroup.remove();
   }
+  if (chartType !== 'group7') {
+    group7.selectAll('rect').transition().remove();
+    group7.selectAll('text').transition().remove();
+    // textGroup.remove();
+  }
 }
 
 function draw1() {
@@ -892,6 +897,29 @@ function draw7() {
 
 function draw8() {
   clean('group7');
+  group7
+    .append('rect')
+
+    .attr('x', 350)
+    .attr('y', 50)
+    .transition()
+    .duration(1000)
+    .attr('width', 100)
+    .attr('fill', '#f15a24')
+    .attr('height', 500)
+    .style('rx', '15px');
+
+  let rectNum = (500 / 42) * 32;
+  group7
+    .append('rect')
+    .attr('x', 400)
+    .attr('y', 50 + (500 - rectNum))
+    .transition()
+    .duration(1000)
+    .attr('fill', '#f7931e')
+    .attr('width', 100)
+    .attr('height', (500 / 42) * 32)
+    .style('rx', '15px');
 }
 
 let activationFunctions = [
