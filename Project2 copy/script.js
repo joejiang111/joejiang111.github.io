@@ -34,6 +34,8 @@ let group3 = svg.append('g').attr('width', 600).attr('height', 600);
 let group4 = svg.append('g').attr('width', 600).attr('height', 600);
 
 let group5 = svg.append('g').attr('width', 600).attr('height', 600);
+let group6 = svg.append('g').attr('width', 600).attr('height', 600);
+let group7 = svg.append('g').attr('width', 600).attr('height', 600);
 
 function clean(chartType) {
   if (chartType !== 'group1') {
@@ -54,8 +56,15 @@ function clean(chartType) {
     group4.selectAll('circle').transition().attr('opacity', 0);
     group4.selectAll('rect').transition().attr('opacity', 0);
   }
-  if (chartType !== 'group5') {
+  if (chartType !== 'group5' && chartType !== 'group6') {
     group5.selectAll('circle').transition().attr('opacity', 0);
+  }
+  if (chartType !== 'group6') {
+    group6.selectAll('circle').transition().attr('opacity', 0);
+    group5.selectAll('circle').transition().remove();
+    group6.selectAll('path').transition().remove();
+    group6.selectAll('text').transition().remove();
+    // textGroup.remove();
   }
 }
 
@@ -738,26 +747,29 @@ function draw5() {
   drawFPL3(8, 3);
   drawFPL4(3, 3);
 }
-
+let cir1;
+let cir2;
 function draw6() {
   clean('group5');
   const debtPer = 0.37;
 
-  group5
+  cir1 = group5
     .append('circle')
     .attr('cx', 300)
     .attr('cy', 300)
+    .attr('class', 'cir1')
     .transition()
     .duration(1000)
     .attr('r', 200)
 
     .attr('fill', 'grey');
 
-  group5
+  cir2 = group5
+
     .append('circle')
     .attr('cx', 300)
     .attr('cy', 380)
-
+    .attr('class', 'cir2')
     .transition()
     .duration(1500)
     .attr('r', function () {
@@ -766,7 +778,132 @@ function draw6() {
     .attr('fill', 'orange');
 }
 
-let activationFunctions = [draw1, draw2, draw3, draw4, draw5, draw6];
+function draw7() {
+  clean('group6');
+
+  d3.select('.cir1').transition().duration(1000).attr('fill', 'white');
+
+  d3.select('.cir2')
+    .transition()
+    .duration(1000)
+    .attr('fill', '#f15a24')
+    .attr('r', 90)
+    .attr('transform', 'translate(100,0)');
+
+  let data = [
+    { label: 'one', count: 0.28 },
+    { label: 'two', count: 0.27 },
+    { label: 'three', count: 0.45 },
+  ];
+
+  const width = 250;
+  const height = 250;
+  const radius = Math.min(width, height) / 2;
+  const donutWidth = 18; // NEW
+
+  var arc = d3
+    .arc()
+    .innerRadius(radius - donutWidth) // NEW
+    .outerRadius(radius);
+
+  let pie = d3
+    .pie()
+    .value(function (d) {
+      return d.count;
+    })
+    .sort(null);
+
+  group6.attr('transform', 'translate(400,380)');
+  let donut = group6.selectAll('path');
+
+  var blues = d3.scaleOrdinal(d3.schemeOranges[3]);
+
+  donut
+    .data(pie(data))
+    .enter()
+
+    .append('path')
+
+    .attr('d', arc)
+
+    .transition()
+    .duration(1000)
+    .attr('fill', function (d) {
+      return blues(d.data.label);
+    });
+
+  group6
+    .append('text')
+    .attr('x', -220)
+    .attr('y', -20)
+    .style('font-size', 40)
+    .style('font-family', 'Arial')
+    .attr('fill', 'black')
+    .style('opacity', 0)
+    .text('45%');
+  group6
+    .append('text')
+    .attr('x', -240)
+    .attr('y', 10)
+    .style('font-size', 30)
+    .style('font-family', 'Arial')
+    .attr('fill', 'grey')
+    .style('opacity', 0)
+    .text('3+ Bills');
+  group6
+    .append('text')
+    .attr('x', 50)
+    .attr('y', 150)
+    .style('font-size', 40)
+    .style('font-family', 'Arial')
+    .attr('fill', 'black')
+    .style('opacity', 0)
+    .text('27%');
+  group6
+    .append('text')
+    .attr('x', 50)
+    .attr('y', 180)
+    .style('font-size', 30)
+    .style('font-family', 'Arial')
+    .attr('fill', 'grey')
+    .style('opacity', 0)
+    .text('2 Bills');
+  group6
+    .append('text')
+    .attr('x', 100)
+    .attr('y', -120)
+    .style('font-size', 40)
+    .style('font-family', 'Arial')
+    .attr('fill', 'black')
+    .style('opacity', 0)
+    .text('28%');
+  group6
+    .append('text')
+    .attr('x', 100)
+    .attr('y', -90)
+    .style('font-size', 30)
+    .style('font-family', 'Arial')
+    .attr('fill', 'grey')
+    .style('opacity', 0)
+    .text('1 Bill');
+
+  group6.selectAll('text').transition().duration(1000).style('opacity', 1);
+}
+
+function draw8() {
+  clean('group7');
+}
+
+let activationFunctions = [
+  draw1,
+  draw2,
+  draw3,
+  draw4,
+  draw5,
+  draw6,
+  draw7,
+  draw8,
+];
 
 //All the scrolling function
 //Will draw a new graph based on the index provided by the scroll
