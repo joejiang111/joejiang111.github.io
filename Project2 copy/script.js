@@ -26,16 +26,14 @@ let svg = d3
   .attr('height', 1000);
 
 let group1 = svg.append('g').attr('width', 600).attr('height', 600);
-
 let group2 = svg.append('g').attr('width', 600).attr('height', 600);
-
 let group3 = svg.append('g').attr('width', 600).attr('height', 600);
-
 let group4 = svg.append('g').attr('width', 600).attr('height', 600);
-
 let group5 = svg.append('g').attr('width', 600).attr('height', 600);
 let group6 = svg.append('g').attr('width', 600).attr('height', 600);
 let group7 = svg.append('g').attr('width', 600).attr('height', 600);
+let group8 = svg.append('g').attr('width', 600).attr('height', 600);
+let group9 = svg.append('g').attr('width', 600).attr('height', 600);
 
 function clean(chartType) {
   if (chartType !== 'group1') {
@@ -71,6 +69,13 @@ function clean(chartType) {
     group7.selectAll('text').transition().remove();
     group7.selectAll('image').remove();
     // textGroup.remove();
+  }
+  if (chartType !== 'group8') {
+    group8.selectAll('rect').transition().remove();
+    group8.selectAll('text').transition().remove();
+  }
+  if (chartType !== 'group9') {
+    group9.selectAll('circle').transition().remove();
   }
 }
 
@@ -942,8 +947,95 @@ function draw8() {
 
   icon1.transition().duration(1000).style('opacity', 1);
   icon2.transition().duration(1000).style('opacity', 1);
+
+  group7
+    .append('text')
+    .attr('x', 410)
+    .attr('y', 160)
+    .style('font-size', 20)
+    .style('font-family', 'Arial')
+    .attr('fill', 'black')
+    .style('opacity', 0)
+    .text('32%');
+  group7
+    .append('text')
+    .attr('x', 370)
+    .attr('y', 40)
+    .style('font-size', 30)
+    .style('font-family', 'Arial')
+    .style('font-weight', 'bold')
+    .attr('fill', 'black')
+    .style('opacity', 0)
+    .text('42%');
+
+  group7
+    .selectAll('text')
+    .transition()
+    .delay(400)
+    .duration(1000)
+    .style('opacity', 1);
 }
 
+function draw9() {
+  clean('group8');
+  group8
+    .append('rect')
+    .attr('x', 150)
+    .attr('y', 200)
+    .attr('height', 200)
+    .attr('width', 300)
+    .attr('fill', 'none')
+    .attr('stroke', '#f15a24')
+    .attr('stroke-width', '7px')
+    .attr('rx', '20px');
+  group8
+    .append('rect')
+    .attr('x', 550)
+    .attr('y', 300)
+    .attr('height', 100)
+    .attr('width', 150)
+    .attr('fill', 'none')
+    .attr('stroke', 'grey')
+    .attr('stroke-width', '7px')
+    .attr('rx', '20px');
+
+  group8
+    .append('text')
+    .attr('x', 250)
+    .attr('y', 180)
+    .style('font-size', 50)
+    .style('font-family', 'Arial')
+    .style('font-weight', 'regular')
+    .attr('fill', '#f15a24')
+    .style('opacity', 1)
+    .text('35%');
+}
+function draw10() {
+  clean('group9');
+  const debtPer = 0.17;
+
+  group9
+    .append('circle')
+    .attr('cx', 300)
+    .attr('cy', 300)
+    .transition()
+    .duration(1000)
+    .attr('r', 200)
+
+    .attr('fill', 'grey');
+
+  group9
+    .append('circle')
+    .attr('cx', 300)
+    .attr('cy', 418)
+
+    .transition()
+    .duration(1500)
+    .attr('r', function () {
+      return Math.pow(debtPer * 200 * 200, 0.5);
+    })
+    .attr('fill', '#005480');
+}
 let activationFunctions = [
   draw1,
   draw2,
@@ -953,6 +1045,8 @@ let activationFunctions = [
   draw6,
   draw7,
   draw8,
+  draw9,
+  draw10,
 ];
 
 //All the scrolling function
