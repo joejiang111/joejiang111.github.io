@@ -37,6 +37,8 @@ let group9 = svg.append('g').attr('width', 600).attr('height', 600);
 let group10 = svg.append('g').attr('width', 600).attr('height', 600);
 
 function clean(chartType) {
+  if (chartType !== 'startgroup') {
+  }
   if (chartType !== 'group1') {
     group1.selectAll('circle').transition().attr('opacity', 0);
   }
@@ -86,7 +88,7 @@ function clean(chartType) {
 }
 
 function draw1() {
-  //title graph
+  clean('startgroup');
 }
 
 function draw2() {
@@ -727,7 +729,7 @@ function draw5() {
       .style('font-size', 30)
       .style('font-family', 'Arial')
       .attr('fill', '#f15a24')
-      .text('139% – 300%');
+      .text('<139%');
 
     group4
       .append('rect')
@@ -779,7 +781,7 @@ function draw6() {
     .duration(1000)
     .attr('r', 200)
 
-    .attr('fill', 'grey');
+    .attr('fill', 'lightgrey');
 
   cir2 = group5
 
@@ -956,21 +958,22 @@ function draw8() {
 
   group7
     .append('text')
-    .attr('x', 410)
-    .attr('y', 160)
-    .style('font-size', 20)
+    .attr('x', 420)
+    .attr('y', 200)
+    .style('font-size', 30)
     .style('font-family', 'Arial')
-    .attr('fill', 'black')
+    // .style('font-weight', 'bold')
+    .attr('fill', 'white')
     .style('opacity', 0)
     .text('32%');
   group7
     .append('text')
     .attr('x', 370)
-    .attr('y', 40)
+    .attr('y', 80)
     .style('font-size', 30)
     .style('font-family', 'Arial')
-    .style('font-weight', 'bold')
-    .attr('fill', 'black')
+    // .style('font-weight', 'bold')
+    .attr('fill', 'white')
     .style('opacity', 0)
     .text('42%');
 
@@ -993,7 +996,8 @@ function draw9() {
     .attr('fill', 'none')
     .attr('stroke', '#f15a24')
     .attr('stroke-width', '7px')
-    .attr('rx', '20px');
+    .attr('rx', '20px')
+    .style('opacity', 0);
   group8
     .append('rect')
     .attr('x', 550)
@@ -1003,7 +1007,8 @@ function draw9() {
     .attr('fill', 'none')
     .attr('stroke', 'grey')
     .attr('stroke-width', '7px')
-    .attr('rx', '20px');
+    .attr('rx', '20px')
+    .style('opacity', 0);
 
   group8
     .append('text')
@@ -1013,8 +1018,11 @@ function draw9() {
     .style('font-family', 'Arial')
     .style('font-weight', 'regular')
     .attr('fill', '#f15a24')
-    .style('opacity', 1)
+    .style('opacity', 0)
     .text('35%');
+
+  group8.selectAll('rect').transition().duration(2000).style('opacity', 1);
+  group8.selectAll('text').transition().duration(2000).style('opacity', 1);
 }
 function draw10() {
   clean('group9');

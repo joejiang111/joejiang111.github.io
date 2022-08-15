@@ -148,7 +148,7 @@ button {
 }
 
 .debt:hover,
-debt:focus {
+.debt:focus {
   background-color: #005480;
   color: white;
 }
