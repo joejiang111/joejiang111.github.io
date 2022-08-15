@@ -146,3 +146,9 @@ button {
   font-size: 50px;
   font-weight: 700;
 }
+
+.debt:hover,
+debt:focus {
+  background-color: #005480;
+  color: white;
+}

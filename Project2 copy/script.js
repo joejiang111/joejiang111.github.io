@@ -1028,7 +1028,7 @@ function draw10() {
     .duration(1000)
     .attr('r', 200)
 
-    .attr('fill', 'grey');
+    .attr('fill', 'lightgrey');
 
   group9
     .append('circle')
@@ -1298,6 +1298,8 @@ function draw11() {
   }
 }
 
+function draw12() {}
+
 let activationFunctions = [
   draw1,
   draw2,
@@ -1310,6 +1312,7 @@ let activationFunctions = [
   draw9,
   draw10,
   draw11,
+  draw12,
 ];
 
 //All the scrolling function
