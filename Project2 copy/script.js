@@ -34,6 +34,7 @@ let group6 = svg.append('g').attr('width', 600).attr('height', 600);
 let group7 = svg.append('g').attr('width', 600).attr('height', 600);
 let group8 = svg.append('g').attr('width', 600).attr('height', 600);
 let group9 = svg.append('g').attr('width', 600).attr('height', 600);
+let group10 = svg.append('g').attr('width', 600).attr('height', 600);
 
 function clean(chartType) {
   if (chartType !== 'group1') {
@@ -1036,6 +1037,261 @@ function draw10() {
     })
     .attr('fill', '#005480');
 }
+
+function draw11() {
+  let y = d3.scaleBand().range([0, 400]).domain(d3.range(25));
+  let x = d3.scaleBand().range([0, 400]).domain(d3.range(25));
+
+  clean('group10');
+
+  // group10
+  //   .append('circle')
+  //   .attr('cx', 400)
+  //   .attr('cy', 300)
+  //   .transition()
+  //   .duration(1000)
+  //   .attr('r', 100)
+  //   .attr('fill', '#005480');
+
+  d3.select('#debt1').on('click', function () {
+    drawDebt1(16, 5);
+  });
+  d3.select('#debt2').on('click', function () {
+    drawDebt2(14, 5);
+  });
+  d3.select('#debt3').on('click', function () {
+    drawDebt3(12, 5);
+  });
+  d3.select('#debt4').on('click', function () {
+    drawDebt4(10, 5);
+  });
+
+  // function explore() {
+  //   drawCut();
+  //   drawCredit();
+  //   drawAgency();
+  // }
+
+  function drawDebt1(col, row) {
+    const curve = d3.line().curve(d3.curveBasis);
+    const points = [
+      [370, 300],
+      [370, 100],
+      [270, 100],
+      // [230, 540],
+    ];
+    path = group10
+      .append('path')
+      .attr('d', curve(points))
+      .attr('stroke', '#005480')
+      .attr('stroke-width', '10px')
+      .attr('fill', 'none')
+      .attr('opacity', 0);
+
+    path.transition().duration(1000).attr('opacity', 0.2);
+
+    let data = d3.range(col * row);
+
+    group10
+      .append('g')
+      .selectAll('circle')
+      .data(data)
+      .enter()
+      .append('circle')
+      .transition()
+
+      .delay(function (d, i) {
+        return i * 20;
+      })
+      .duration(2500)
+      .attr('cx', function (d) {
+        return x(d % col) + 10;
+      })
+      .attr('cy', function (d) {
+        return y(Math.floor(d / col)) + 70;
+      })
+      .attr('r', 5)
+      .attr('fill', '#005480')
+      .attr('opacity', 1);
+
+    text1 = group10
+      .append('text')
+      .attr('x', 10)
+      .attr('y', 50)
+      .attr('opacity', 0)
+      .style('font-size', 40)
+      .style('font-family', 'Arial')
+      .attr('fill', '#005480')
+      .text('81%');
+
+    text1.transition().duration(5000).attr('opacity', 1);
+  }
+
+  function drawDebt2(col, row) {
+    const curve = d3.line().curve(d3.curveBasis);
+    const points = [
+      [430, 300],
+      [430, 100],
+      [530, 100],
+      // [230, 540],
+    ];
+    path = group10
+      .append('path')
+      .attr('d', curve(points))
+      .attr('stroke', '#005480')
+      .attr('stroke-width', '10px')
+      .attr('fill', 'none')
+      .attr('opacity', 0);
+
+    path.transition().duration(3000).attr('opacity', 0.2);
+
+    let data = d3.range(col * row);
+
+    group10
+      .append('g')
+      .selectAll('circle')
+      .data(data)
+      .enter()
+      .append('circle')
+      .transition()
+
+      .delay(function (d, i) {
+        return i * 20;
+      })
+      .duration(2500)
+      .attr('cx', function (d) {
+        return x(d % col) + 550;
+      })
+      .attr('cy', function (d) {
+        return y(Math.floor(d / col)) + 70;
+      })
+      .attr('r', 5)
+      .attr('fill', '#005480')
+      .attr('opacity', 1);
+
+    text1 = group10
+      .append('text')
+      .attr('x', 680)
+      .attr('y', 50)
+      .attr('opacity', 0)
+      .style('font-size', 40)
+      .style('font-family', 'Arial')
+      .attr('fill', '#005480')
+      .text('68%');
+
+    text1.transition().duration(5000).attr('opacity', 1);
+  }
+
+  function drawDebt3(col, row) {
+    const curve = d3.line().curve(d3.curveBasis);
+    const points = [
+      [370, 300],
+      [370, 500],
+      [270, 500],
+      // [230, 540],
+    ];
+    path = group10
+      .append('path')
+      .attr('d', curve(points))
+      .attr('stroke', '#005480')
+      .attr('stroke-width', '10px')
+      .attr('fill', 'none')
+      .attr('opacity', 0);
+
+    path.transition().duration(3000).attr('opacity', 0.2);
+
+    let data = d3.range(col * row);
+
+    group10
+      .append('g')
+      .selectAll('circle')
+      .data(data)
+      .enter()
+      .append('circle')
+      .transition()
+
+      .delay(function (d, i) {
+        return i * 20;
+      })
+      .duration(2500)
+      .attr('cx', function (d) {
+        return x(d % col) + 75;
+      })
+      .attr('cy', function (d) {
+        return y(Math.floor(d / col)) + 470;
+      })
+      .attr('r', 5)
+      .attr('fill', '#005480')
+      .attr('opacity', 1);
+
+    text1 = group10
+      .append('text')
+      .attr('x', 75)
+      .attr('y', 450)
+      .attr('opacity', 0)
+      .style('font-size', 40)
+      .style('font-family', 'Arial')
+      .attr('fill', '#005480')
+      .text('62%');
+
+    text1.transition().duration(5000).attr('opacity', 1);
+  }
+  function drawDebt4(col, row) {
+    const curve = d3.line().curve(d3.curveBasis);
+    const points = [
+      [430, 300],
+      [430, 500],
+      [530, 500],
+      // [230, 540],
+    ];
+    path = group10
+      .append('path')
+      .attr('d', curve(points))
+      .attr('stroke', '#005480')
+      .attr('stroke-width', '10px')
+      .attr('fill', 'none')
+      .attr('opacity', 0);
+
+    path.transition().duration(3000).attr('opacity', 0.2);
+
+    let data = d3.range(col * row);
+
+    group10
+      .append('g')
+      .selectAll('circle')
+      .data(data)
+      .enter()
+      .append('circle')
+      .transition()
+
+      .delay(function (d, i) {
+        return i * 20;
+      })
+      .duration(2500)
+      .attr('cx', function (d) {
+        return x(d % col) + 75;
+      })
+      .attr('cy', function (d) {
+        return y(Math.floor(d / col)) + 470;
+      })
+      .attr('r', 5)
+      .attr('fill', '#005480')
+      .attr('opacity', 1);
+
+    text1 = group10
+      .append('text')
+      .attr('x', 75)
+      .attr('y', 450)
+      .attr('opacity', 0)
+      .style('font-size', 40)
+      .style('font-family', 'Arial')
+      .attr('fill', '#005480')
+      .text('52%');
+
+    text1.transition().duration(5000).attr('opacity', 1);
+  }
+}
+
 let activationFunctions = [
   draw1,
   draw2,
@@ -1047,6 +1303,7 @@ let activationFunctions = [
   draw8,
   draw9,
   draw10,
+  draw11,
 ];
 
 //All the scrolling function
