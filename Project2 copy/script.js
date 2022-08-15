@@ -78,6 +78,11 @@ function clean(chartType) {
   if (chartType !== 'group9') {
     group9.selectAll('circle').transition().remove();
   }
+  if (chartType !== 'group10') {
+    group10.selectAll('circle').transition().remove();
+    group10.selectAll('path').transition().remove();
+    group10.selectAll('text').transition().remove();
+  }
 }
 
 function draw1() {
@@ -1044,14 +1049,14 @@ function draw11() {
 
   clean('group10');
 
-  // group10
-  //   .append('circle')
-  //   .attr('cx', 400)
-  //   .attr('cy', 300)
-  //   .transition()
-  //   .duration(1000)
-  //   .attr('r', 100)
-  //   .attr('fill', '#005480');
+  group10
+    .append('circle')
+    .attr('cx', 400)
+    .attr('cy', 300)
+    .transition()
+    .duration(1000)
+    .attr('r', 100)
+    .attr('fill', '#005480');
 
   d3.select('#debt1').on('click', function () {
     drawDebt1(16, 5);
@@ -1256,31 +1261,32 @@ function draw11() {
 
     let data = d3.range(col * row);
 
-    group10
+    let cirs = group10
       .append('g')
       .selectAll('circle')
       .data(data)
       .enter()
       .append('circle')
       .transition()
-
+      .attr('cx', 400)
+      .attr('cy', 300)
+      .attr('r', 5)
+      .attr('fill', '#005480')
+      .attr('opacity', 1)
       .delay(function (d, i) {
         return i * 20;
       })
       .duration(2500)
       .attr('cx', function (d) {
-        return x(d % col) + 75;
+        return x(d % col) + 550;
       })
+
       .attr('cy', function (d) {
         return y(Math.floor(d / col)) + 470;
-      })
-      .attr('r', 5)
-      .attr('fill', '#005480')
-      .attr('opacity', 1);
-
+      });
     text1 = group10
       .append('text')
-      .attr('x', 75)
+      .attr('x', 620)
       .attr('y', 450)
       .attr('opacity', 0)
       .style('font-size', 40)
