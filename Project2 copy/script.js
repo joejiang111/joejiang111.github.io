@@ -35,6 +35,12 @@ let group7 = svg.append('g').attr('width', 600).attr('height', 600);
 let group8 = svg.append('g').attr('width', 600).attr('height', 600);
 let group9 = svg.append('g').attr('width', 600).attr('height', 600);
 let group10 = svg.append('g').attr('width', 600).attr('height', 600);
+let group11 = svg.append('g').attr('width', 600).attr('height', 600);
+let group12 = svg.append('g').attr('width', 600).attr('height', 600);
+let group13 = svg.append('g').attr('width', 600).attr('height', 600);
+let group14 = svg.append('g').attr('width', 600).attr('height', 600);
+let group15 = svg.append('g').attr('width', 600).attr('height', 600);
+let group16 = svg.append('g').attr('width', 600).attr('height', 600);
 
 function clean(chartType) {
   if (chartType !== 'startgroup') {
@@ -81,9 +87,38 @@ function clean(chartType) {
     group9.selectAll('circle').transition().remove();
   }
   if (chartType !== 'group10') {
-    group10.selectAll('circle').transition().remove();
+    group10.selectAll('circle').transition().attr('opacity', 0);
     group10.selectAll('path').transition().remove();
     group10.selectAll('text').transition().remove();
+  }
+  if (chartType !== 'group11') {
+    group11.selectAll('circle').transition().remove();
+    group11.selectAll('path').transition().remove();
+    group11.selectAll('text').transition().remove();
+    group10.selectAll('circle').transition().remove();
+  }
+  if (chartType !== 'group12') {
+    group12.selectAll('text').transition().remove();
+    group12.selectAll('rect').transition().remove();
+    group12.selectAll('circle').transition().remove();
+    group12.selectAll('line').remove();
+  }
+  if (chartType !== 'group13') {
+    group13.selectAll('text').transition().remove();
+    group13.selectAll('rect').transition().remove();
+  }
+  if (chartType !== 'group14') {
+    group14.selectAll('text').transition().remove();
+    group14.selectAll('rect').transition().remove();
+    group14.selectAll('circle').transition().remove();
+  }
+  if (chartType !== 'group15') {
+    group15.selectAll('text').transition().remove();
+    group15.selectAll('rect').transition().remove();
+  }
+  if (chartType !== 'group16') {
+    group16.selectAll('text').transition().remove();
+    group16.selectAll('rect').transition().remove();
   }
 }
 
@@ -103,7 +138,7 @@ function draw2() {
     .duration(1000)
     .attr('r', 200)
 
-    .attr('fill', 'grey');
+    .attr('fill', 'lightgrey');
 
   group1
     .append('circle')
@@ -1051,20 +1086,22 @@ function draw10() {
     .attr('fill', '#005480');
 }
 
+let cir3;
 function draw11() {
   let y = d3.scaleBand().range([0, 400]).domain(d3.range(25));
   let x = d3.scaleBand().range([0, 400]).domain(d3.range(25));
 
   clean('group10');
 
-  group10
+  cir3 = group10
     .append('circle')
     .attr('cx', 400)
     .attr('cy', 300)
     .transition()
     .duration(1000)
     .attr('r', 100)
-    .attr('fill', '#005480');
+    .attr('fill', '#005480')
+    .attr('class', 'cir3');
 
   d3.select('#debt1').on('click', function () {
     drawDebt1(16, 5);
@@ -1282,9 +1319,10 @@ function draw11() {
       .attr('fill', '#005480')
       .attr('opacity', 1)
       .delay(function (d, i) {
-        return i * 20;
+        return i * 50;
       })
-      .duration(2500)
+      .duration(1000)
+      .ease(d3.easeBounceOut)
       .attr('cx', function (d) {
         return x(d % col) + 550;
       })
@@ -1306,7 +1344,421 @@ function draw11() {
   }
 }
 
-function draw12() {}
+function draw12() {
+  clean('group11');
+  d3.select('.cir3')
+
+    .attr('opacity', 1)
+    .transition()
+    .duration(1000)
+    .attr('transform', 'translate(0,-20)');
+
+  let data = [
+    { label: 'one', count: 0.46 },
+    { label: 'two', count: 0.45 },
+    { label: 'three', count: 0.09 },
+  ];
+
+  const width = 250;
+  const height = 250;
+  const radius = Math.min(width, height) / 2;
+  const donutWidth = 18; // NEW
+
+  var arc = d3
+    .arc()
+    .innerRadius(radius - donutWidth) // NEW
+    .outerRadius(radius);
+
+  let pie = d3
+    .pie()
+    .value(function (d) {
+      return d.count;
+    })
+    .sort(null);
+
+  group11.attr('transform', 'translate(400,280)');
+  let donut = group11.selectAll('path');
+
+  var blues = d3.scaleOrdinal(d3.schemeBlues[3]);
+
+  donut
+    .data(pie(data))
+    .enter()
+
+    .append('path')
+
+    .attr('d', arc)
+
+    .transition()
+    .duration(5000)
+    .attr('fill', function (d) {
+      return blues(d.data.label);
+    });
+
+  group11
+    .append('text')
+    .attr('x', -220)
+    .attr('y', 10)
+    .style('font-size', 40)
+    .style('font-family', 'Arial')
+    .attr('fill', 'black')
+    .style('opacity', 0)
+    .text('45%');
+  group11
+    .append('text')
+    .attr('x', -260)
+    .attr('y', 40)
+    .style('font-size', 20)
+    .style('font-family', 'Arial')
+    .attr('fill', 'grey')
+    .style('opacity', 0)
+    .text('$2000–$8000');
+  group11
+    .append('text')
+    .attr('x', -70)
+    .attr('y', -170)
+    .style('font-size', 40)
+    .style('font-family', 'Arial')
+    .attr('fill', 'black')
+    .style('opacity', 0)
+    .text('9%');
+  group11
+    .append('text')
+    .attr('x', -70)
+    .attr('y', -140)
+    .style('font-size', 20)
+    .style('font-family', 'Arial')
+    .attr('fill', 'grey')
+    .style('opacity', 0)
+    .text('> $8000');
+  group11
+    .append('text')
+    .attr('x', 140)
+    .attr('y', 10)
+    .style('font-size', 40)
+    .style('font-family', 'Arial')
+    .attr('fill', 'black')
+    .style('opacity', 0)
+    .text('46%');
+  group11
+    .append('text')
+    .attr('x', 140)
+    .attr('y', 40)
+    .style('font-size', 20)
+    .style('font-family', 'Arial')
+    .attr('fill', 'grey')
+    .style('opacity', 0)
+    .text('< $2000');
+
+  group11.selectAll('text').transition().duration(1000).style('opacity', 1);
+}
+
+// let legend = svg.append('g').attr('transform', 'translate(700, 0)');
+// legend
+//   .append('rect')
+//   .attr('x', 0)
+//   .attr('y', 0)
+//   .attr('width', 50)
+//   .attr('height', 50)
+//   .attr('fill', 'red')
+//   .style('opacity', 0);
+
+function draw13() {
+  clean('group12');
+  // legend.selectAll('rect').style('opacity', 1);
+
+  group12
+    .append('rect')
+    .attr('x', 200)
+    .attr('y', 100)
+    .attr('height', 35)
+    .attr('fill', '#005280')
+    .attr('rx', '17.5px')
+    .transition()
+    .duration(1000)
+    .attr('width', 390);
+
+  group12
+    .append('rect')
+    .attr('x', 200)
+    .attr('y', 180)
+    .attr('height', 35)
+    .attr('fill', '#005280')
+    .attr('rx', '17.5px')
+    .transition()
+    .duration(1000)
+    .attr('width', 380);
+
+  group12
+    .append('rect')
+    .attr('x', 200)
+    .attr('y', 260)
+    .attr('height', 35)
+    .attr('fill', 'white')
+    .attr('stroke', '#005280')
+    .attr('stroke-width', '5px')
+    .attr('rx', '17.5px')
+    .transition()
+    .duration(1000)
+    .attr('width', 300);
+
+  group12
+    .append('rect')
+    .attr('x', 200)
+    .attr('y', 340)
+    .attr('height', 35)
+    .attr('fill', 'white')
+    .attr('stroke', '#005280')
+    .attr('stroke-width', '5px')
+    .attr('rx', '17.5px')
+    .transition()
+    .duration(1000)
+    .ease(d3.easeLinear)
+    .attr('width', 300);
+
+  group12
+    .append('circle')
+    .attr('cx', 220)
+    .attr('cy', 197)
+    .transition()
+    .duration(1000)
+    .attr('r', 9)
+    .attr('fill', '#f15a24');
+
+  group12
+    .append('circle')
+    .attr('cx', 220)
+    .attr('cy', 357)
+    .transition()
+    .duration(1000)
+    .attr('r', 9)
+    .attr('fill', '#f15a24');
+
+  let line = group12
+    .append('line')
+    .attr('x1', 220)
+    .attr('x2', 220)
+
+    .attr('y1', 357)
+
+    .attr('y2', 397)
+
+    .attr('stroke', 'grey')
+    .attr('stroke-width', '2px');
+
+  let textDot = group12
+    .append('text')
+    .attr('x', 215)
+    .attr('y', 415)
+    .style('font-size', 15)
+    .style('font-family', 'Arial')
+    .attr('fill', 'black')
+    .style('opacity', 0)
+    .text('One or more chronic condition');
+
+  group12
+    .append('rect')
+    .attr('x', 215)
+    .attr('y', 430)
+    .attr('height', 15)
+    .attr('fill', '#005280')
+    // .attr('stroke-width', '3px')
+    .attr('rx', '7.5px')
+    .transition()
+    .duration(1000)
+    .attr('width', 30);
+
+  group12
+    .append('rect')
+    .attr('x', 215)
+    .attr('y', 460)
+    .attr('height', 15)
+    .attr('fill', 'white')
+    .attr('stroke', '#005280')
+    .attr('stroke-width', '3px')
+    .attr('rx', '7.5px')
+    .transition()
+    .duration(1000)
+    .attr('width', 30);
+
+  let legend1 = group12
+    .append('text')
+    .attr('x', 255)
+    .attr('y', 442)
+    .style('font-size', 15)
+    .style('font-family', 'Arial')
+    .attr('fill', 'black')
+    .style('opacity', 1)
+    .text('income >300% FPL');
+
+  let legend2 = group12
+    .append('text')
+    .attr('x', 255)
+    .attr('y', 472)
+    .style('font-size', 15)
+    .style('font-family', 'Arial')
+    .attr('fill', 'black')
+    .style('opacity', 1)
+    .text('income <300% FPL');
+
+  textDot.transition().duration(2000).style('opacity', 1);
+}
+
+function draw14() {
+  clean('group13');
+
+  group13
+    .append('rect')
+    .attr('x', 300)
+    .attr('y', 100)
+    .attr('height', 30)
+    .attr('fill', '#005280')
+
+    .attr('rx', '15px')
+    .transition()
+    .duration(1000)
+    .attr('width', 160);
+
+  group13
+    .append('rect')
+    .attr('x', 300)
+    .attr('y', 150)
+    .attr('height', 30)
+    .attr('fill', 'lightgrey')
+
+    .style('opacity', 1)
+    .attr('rx', '15px')
+    .transition()
+    .duration(1000)
+    .attr('width', 220);
+
+  group13
+    .append('rect')
+    .attr('x', 300)
+    .attr('y', 300)
+    .attr('height', 30)
+    .attr('fill', '#005280')
+
+    .style('opacity', 1)
+    .attr('rx', '15px')
+    .transition()
+    .duration(1000)
+    .attr('width', 110);
+
+  group13
+    .append('rect')
+    .attr('x', 300)
+    .attr('y', 350)
+    .attr('height', 30)
+    .attr('fill', 'lightgrey')
+
+    .style('opacity', 1)
+    .attr('rx', '15px')
+    .transition()
+    .duration(1000)
+    .attr('width', 190);
+
+  group13
+    .append('text')
+    .attr('x', 100)
+    .attr('y', 150)
+    .style('font-size', 20)
+    .style('font-family', 'Arial')
+    .attr('fill', 'black')
+    .style('opacity', 1)
+    .text('Family Medical Debt');
+
+  group13
+    .append('text')
+    .attr('x', 20)
+    .attr('y', 350)
+    .style('font-size', 20)
+    .style('font-family', 'Arial')
+    .attr('fill', 'black')
+    .style('opacity', 1)
+    .text('Problems paying Medical bills');
+}
+
+function draw15() {
+  clean('group14');
+
+  group14
+    .append('rect')
+    .attr('class', 'show15')
+    .attr('x', 100)
+    .attr('y', 100)
+    .attr('height', 30)
+    .attr('stroke', '#005280')
+    .attr('stroke-width', '5px')
+    .attr('fill', 'white')
+    .style('opacity', 0.2)
+    .attr('rx', '15px')
+    .transition()
+    .duration(1000)
+    .attr('width', 420);
+
+  group14
+    .append('rect')
+    .attr('class', 'show15')
+    .attr('x', 100)
+    .attr('y', 150)
+    .attr('height', 30)
+    .attr('stroke', 'grey')
+    .attr('stroke-width', '5px')
+    .attr('fill', 'white')
+
+    .style('opacity', 0.2)
+    .attr('rx', '15px')
+    .transition()
+    .duration(1000)
+    .attr('width', 340);
+
+  group14
+    .append('text')
+    .attr('class', 'show15')
+    .attr('x', 530)
+    .attr('y', 125)
+    .style('font-size', 25)
+    .style('font-family', 'Arial')
+    .attr('fill', '#005280')
+    .style('font-weight', 700)
+    .style('opacity', 0.2)
+    .text('84%');
+  group14
+    .append('text')
+    .attr('class', 'show15')
+    .attr('x', 450)
+    .attr('y', 175)
+    .style('font-size', 25)
+    .style('font-family', 'Arial')
+    .attr('fill', 'grey')
+    .style('font-weight', 700)
+    .style('opacity', 0.2)
+    .text('68%');
+
+  group14
+    .append('circle')
+    .attr('class', 'show15')
+    .attr('cx', 115)
+    .attr('cy', 115)
+    .attr('r', 9)
+    .style('opacity', 0.2)
+    .attr('fill', '#f15a24');
+
+  group14
+    .append('circle')
+    .attr('class', 'show15')
+    .attr('cx', 115)
+    .attr('cy', 165)
+    .attr('r', 9)
+    .style('opacity', 0.2)
+    .attr('fill', '#f15a24');
+}
+function draw16() {
+  d3.select('.show15').style('opacity', 1);
+}
+
+function draw17() {}
 
 let activationFunctions = [
   draw1,
@@ -1321,6 +1773,11 @@ let activationFunctions = [
   draw10,
   draw11,
   draw12,
+  draw13,
+  draw14,
+  draw15,
+  draw16,
+  draw17,
 ];
 
 //All the scrolling function
@@ -1349,7 +1806,7 @@ scroll.on('active', function (index) {
   lastIndex = activeIndex;
 });
 
-scroll.on('progress', function (index, progress) {
-  if ((index == 2) & (progress > 0.7)) {
-  }
-});
+// scroll.on('progress', function (index, progress) {
+//   if ((index == 2) & (progress > 0.7)) {
+//   }
+// });
