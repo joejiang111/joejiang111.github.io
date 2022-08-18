@@ -104,23 +104,35 @@ function clean(chartType) {
     group12.selectAll('line').remove();
   }
   if (chartType !== 'group13') {
-    group13.selectAll('text').transition().remove();
-    group13.selectAll('rect').transition().remove();
+    group13.selectAll('text').transition().style('opacity', 0);
+    group13.selectAll('rect').transition().style('opacity', 0);
+    group13.selectAll('circle').transition().style('opacity', 0);
   }
   if (chartType !== 'group14') {
-    group14.selectAll('text').transition().remove();
-    group14.selectAll('rect').transition().remove();
-    group14.selectAll('circle').transition().remove();
+    group14.selectAll('text').transition().style('opacity', 0);
+    group14.selectAll('rect').transition().style('opacity', 0);
+    group14.selectAll('circle').transition().style('opacity', 0);
   }
   if (chartType !== 'group15') {
     group15.selectAll('text').transition().remove();
     group15.selectAll('rect').transition().remove();
   }
-  if (chartType !== 'group16') {
-    show15.selectAll('.show15').transition().style('opacity', 0);
-    // show15.selectAll('circle').transition().style('opacity', 0);
-    // show15.selectAll('rect').transition().style('opacity', 0);
+  if (
+    chartType !== 'group12' ||
+    chartType !== 'group13' ||
+    chartType !== 'group15' ||
+    chartType !== 'group14' ||
+    chartType !== 'group16'
+  ) {
+    legend.selectAll('circle').style('opacity', 0);
+    legend.selectAll('rect').style('opacity', 0);
+    legend.selectAll('text').style('opacity', 0);
   }
+  // if (chartType !== 'group16') {
+  //   show15.selectAll('.show15').transition().style('opacity', 0);
+  //   // show15.selectAll('circle').transition().style('opacity', 0);
+  //   // show15.selectAll('rect').transition().style('opacity', 0);
+  // }
 }
 
 function draw1() {
@@ -151,7 +163,7 @@ function draw2() {
     .attr('r', function () {
       return Math.pow(debtPer * 200 * 200, 0.5);
     })
-    .attr('fill', 'orange');
+    .attr('fill', '#f15a24');
 }
 
 function draw3() {
@@ -830,7 +842,7 @@ function draw6() {
     .attr('r', function () {
       return Math.pow(debtPer * 200 * 200, 0.5);
     })
-    .attr('fill', 'orange');
+    .attr('fill', '#f15a24');
 }
 
 function draw7() {
@@ -1463,8 +1475,114 @@ function draw12() {
 //   .attr('height', 50)
 //   .attr('fill', 'red')
 //   .style('opacity', 0);
+let legend = svg.append('g').attr('transform', 'translate(0, 450)');
+
+legend
+  .append('rect')
+  .attr('x', 215)
+  .attr('y', 40)
+  .attr('height', 15)
+  .attr('fill', 'black')
+  // .attr('stroke-width', '3px')
+  .attr('rx', '7.5px')
+  .style('opacity', 0)
+  .attr('width', 30);
+
+legend
+  .append('rect')
+  .attr('x', 215)
+  .attr('y', 60)
+  .attr('height', 15)
+  .attr('fill', 'white')
+  .attr('stroke', 'black')
+  .attr('stroke-width', '3px')
+  .attr('rx', '7.5px')
+  .style('opacity', 0)
+  .attr('width', 30);
+
+legend
+  .append('rect')
+  .attr('x', 415)
+  .attr('y', 40)
+  .attr('height', 15)
+  .attr('fill', 'lightgrey')
+  // .attr('stroke-width', '3px')
+  .attr('rx', '7.5px')
+  .style('opacity', 0)
+  .attr('width', 30);
+
+legend
+  .append('rect')
+  .attr('x', 415)
+  .attr('y', 60)
+  .attr('height', 15)
+  .attr('fill', '#005280')
+  .attr('rx', '7.5px')
+  .style('opacity', 0)
+  .attr('width', 30);
+
+legend
+  .append('text')
+  .attr('x', 255)
+  .attr('y', 52)
+  .style('font-size', 15)
+  .style('font-family', 'Arial')
+  .attr('fill', 'black')
+  .style('opacity', 0)
+  .text('income >300% FPL');
+
+legend
+  .append('text')
+  .attr('x', 255)
+  .attr('y', 72)
+  .style('font-size', 15)
+  .style('font-family', 'Arial')
+  .attr('fill', 'black')
+  .style('opacity', 0)
+  .text('income <300% FPL');
+
+legend
+  .append('text')
+  .attr('x', 455)
+  .attr('y', 52)
+  .style('font-size', 15)
+  .style('font-family', 'Arial')
+  .attr('fill', 'black')
+  .style('opacity', 0)
+  .text('NOT HDHP');
+
+legend
+  .append('text')
+  .attr('x', 455)
+  .attr('y', 72)
+  .style('font-size', 15)
+  .style('font-family', 'Arial')
+  .attr('fill', 'black')
+  .style('opacity', 0)
+  .text('HDHP');
+
+legend
+  .append('circle')
+  .attr('cx', 230)
+  .attr('cy', 20)
+  .attr('r', 9)
+  .attr('fill', '#f15a24')
+  .style('opacity', 0);
+
+legend
+  .append('text')
+  .attr('x', 250)
+  .attr('y', 25)
+  .style('font-size', 15)
+  .style('font-family', 'Arial')
+  .attr('fill', 'black')
+  .style('opacity', 0)
+  .text('One or more chronic conditions');
 
 function draw13() {
+  legend.selectAll('text').transition().duration(500).style('opacity', 1);
+  legend.selectAll('rect').transition().duration(500).style('opacity', 1);
+  legend.selectAll('circle').transition().duration(500).style('opacity', 1);
   clean('group12');
   // legend.selectAll('rect').style('opacity', 1);
 
@@ -1534,80 +1652,13 @@ function draw13() {
     .duration(1000)
     .attr('r', 9)
     .attr('fill', '#f15a24');
-
-  let line = group12
-    .append('line')
-    .attr('x1', 220)
-    .attr('x2', 220)
-
-    .attr('y1', 357)
-
-    .attr('y2', 397)
-
-    .attr('stroke', 'grey')
-    .attr('stroke-width', '2px');
-
-  let textDot = group12
-    .append('text')
-    .attr('x', 215)
-    .attr('y', 415)
-    .style('font-size', 15)
-    .style('font-family', 'Arial')
-    .attr('fill', 'black')
-    .style('opacity', 0)
-    .text('One or more chronic condition');
-
-  group12
-    .append('rect')
-    .attr('x', 215)
-    .attr('y', 430)
-    .attr('height', 15)
-    .attr('fill', '#005280')
-    // .attr('stroke-width', '3px')
-    .attr('rx', '7.5px')
-    .transition()
-    .duration(1000)
-    .attr('width', 30);
-
-  group12
-    .append('rect')
-    .attr('x', 215)
-    .attr('y', 460)
-    .attr('height', 15)
-    .attr('fill', 'white')
-    .attr('stroke', '#005280')
-    .attr('stroke-width', '3px')
-    .attr('rx', '7.5px')
-    .transition()
-    .duration(1000)
-    .attr('width', 30);
-
-  let legend1 = group12
-    .append('text')
-    .attr('x', 255)
-    .attr('y', 442)
-    .style('font-size', 15)
-    .style('font-family', 'Arial')
-    .attr('fill', 'black')
-    .style('opacity', 1)
-    .text('income >300% FPL');
-
-  let legend2 = group12
-    .append('text')
-    .attr('x', 255)
-    .attr('y', 472)
-    .style('font-size', 15)
-    .style('font-family', 'Arial')
-    .attr('fill', 'black')
-    .style('opacity', 1)
-    .text('income <300% FPL');
-
-  textDot.transition().duration(2000).style('opacity', 1);
 }
 
 function draw14() {
   clean('group13');
-
+  legend.selectAll('text').transition().duration(500).style('opacity', 1);
+  legend.selectAll('rect').transition().duration(500).style('opacity', 1);
+  legend.selectAll('circle').transition().duration(500).style('opacity', 1);
   group13
     .append('rect')
     .attr('x', 300)
@@ -1679,157 +1730,160 @@ function draw14() {
     .style('opacity', 1)
     .text('Problems paying Medical bills');
 }
+
 let show15 = group14.append('g');
 let show16 = group14.append('g');
 
+show15
+  .append('rect')
+  .attr('class', 'show15')
+  .attr('x', 100)
+  .attr('y', 100)
+  .attr('height', 30)
+  .attr('stroke', '#005280')
+  .attr('stroke-width', '5px')
+  .attr('fill', 'white')
+  .style('opacity', 0)
+  .attr('rx', '15px')
+  .attr('width', 420);
+
+show15
+  .append('rect')
+  .attr('class', 'show15')
+  .attr('x', 100)
+  .attr('y', 150)
+  .attr('height', 30)
+  .attr('stroke', 'grey')
+  .attr('stroke-width', '5px')
+  .attr('fill', 'white')
+  .style('opacity', 0)
+  .attr('rx', '15px')
+  .attr('width', 340);
+
+show15
+  .append('text')
+  .attr('class', 'show15')
+  .attr('x', 530)
+  .attr('y', 125)
+  .style('font-size', 25)
+  .style('font-family', 'Arial')
+  .attr('fill', '#005280')
+  .style('font-weight', 700)
+  .style('opacity', 0)
+  .text('84%');
+
+show15
+  .append('text')
+  .attr('class', 'show15')
+  .attr('x', 450)
+  .attr('y', 175)
+  .style('font-size', 25)
+  .style('font-family', 'Arial')
+  .attr('fill', 'grey')
+  .style('font-weight', 700)
+  .style('opacity', 0)
+  .text('68%');
+
+show15
+  .append('circle')
+  .attr('class', 'show15')
+  .attr('cx', 115)
+  .attr('cy', 115)
+  .attr('r', 9)
+  .style('opacity', 0)
+  .attr('fill', '#f15a24');
+
+show15
+  .append('circle')
+  .attr('class', 'show15')
+  .attr('cx', 115)
+  .attr('cy', 165)
+  .attr('r', 9)
+  .style('opacity', 0)
+  .attr('fill', '#f15a24');
+
+//qweqweqwe
+show15
+  .append('rect')
+  .attr('class', 'show16')
+  .attr('x', 100)
+  .attr('y', 350)
+  .attr('height', 30)
+  .attr('stroke', '#005280')
+  .attr('stroke-width', '5px')
+  .attr('fill', 'white')
+  .style('opacity', 0)
+  .attr('rx', '15px')
+  .attr('width', 205);
+
+show15
+  .append('rect')
+  .attr('class', 'show16')
+  .attr('x', 100)
+  .attr('y', 400)
+  .attr('height', 30)
+  .attr('stroke', 'grey')
+  .attr('stroke-width', '5px')
+  .attr('fill', 'white')
+
+  .style('opacity', 0)
+  .attr('rx', '15px')
+  .attr('width', 145);
+
+show15
+  .append('text')
+  .attr('class', 'show16')
+  .attr('x', 315)
+  .attr('y', 375)
+  .style('font-size', 25)
+  .style('font-family', 'Arial')
+  .attr('fill', '#005280')
+  .style('font-weight', 700)
+  .style('opacity', 0)
+  .text('41%');
+
+show15
+  .append('text')
+  .attr('class', 'show16')
+  .attr('x', 255)
+  .attr('y', 425)
+  .style('font-size', 25)
+  .style('font-family', 'Arial')
+  .attr('fill', 'grey')
+  .style('font-weight', 700)
+  .style('opacity', 0)
+  .text('29%');
+
 function draw15() {
-  show15
-    .append('rect')
-    .attr('class', 'show15')
-    .attr('x', 100)
-    .attr('y', 100)
-    .attr('height', 30)
-    .attr('stroke', '#005280')
-    .attr('stroke-width', '5px')
-    .attr('fill', 'white')
-    .style('opacity', 0)
-    .attr('rx', '15px')
-    .transition()
-    .duration(1000)
-    .attr('width', 600);
-
-  show15
-    .append('rect')
-    .attr('class', 'show15')
-    .attr('x', 100)
-    .attr('y', 150)
-    .attr('height', 30)
-    .attr('stroke', 'grey')
-    .attr('stroke-width', '5px')
-    .attr('fill', 'white')
-
-    .style('opacity', 0)
-    .attr('rx', '15px')
-    .transition()
-    .duration(1000)
-    .attr('width', 340);
-
-  show15
-    .append('text')
-    .attr('class', 'show15')
-    .attr('x', 530)
-    .attr('y', 125)
-    .style('font-size', 25)
-    .style('font-family', 'Arial')
-    .attr('fill', '#005280')
-    .style('font-weight', 700)
-    .style('opacity', 0)
-    .text('84%');
-
-  show15
-    .append('text')
-    .attr('class', 'show15')
-    .attr('x', 450)
-    .attr('y', 175)
-    .style('font-size', 25)
-    .style('font-family', 'Arial')
-    .attr('fill', 'grey')
-    .style('font-weight', 700)
-    .style('opacity', 0)
-    .text('68%');
-
-  show15
-    .append('circle')
-    .attr('class', 'show15')
-    .attr('cx', 115)
-    .attr('cy', 115)
-    .attr('r', 9)
-    .style('opacity', 0)
-    .attr('fill', '#f15a24');
-
-  show15
-    .append('circle')
-    .attr('class', 'show15')
-    .attr('cx', 115)
-    .attr('cy', 165)
-    .attr('r', 9)
-    .style('opacity', 0)
-    .attr('fill', '#f15a24');
-
-  //qweqweqwe
-  show16
-    .append('rect')
-    .attr('class', 'show16')
-    .attr('x', 100)
-    .attr('y', 500)
-    .attr('height', 30)
-    .attr('stroke', '#005280')
-    .attr('stroke-width', '5px')
-    .attr('fill', 'white')
-    .style('opacity', 0)
-    .attr('rx', '15px')
-    .transition()
-    .duration(1000)
-    .attr('width', 420);
-
-  show15
-    .append('rect')
-    .attr('class', 'show16')
-    .attr('x', 100)
-    .attr('y', 150)
-    .attr('height', 30)
-    .attr('stroke', 'grey')
-    .attr('stroke-width', '5px')
-    .attr('fill', 'white')
-
-    .style('opacity', 0)
-    .attr('rx', '15px')
-    .transition()
-    .duration(1000)
-    .attr('width', 340);
-
-  show15
-    .append('text')
-    .attr('class', 'show16')
-    .attr('x', 530)
-    .attr('y', 125)
-    .style('font-size', 25)
-    .style('font-family', 'Arial')
-    .attr('fill', '#005280')
-    .style('font-weight', 700)
-    .style('opacity', 0)
-    .text('84%');
-
-  show15
-    .append('text')
-    .attr('class', 'show16')
-    .attr('x', 350)
-    .attr('y', 175)
-    .style('font-size', 25)
-    .style('font-family', 'Arial')
-    .attr('fill', 'grey')
-    .style('font-weight', 700)
-    .style('opacity', 0)
-    .text('68%');
-
   clean('group14');
-  show15.selectAll('rect').transition().duration(1000).style('opacity', 0.2);
-  show15.selectAll('circle').transition().duration(1000).style('opacity', 0.2);
-  show15.selectAll('text').transition().duration(1000).style('opacity', 0.2);
+  legend.selectAll('text').transition().duration(500).style('opacity', 1);
+  legend.selectAll('rect').transition().duration(500).style('opacity', 1);
+  legend.selectAll('circle').transition().duration(500).style('opacity', 1);
+  show15.selectAll('.show15').transition().duration(1000).style('opacity', 0.2);
+  show15.selectAll('.show16').transition().duration(1000).style('opacity', 0.2);
   // show16.selectAll('rect').transition().duration(1000).style('opacity', 0.2);
   // show16.selectAll('circle').transition().duration(1000).style('opacity', 0.2);
   // show16.selectAll('text').transition().duration(1000).style('opacity', 0.2);
 }
 
 function draw16() {
-  clean('group16');
+  clean('group15');
+  legend.selectAll('text').transition().duration(500).style('opacity', 1);
+  legend.selectAll('rect').transition().duration(500).style('opacity', 1);
+  legend.selectAll('circle').transition().duration(500).style('opacity', 1);
   show15.selectAll('.show15').transition().duration(1000).style('opacity', 1);
+  show15.selectAll('.show16').transition().duration(1000).style('opacity', 0.2);
   // show15.selectAll('circle').transition().duration(1000).style('opacity', 1);
   // show15.selectAll('text').transition().duration(1000).style('opacity', 1);
 }
 
 function draw17() {
+  clean('group16');
+  legend.selectAll('text').transition().duration(500).style('opacity', 1);
+  legend.selectAll('rect').transition().duration(500).style('opacity', 1);
+  legend.selectAll('circle').transition().duration(500).style('opacity', 1);
   show15.selectAll('.show16').transition().duration(1000).style('opacity', 1);
+  show15.selectAll('.show15').transition().duration(1000).style('opacity', 0.2);
 }
 
 let activationFunctions = [
@@ -1881,4 +1935,4 @@ scroll.on('active', function (index) {
 // scroll.on('progress', function (index, progress) {
 //   if ((index == 2) & (progress > 0.7)) {
 //   }
-// });
+// })
