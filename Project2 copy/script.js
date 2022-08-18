@@ -117,8 +117,9 @@ function clean(chartType) {
     group15.selectAll('rect').transition().remove();
   }
   if (chartType !== 'group16') {
-    group16.selectAll('text').transition().remove();
-    group16.selectAll('rect').transition().remove();
+    show15.selectAll('.show15').transition().style('opacity', 0);
+    // show15.selectAll('circle').transition().style('opacity', 0);
+    // show15.selectAll('rect').transition().style('opacity', 0);
   }
 }
 
@@ -1678,11 +1679,11 @@ function draw14() {
     .style('opacity', 1)
     .text('Problems paying Medical bills');
 }
+let show15 = group14.append('g');
+let show16 = group14.append('g');
 
 function draw15() {
-  clean('group14');
-
-  group14
+  show15
     .append('rect')
     .attr('class', 'show15')
     .attr('x', 100)
@@ -1691,13 +1692,13 @@ function draw15() {
     .attr('stroke', '#005280')
     .attr('stroke-width', '5px')
     .attr('fill', 'white')
-    .style('opacity', 0.2)
+    .style('opacity', 0)
     .attr('rx', '15px')
     .transition()
     .duration(1000)
-    .attr('width', 420);
+    .attr('width', 600);
 
-  group14
+  show15
     .append('rect')
     .attr('class', 'show15')
     .attr('x', 100)
@@ -1707,13 +1708,13 @@ function draw15() {
     .attr('stroke-width', '5px')
     .attr('fill', 'white')
 
-    .style('opacity', 0.2)
+    .style('opacity', 0)
     .attr('rx', '15px')
     .transition()
     .duration(1000)
     .attr('width', 340);
 
-  group14
+  show15
     .append('text')
     .attr('class', 'show15')
     .attr('x', 530)
@@ -1722,9 +1723,10 @@ function draw15() {
     .style('font-family', 'Arial')
     .attr('fill', '#005280')
     .style('font-weight', 700)
-    .style('opacity', 0.2)
+    .style('opacity', 0)
     .text('84%');
-  group14
+
+  show15
     .append('text')
     .attr('class', 'show15')
     .attr('x', 450)
@@ -1733,32 +1735,102 @@ function draw15() {
     .style('font-family', 'Arial')
     .attr('fill', 'grey')
     .style('font-weight', 700)
-    .style('opacity', 0.2)
+    .style('opacity', 0)
     .text('68%');
 
-  group14
+  show15
     .append('circle')
     .attr('class', 'show15')
     .attr('cx', 115)
     .attr('cy', 115)
     .attr('r', 9)
-    .style('opacity', 0.2)
+    .style('opacity', 0)
     .attr('fill', '#f15a24');
 
-  group14
+  show15
     .append('circle')
     .attr('class', 'show15')
     .attr('cx', 115)
     .attr('cy', 165)
     .attr('r', 9)
-    .style('opacity', 0.2)
+    .style('opacity', 0)
     .attr('fill', '#f15a24');
-}
-function draw16() {
-  d3.select('.show15').style('opacity', 1);
+
+  //qweqweqwe
+  show16
+    .append('rect')
+    .attr('class', 'show16')
+    .attr('x', 100)
+    .attr('y', 500)
+    .attr('height', 30)
+    .attr('stroke', '#005280')
+    .attr('stroke-width', '5px')
+    .attr('fill', 'white')
+    .style('opacity', 0)
+    .attr('rx', '15px')
+    .transition()
+    .duration(1000)
+    .attr('width', 420);
+
+  show15
+    .append('rect')
+    .attr('class', 'show16')
+    .attr('x', 100)
+    .attr('y', 150)
+    .attr('height', 30)
+    .attr('stroke', 'grey')
+    .attr('stroke-width', '5px')
+    .attr('fill', 'white')
+
+    .style('opacity', 0)
+    .attr('rx', '15px')
+    .transition()
+    .duration(1000)
+    .attr('width', 340);
+
+  show15
+    .append('text')
+    .attr('class', 'show16')
+    .attr('x', 530)
+    .attr('y', 125)
+    .style('font-size', 25)
+    .style('font-family', 'Arial')
+    .attr('fill', '#005280')
+    .style('font-weight', 700)
+    .style('opacity', 0)
+    .text('84%');
+
+  show15
+    .append('text')
+    .attr('class', 'show16')
+    .attr('x', 350)
+    .attr('y', 175)
+    .style('font-size', 25)
+    .style('font-family', 'Arial')
+    .attr('fill', 'grey')
+    .style('font-weight', 700)
+    .style('opacity', 0)
+    .text('68%');
+
+  clean('group14');
+  show15.selectAll('rect').transition().duration(1000).style('opacity', 0.2);
+  show15.selectAll('circle').transition().duration(1000).style('opacity', 0.2);
+  show15.selectAll('text').transition().duration(1000).style('opacity', 0.2);
+  // show16.selectAll('rect').transition().duration(1000).style('opacity', 0.2);
+  // show16.selectAll('circle').transition().duration(1000).style('opacity', 0.2);
+  // show16.selectAll('text').transition().duration(1000).style('opacity', 0.2);
 }
 
-function draw17() {}
+function draw16() {
+  clean('group16');
+  show15.selectAll('.show15').transition().duration(1000).style('opacity', 1);
+  // show15.selectAll('circle').transition().duration(1000).style('opacity', 1);
+  // show15.selectAll('text').transition().duration(1000).style('opacity', 1);
+}
+
+function draw17() {
+  show15.selectAll('.show16').transition().duration(1000).style('opacity', 1);
+}
 
 let activationFunctions = [
   draw1,
