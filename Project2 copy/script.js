@@ -49,7 +49,7 @@ function clean(chartType) {
     group1.selectAll('circle').transition().attr('opacity', 0);
   }
   if (chartType !== 'group2') {
-    group2.selectAll('text').transition().attr('opacity', 0);
+    group2.selectAll('text').transition().remove();
     group2.selectAll('circle').transition().attr('opacity', 0);
     group2.selectAll('rect').transition().attr('opacity', 0);
   }
@@ -215,6 +215,16 @@ function draw3() {
       .attr('r', 8)
       .attr('fill', '#f15a24')
       .attr('opacity', 0.5);
+
+    group2
+      .append('text')
+      .attr('x', 25)
+      .attr('y', 110)
+      .style('font-size', 30)
+      .style('font-family', 'Helvetica')
+      .attr('fill', '#f15a24')
+      .style('opacity', 0.5)
+      .text('57%');
   }
 
   function drawOngoing(col, row) {
@@ -230,6 +240,16 @@ function draw3() {
       .style('font-family', 'Arial')
       .attr('fill', 'black')
       .text('Ongoing Care');
+
+    group2
+      .append('text')
+      .attr('x', 85)
+      .attr('y', 210)
+      .style('font-size', 30)
+      .style('font-family', 'Arial')
+      .attr('fill', '#f15a24')
+      .style('opacity', 0.5)
+      .text('48%');
 
     group2
       .append('rect')
@@ -275,6 +295,16 @@ function draw3() {
       .text('ED visit');
 
     group2
+      .append('text')
+      .attr('x', 105)
+      .attr('y', 310)
+      .style('font-size', 30)
+      .style('font-family', 'Arial')
+      .attr('fill', '#f15a24')
+      .style('opacity', 0.5)
+      .text('45%');
+
+    group2
       .append('rect')
       .attr('x', 490)
       .attr('y', 270)
@@ -317,6 +347,16 @@ function draw3() {
       .text('Dental Care');
 
     group2
+      .append('text')
+      .attr('x', 105)
+      .attr('y', 410)
+      .style('font-size', 30)
+      .style('font-family', 'Arial')
+      .attr('fill', '#f15a24')
+      .style('opacity', 0.5)
+      .text('44%');
+
+    group2
       .append('rect')
       .attr('x', 490)
       .attr('y', 370)
@@ -354,12 +394,20 @@ function draw3() {
       .append('text')
       .attr('x', 510)
       .attr('y', 510)
-
       .style('font-size', 30)
       .style('font-family', 'Arial')
       .attr('fill', 'black')
-
       .text('Prescription Drugs');
+
+    group2
+      .append('text')
+      .attr('x', 185)
+      .attr('y', 510)
+      .style('font-size', 30)
+      .style('font-family', 'Arial')
+      .attr('fill', '#f15a24')
+      .style('opacity', 0.5)
+      .text('34%');
 
     group2
       .append('rect')
@@ -403,6 +451,15 @@ function draw3() {
       .style('font-family', 'Arial')
       .attr('fill', '#f15a24')
       .text('Reported 2+ types of care');
+
+    group2
+      .append('text')
+      .attr('x', 0)
+      .attr('y', 660)
+      .style('font-size', 30)
+      .style('font-family', 'Arial')
+      .attr('fill', '#f15a24')
+      .text('71%');
 
     group2
       .append('rect')
@@ -525,6 +582,17 @@ function draw4() {
       .attr('fill', '#f15a24')
       .text('65%');
 
+    group3
+      .append('text')
+      .attr('x', 75)
+      .attr('y', 570)
+      .attr('opacity', 1)
+      .style('font-size', 20)
+      .style('font-family', 'Arial')
+      .attr('fill', 'grey')
+      .style('font-weight', 'bold')
+      .text('Cut back on savings');
+
     text1.transition().duration(5000).attr('opacity', 1);
   }
 
@@ -579,6 +647,17 @@ function draw4() {
       .style('font-family', 'Arial')
       .attr('fill', '#f15a24')
       .text('40%');
+
+    group3
+      .append('text')
+      .attr('x', 515)
+      .attr('y', 570)
+      .attr('opacity', 1)
+      .style('font-size', 20)
+      .style('font-family', 'Arial')
+      .attr('fill', 'grey')
+      .style('font-weight', 700)
+      .text('Took on credit card debt');
 
     text1.transition().duration(5000).attr('opacity', 1);
   }
@@ -635,6 +714,17 @@ function draw4() {
       .attr('fill', '#f15a24')
       .text('52%');
 
+    group3
+      .append('text')
+      .attr('x', 515)
+      .attr('y', 170)
+      .attr('opacity', 1)
+      .style('font-size', 20)
+      .style('font-weight', 700)
+      .style('font-family', 'Arial')
+      .attr('fill', 'grey')
+      .text('Contacted by collection agency');
+
     text1.transition().duration(5000).attr('opacity', 1);
   }
 }
@@ -653,7 +743,7 @@ function draw5() {
       .style('font-size', 30)
       .style('font-family', 'Arial')
       .attr('fill', '#f15a24')
-      .text('>400%');
+      .text('>400% FPL');
 
     group4
       .append('rect')
@@ -694,7 +784,7 @@ function draw5() {
       .style('font-size', 30)
       .style('font-family', 'Arial')
       .attr('fill', '#f15a24')
-      .text('300% – 400%');
+      .text('300% – 400% FPL');
 
     group4
       .append('rect')
@@ -736,7 +826,7 @@ function draw5() {
       .style('font-size', 30)
       .style('font-family', 'Arial')
       .attr('fill', '#f15a24')
-      .text('139% – 300%');
+      .text('139% – 300% FPL');
 
     group4
       .append('rect')
@@ -777,7 +867,7 @@ function draw5() {
       .style('font-size', 30)
       .style('font-family', 'Arial')
       .attr('fill', '#f15a24')
-      .text('<139%');
+      .text('<139% FPL');
 
     group4
       .append('rect')

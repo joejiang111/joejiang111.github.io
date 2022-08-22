@@ -8,7 +8,7 @@
 }
 
 .setup p {
-  width: 600px;
+  width: 800px;
 }
 
 .step {
@@ -20,7 +20,7 @@
 }
 
 .step .title {
-  font-size: 35px;
+  font-size: 30px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: grey;
@@ -45,7 +45,7 @@
 }
 
 #setup {
-  font-size: 10vh;
+  font-size: 45px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: -500;
   margin-top: 30px;
@@ -132,12 +132,6 @@ button {
 
 #longtext {
   font-size: 30px;
-  font-weight: 500;
-}
-
-#longtext #orangetext {
-  color: #f15a24;
-  font-size: 35px;
   font-weight: 700;
 }
 
@@ -151,4 +145,24 @@ button {
 .debt:focus {
   background-color: #005480;
   color: white;
+}
+
+#orangetext {
+  font-size: 30px;
+  color: #f15a24;
+}
+
+.subhead {
+  width: 800px;
+  font-size: 50px;
+  font-weight: 700;
+  color: black;
+
+  margin-bottom: 50px;
+}
+
+#subnum {
+  font-size: 100px;
+  margin-right: 20px;
+  text-decoration: underline dashed #f15a24;
 }
