@@ -152,7 +152,7 @@ button {
   color: #f15a24;
 }
 
-.subhead2 {
+.subhead {
   width: 800px;
   font-size: 50px;
   font-weight: 700;
@@ -161,16 +161,8 @@ button {
   margin-bottom: 50px;
 }
 
-.subhead3 {
-  width: 800px;
-  font-size: 50px;
-  font-weight: 700;
-  color: black;
-
-  margin-bottom: 50px;
-}
-
-#subnum2 {
+#subnum2,
+#subnum1 {
   font-size: 100px;
   margin-right: 20px;
   text-decoration: underline dashed #f15a24;
