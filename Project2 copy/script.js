@@ -1132,7 +1132,8 @@ function draw9() {
     .attr('height', 200)
     .attr('width', 300)
     .attr('fill', 'none')
-    .attr('stroke', '#f15a24')
+    .attr('stroke', 'grey')
+    .attr('fill', '#f15a24')
     .attr('stroke-width', '7px')
     .attr('rx', '20px')
     .style('opacity', 0);
@@ -1158,6 +1159,38 @@ function draw9() {
     .attr('fill', '#f15a24')
     .style('opacity', 0)
     .text('35%');
+
+  group8
+    .append('text')
+    .attr('x', 580)
+    .attr('y', 280)
+    .style('font-size', 50)
+    .style('font-family', 'Arial')
+    .style('font-weight', 'regular')
+    .attr('fill', 'grey')
+    .style('opacity', 0)
+    .text('10%');
+
+  // group8
+  //   .append('text')
+  //   .attr('x', 250)
+  //   .attr('y', 180)
+  //   .style('font-size', 50)
+  //   .style('font-family', 'Arial')
+  //   .style('font-weight', 'regular')
+  //   .attr('fill', '#f15a24')
+  //   .style('opacity', 0)
+  //   .text('35%');
+  // group8
+  //   .append('text')
+  //   .attr('x', 250)
+  //   .attr('y', 180)
+  //   .style('font-size', 50)
+  //   .style('font-family', 'Arial')
+  //   .style('font-weight', 'regular')
+  //   .attr('fill', '#f15a24')
+  //   .style('opacity', 0)
+  //   .text('35%');
 
   group8.selectAll('rect').transition().duration(2000).style('opacity', 1);
   group8.selectAll('text').transition().duration(2000).style('opacity', 1);
