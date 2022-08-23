@@ -47,6 +47,7 @@ function clean(chartType) {
   }
   if (chartType !== 'group1') {
     group1.selectAll('circle').transition().attr('opacity', 0);
+    group1.selectAll('text').transition().remove();
   }
   if (chartType !== 'group2') {
     group2.selectAll('text').transition().remove();
@@ -62,9 +63,14 @@ function clean(chartType) {
     group4.selectAll('text').transition().attr('opacity', 0);
     group4.selectAll('circle').transition().attr('opacity', 0);
     group4.selectAll('rect').transition().attr('opacity', 0);
+    group4.selectAll('line').transition().remove();
   }
   if (chartType !== 'group5' && chartType !== 'group6') {
     group5.selectAll('circle').transition().attr('opacity', 0);
+    group5.selectAll('text').transition().remove();
+  }
+  if (chartType !== 'group5') {
+    group5.selectAll('text').transition().remove();
   }
   if (chartType !== 'group6') {
     group6.selectAll('circle').transition().attr('opacity', 0);
@@ -82,6 +88,7 @@ function clean(chartType) {
   if (chartType !== 'group8') {
     group8.selectAll('rect').transition().remove();
     group8.selectAll('text').transition().remove();
+    group8.selectAll('circle').transition().remove();
   }
   if (chartType !== 'group9') {
     group9.selectAll('circle').transition().remove();
@@ -164,6 +171,18 @@ function draw2() {
       return Math.pow(debtPer * 200 * 200, 0.5);
     })
     .attr('fill', '#f15a24');
+
+  group1
+    .append('text')
+    .attr('x', 265)
+    .attr('y', 480)
+    .style('font-size', 30)
+    .style('font-family', 'Helvetica')
+    .attr('fill', 'white')
+    .style('opacity', 0)
+    .text('15%');
+
+  group1.selectAll('text').transition().duration(1000).style('opacity', 1);
 }
 
 function draw3() {
@@ -734,6 +753,30 @@ function draw5() {
   let y = d3.scaleBand().range([0, 500]).domain(d3.range(25));
   let x = d3.scaleBand().range([0, 500]).domain(d3.range(25));
 
+  svg
+    .append('svg:defs')
+    .append('svg:marker')
+    .attr('id', 'triangle')
+    .attr('refX', 15)
+    .attr('refY', -1.5)
+    .attr('markerWidth', 6)
+    .attr('markerHeight', 6)
+    .attr('orient', 'auto')
+    .append('path')
+    .attr('d', 'M 100 -5 10 10')
+    .style('stroke', 'black');
+
+  group4
+    .append('line')
+    .attr('x1', 492.5)
+    .attr('x2', 492.5)
+    .attr('y1', 100)
+    .attr('y2', 600)
+    .style('stroke-dasharray', '5,5')
+    .style('stroke', 'grey')
+    .style('stroke-width', 5)
+    .attr('marker-end', 'url(#arrowhead)');
+
   function drawFPL1(col, row) {
     let data = d3.range(col * row);
     group4
@@ -933,6 +976,16 @@ function draw6() {
       return Math.pow(debtPer * 200 * 200, 0.5);
     })
     .attr('fill', '#f15a24');
+
+  group5
+    .append('text')
+    .attr('x', 275)
+    .attr('y', 450)
+    .style('font-size', 30)
+    .style('font-family', 'Arial')
+    .attr('fill', 'white')
+    .style('opacity', 1)
+    .text('37%');
 }
 
 function draw7() {
@@ -1000,9 +1053,9 @@ function draw7() {
     .text('45%');
   group6
     .append('text')
-    .attr('x', -240)
+    .attr('x', -220)
     .attr('y', 10)
-    .style('font-size', 30)
+    .style('font-size', 20)
     .style('font-family', 'Arial')
     .attr('fill', 'grey')
     .style('opacity', 0)
@@ -1020,7 +1073,7 @@ function draw7() {
     .append('text')
     .attr('x', 50)
     .attr('y', 180)
-    .style('font-size', 30)
+    .style('font-size', 20)
     .style('font-family', 'Arial')
     .attr('fill', 'grey')
     .style('opacity', 0)
@@ -1038,7 +1091,7 @@ function draw7() {
     .append('text')
     .attr('x', 100)
     .attr('y', -90)
-    .style('font-size', 30)
+    .style('font-size', 20)
     .style('font-family', 'Arial')
     .attr('fill', 'grey')
     .style('opacity', 0)
@@ -1127,16 +1180,17 @@ function draw9() {
   clean('group8');
   group8
     .append('rect')
-    .attr('x', 150)
-    .attr('y', 200)
-    .attr('height', 200)
-    .attr('width', 300)
+    .attr('x', 80)
+    .attr('y', 300)
+    .attr('height', 100)
+    .attr('width', 450)
     .attr('fill', 'none')
-    .attr('stroke', 'grey')
-    .attr('fill', '#f15a24')
+    .attr('stroke', '#f15a24')
+
     .attr('stroke-width', '7px')
     .attr('rx', '20px')
     .style('opacity', 0);
+
   group8
     .append('rect')
     .attr('x', 550)
@@ -1150,9 +1204,19 @@ function draw9() {
     .style('opacity', 0);
 
   group8
+    .append('circle')
+    .attr('cx', 500)
+    .attr('cy', 352.5)
+    .attr('r', 10)
+    .attr('fill', '#f15a24')
+    // .attr('stroke', 'grey')
+    // .attr('stroke-width', '5px')
+    .style('opacity', 0);
+
+  group8
     .append('text')
-    .attr('x', 250)
-    .attr('y', 180)
+    .attr('x', 80)
+    .attr('y', 280)
     .style('font-size', 50)
     .style('font-family', 'Arial')
     .style('font-weight', 'regular')
@@ -1169,7 +1233,29 @@ function draw9() {
     .style('font-weight', 'regular')
     .attr('fill', 'grey')
     .style('opacity', 0)
-    .text('10%');
+    .text('11%');
+
+  group8
+    .append('text')
+    .attr('x', 400)
+    .attr('y', 360)
+    .style('font-size', 20)
+    .style('font-family', 'Arial')
+    .style('font-weight', 'regular')
+    .attr('fill', '#f15a24')
+    .style('opacity', 0)
+    .text('with bill');
+
+  group8
+    .append('text')
+    .attr('x', 580)
+    .attr('y', 360)
+    .style('font-size', 20)
+    .style('font-family', 'Arial')
+    .style('font-weight', 'regular')
+    .attr('fill', 'grey')
+    .style('opacity', 0)
+    .text('without bill');
 
   // group8
   //   .append('text')
@@ -1194,6 +1280,7 @@ function draw9() {
 
   group8.selectAll('rect').transition().duration(2000).style('opacity', 1);
   group8.selectAll('text').transition().duration(2000).style('opacity', 1);
+  group8.selectAll('circle').transition().duration(2000).style('opacity', 1);
 }
 function draw10() {
   clean('group9');
