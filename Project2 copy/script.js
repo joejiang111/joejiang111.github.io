@@ -777,6 +777,24 @@ function draw5() {
     .style('stroke-width', 5)
     .attr('marker-end', 'url(#arrowhead)');
 
+  group4
+    .append('text')
+    .attr('x', 400)
+    .attr('y', 90)
+    .style('font-size', 20)
+    .style('font-family', 'Arial')
+    .attr('fill', 'grey')
+    .text('higher income level');
+
+  group4
+    .append('text')
+    .attr('x', 400)
+    .attr('y', 620)
+    .style('font-size', 20)
+    .style('font-family', 'Arial')
+    .attr('fill', 'grey')
+    .text('lower income level');
+
   function drawFPL1(col, row) {
     let data = d3.range(col * row);
     group4
