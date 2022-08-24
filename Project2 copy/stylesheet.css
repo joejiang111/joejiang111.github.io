@@ -4,7 +4,7 @@
   width: 500px;
   top: 0;
   z-index: 90;
-  left: 10%;
+  left: 5%;
 }
 
 .setup p {
@@ -68,28 +68,7 @@ hr {
 }
 
 #arrow {
-  height: -0px;
-  position: absolute;
-  top: 650px;
-  left: -40%;
-  width: 100%;
-}
-
-#arrow::before {
-  animation: bounce 2s ease infinite;
-  bottom: 1rem;
-  color: black;
-  content: '╲╱';
-  font-size: 2rem;
-  height: 2rem;
-  left: 50%;
-  letter-spacing: -1px;
-  line-height: 4rem;
-  margin-left: -3rem;
-  opacity: 1;
-  position: absolute;
-  text-align: center;
-  width: 1rem;
+  margin: 0;
 }
 
 @keyframes bounce {
@@ -185,7 +164,27 @@ button {
 } */
 
 body {
-  background-image: url('./assets/textimage.jpg');
+  background-image: url('./assets/bg.png');
   background-size: contain;
   background-repeat: no-repeat;
+}
+
+#scrollPage {
+  border: none;
+  background-color: lightgrey;
+}
+
+#logo {
+  width: 100px;
+  height: 100px;
+  right: 0;
+  top: 0;
+}
+
+#logo img {
+  width: 100px;
+  height: 100px;
+  position: fixed;
+  left: 90%;
+  bottom: 80%;
 }

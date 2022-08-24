@@ -23,7 +23,8 @@ let svg = d3
   .select('#viz')
   .append('svg')
   .attr('width', 1000)
-  .attr('height', 1000);
+  .attr('height', 1000)
+  .attr('transform', 'translate(0, -150)');
 
 let group1 = svg.append('g').attr('width', 600).attr('height', 600);
 let group2 = svg.append('g').attr('width', 600).attr('height', 600);
@@ -144,6 +145,16 @@ function clean(chartType) {
 
 function draw1() {
   clean('startgroup');
+  // d3.select('#scrollPage').on('click', function () {
+  //   scrollWindow();
+  // });
+
+  // function scrollWindow() {
+  //   window.scrollTo({
+  //     top: 1000,
+  //     behavior: 'smooth',
+  //   });
+  // }
 }
 
 function draw2() {
@@ -2021,6 +2032,7 @@ let show16 = group14.append('g');
 show15
   .append('rect')
   .attr('class', 'show15')
+  .attr('id', 'first15')
   .attr('x', 100)
   .attr('y', 100)
   .attr('height', 30)
@@ -2029,11 +2041,12 @@ show15
   .attr('fill', 'white')
   .style('opacity', 0)
   .attr('rx', '15px')
-  .attr('width', 420);
+  .attr('width', 30);
 
 show15
   .append('rect')
   .attr('class', 'show15')
+  .attr('id', 'second15')
   .attr('x', 100)
   .attr('y', 150)
   .attr('height', 30)
@@ -2042,7 +2055,7 @@ show15
   .attr('fill', 'white')
   .style('opacity', 0)
   .attr('rx', '15px')
-  .attr('width', 340);
+  .attr('width', 30);
 
 show15
   .append('text')
@@ -2098,7 +2111,7 @@ show15
   .attr('fill', 'white')
   .style('opacity', 0)
   .attr('rx', '15px')
-  .attr('width', 205);
+  .attr('width', 30);
 
 show15
   .append('rect')
@@ -2112,7 +2125,7 @@ show15
 
   .style('opacity', 0)
   .attr('rx', '15px')
-  .attr('width', 145);
+  .attr('width', 30);
 
 show15
   .append('text')
@@ -2140,11 +2153,17 @@ show15
 
 function draw15() {
   clean('group14');
-  legend.selectAll('text').transition().duration(500).style('opacity', 1);
-  legend.selectAll('rect').transition().duration(500).style('opacity', 1);
-  legend.selectAll('circle').transition().duration(500).style('opacity', 1);
+
+  // legend.selectAll('text').transition().duration(500).style('opacity', 1);
+  // legend.selectAll('rect').transition().duration(500).style('opacity', 1);
+  // legend.selectAll('circle').transition().duration(500).style('opacity', 1);
   show15.selectAll('.show15').transition().duration(1000).style('opacity', 0.2);
   show15.selectAll('.show16').transition().duration(1000).style('opacity', 0.2);
+
+  show15.selectAll('circle').transition().duration(1000).style('opacity', 0.2);
+
+  d3.select('#first15').transition().duration(500).attr('width', 30);
+  // show15.selectAll('.show16').transition().duration(1000).style('opacity', 0.2);
   // show16.selectAll('rect').transition().duration(1000).style('opacity', 0.2);
   // show16.selectAll('circle').transition().duration(1000).style('opacity', 0.2);
   // show16.selectAll('text').transition().duration(1000).style('opacity', 0.2);
@@ -2155,7 +2174,12 @@ function draw16() {
   legend.selectAll('text').transition().duration(500).style('opacity', 1);
   legend.selectAll('rect').transition().duration(500).style('opacity', 1);
   legend.selectAll('circle').transition().duration(500).style('opacity', 1);
-  show15.selectAll('.show15').transition().duration(1000).style('opacity', 1);
+  d3.select('#first15')
+    .transition()
+    .duration(500)
+    .attr('width', 420)
+    .style('opacity', 1);
+
   show15.selectAll('.show16').transition().duration(1000).style('opacity', 0.2);
   // show15.selectAll('circle').transition().duration(1000).style('opacity', 1);
   // show15.selectAll('text').transition().duration(1000).style('opacity', 1);
@@ -2163,6 +2187,7 @@ function draw16() {
 
 function draw17() {
   clean('group16');
+  d3.select('#first15').transition().duration(500).attr('width', 30);
   legend.selectAll('text').transition().duration(500).style('opacity', 1);
   legend.selectAll('rect').transition().duration(500).style('opacity', 1);
   legend.selectAll('circle').transition().duration(500).style('opacity', 1);
@@ -2219,4 +2244,4 @@ scroll.on('active', function (index) {
 // scroll.on('progress', function (index, progress) {
 //   if ((index == 2) & (progress > 0.7)) {
 //   }
-// })
+// });
