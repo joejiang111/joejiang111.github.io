@@ -35,7 +35,7 @@
   left: 50%;
   height: 1000px;
   width: 1000px;
-  background-color: white;
+  background-color: none;
   border-radius: 50px;
 }
 
@@ -172,4 +172,20 @@ button {
   font-size: 100px;
   margin-right: 20px;
   text-decoration: underline dashed #005480;
+}
+
+/* header {
+  margin: 0;
+  padding: 0;
+  border: none;
+  width: 1vw;
+  height: 1000px;
+  background-image: url('./assets/textimage.jpg');
+  background-size: cover;
+} */
+
+body {
+  background-image: url('./assets/textimage.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
 }
