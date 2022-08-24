@@ -1394,7 +1394,8 @@ function draw11() {
       .delay(function (d, i) {
         return i * 20;
       })
-      .duration(2500)
+      .duration(1000)
+      .ease(d3.easeBounceOut)
       .attr('cx', function (d) {
         return x(d % col) + 10;
       })
@@ -1405,7 +1406,9 @@ function draw11() {
       .attr('fill', '#005480')
       .attr('opacity', 1);
 
-    text1 = group10
+    text1 = group10.append('g');
+
+    text1
       .append('text')
       .attr('x', 10)
       .attr('y', 50)
@@ -1415,7 +1418,18 @@ function draw11() {
       .attr('fill', '#005480')
       .text('81%');
 
-    text1.transition().duration(5000).attr('opacity', 1);
+    text1
+      .append('text')
+      .attr('x', 5)
+      .attr('y', 170)
+      .attr('opacity', 0)
+      .style('font-size', 20)
+      .style('font-family', 'Arial')
+      .attr('fill', 'grey')
+      .style('font-weight', 700)
+      .text('Required any cost sharing');
+
+    text1.selectAll('text').transition().duration(5000).attr('opacity', 1);
   }
 
   function drawDebt2(col, row) {
@@ -1449,7 +1463,8 @@ function draw11() {
       .delay(function (d, i) {
         return i * 20;
       })
-      .duration(2500)
+      .duration(1000)
+      .ease(d3.easeBounceOut)
       .attr('cx', function (d) {
         return x(d % col) + 550;
       })
@@ -1460,7 +1475,9 @@ function draw11() {
       .attr('fill', '#005480')
       .attr('opacity', 1);
 
-    text1 = group10
+    text1 = group10.append('g');
+
+    text1
       .append('text')
       .attr('x', 680)
       .attr('y', 50)
@@ -1470,7 +1487,18 @@ function draw11() {
       .attr('fill', '#005480')
       .text('68%');
 
-    text1.transition().duration(5000).attr('opacity', 1);
+    text1
+      .append('text')
+      .attr('x', 545)
+      .attr('y', 170)
+      .attr('opacity', 0)
+      .style('font-size', 20)
+      .style('font-family', 'Arial')
+      .attr('fill', 'grey')
+      .style('font-weight', 700)
+      .text('Required deductibles');
+
+    text1.selectAll('text').transition().duration(5000).attr('opacity', 1);
   }
 
   function drawDebt3(col, row) {
@@ -1504,7 +1532,8 @@ function draw11() {
       .delay(function (d, i) {
         return i * 20;
       })
-      .duration(2500)
+      .duration(1000)
+      .ease(d3.easeBounceOut)
       .attr('cx', function (d) {
         return x(d % col) + 75;
       })
@@ -1515,7 +1544,9 @@ function draw11() {
       .attr('fill', '#005480')
       .attr('opacity', 1);
 
-    text1 = group10
+    text1 = group10.append('g');
+
+    text1
       .append('text')
       .attr('x', 75)
       .attr('y', 450)
@@ -1525,7 +1556,18 @@ function draw11() {
       .attr('fill', '#005480')
       .text('62%');
 
-    text1.transition().duration(5000).attr('opacity', 1);
+    text1
+      .append('text')
+      .attr('x', 70)
+      .attr('y', 570)
+      .attr('opacity', 0)
+      .style('font-size', 20)
+      .style('font-family', 'Arial')
+      .attr('fill', 'grey')
+      .style('font-weight', 700)
+      .text('Required copays or insurance');
+
+    text1.selectAll('text').transition().duration(5000).attr('opacity', 1);
   }
   function drawDebt4(col, row) {
     const curve = d3.line().curve(d3.curveBasis);
@@ -1571,7 +1613,10 @@ function draw11() {
       .attr('cy', function (d) {
         return y(Math.floor(d / col)) + 470;
       });
-    text1 = group10
+
+    text1 = group10.append('g');
+
+    text1
       .append('text')
       .attr('x', 620)
       .attr('y', 450)
@@ -1581,7 +1626,18 @@ function draw11() {
       .attr('fill', '#005480')
       .text('52%');
 
-    text1.transition().duration(5000).attr('opacity', 1);
+    text1
+      .append('text')
+      .attr('x', 545)
+      .attr('y', 570)
+      .attr('opacity', 0)
+      .style('font-size', 20)
+      .style('font-family', 'Arial')
+      .attr('fill', 'grey')
+      .style('font-weight', 700)
+      .text('Not covered by health plan');
+
+    text1.selectAll('text').transition().duration(5000).attr('opacity', 1);
   }
 }
 
