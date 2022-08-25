@@ -2175,7 +2175,14 @@ function draw16() {
     .select('#first15')
     .transition()
     .duration(500)
-    .attr('width', 100)
+    .attr('width', 420)
+    .style('opacity', 1);
+
+  show15
+    .select('#second15')
+    .transition()
+    .duration(500)
+    .attr('width', 340)
     .style('opacity', 1);
 }
 
