@@ -4,8 +4,8 @@ function scroller() {
   let sections = d3.selectAll('.step');
   let sectionPositions;
 
-  let currentIndex = -1;
-  let containerStart = 0;
+  let currentIndex = 0;
+  let containerStart = 1;
 
   function scroll() {
     d3.select(window)

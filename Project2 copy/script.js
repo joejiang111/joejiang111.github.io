@@ -93,6 +93,7 @@ function clean(chartType) {
   }
   if (chartType !== 'group9') {
     group9.selectAll('circle').transition().remove();
+    group9.selectAll('text').transition().remove();
   }
   if (chartType !== 'group10') {
     group10.selectAll('circle').transition().attr('opacity', 0);
@@ -1767,7 +1768,7 @@ function draw13() {
   group12
     .append('rect')
     .attr('x', 200)
-    .attr('y', 100)
+    .attr('y', 120)
     .attr('height', 35)
     .attr('fill', '#005280')
     .attr('rx', '17.5px')
@@ -1789,7 +1790,7 @@ function draw13() {
   group12
     .append('rect')
     .attr('x', 200)
-    .attr('y', 260)
+    .attr('y', 400)
     .attr('height', 35)
     .attr('fill', 'white')
     .attr('stroke', '#005280')
@@ -1802,7 +1803,7 @@ function draw13() {
   group12
     .append('rect')
     .attr('x', 200)
-    .attr('y', 340)
+    .attr('y', 460)
     .attr('height', 35)
     .attr('fill', 'white')
     .attr('stroke', '#005280')
@@ -1825,7 +1826,7 @@ function draw13() {
   group12
     .append('circle')
     .attr('cx', 220)
-    .attr('cy', 357)
+    .attr('cy', 477)
     .transition()
     .duration(1000)
     .attr('r', 9)
@@ -1835,27 +1836,16 @@ function draw13() {
     .append('line')
     .attr('x1', 220)
     .attr('x2', 220)
-    .attr('y1', 365)
-    .attr('y2', 415)
+    .attr('y1', 205)
+    .attr('y2', 240)
     .style('stroke-dasharray', '3, 3')
     .attr('stroke', 'grey')
     .attr('stroke-width', 3);
 
   group12
-    .append('rect')
-    .attr('x', 210)
-    .attr('y', 410)
-    .attr('width', 220)
-    .attr('height', 80)
-    .attr('fill', 'none')
-    .attr('stroke', 'grey')
-    .attr('stroke-width', 3)
-    .style('opacity', 0.5);
-
-  group12
     .append('text')
     .attr('x', 215)
-    .attr('y', 430)
+    .attr('y', 250)
     .style('font-size', 15)
     .style('font-family', 'Arial')
     .attr('fill', 'black')
@@ -1863,44 +1853,26 @@ function draw13() {
     .text('One or more chronic conditions');
 
   group12
-    .append('rect')
-    .attr('x', 215)
-    .attr('y', 440)
-    .attr('height', 15)
-    .attr('width', 30)
-    .attr('fill', '#005280')
-    .attr('rx', 7.5);
-
-  group12
-    .append('rect')
-    .attr('x', 215)
-    .attr('y', 460)
-    .attr('height', 15)
-    .attr('width', 30)
-    .attr('stroke', '#005280')
-    .attr('stroke-width', 3)
-    .attr('fill', 'white')
-    .attr('rx', 7.5);
+    .append('text')
+    .attr('x', 200)
+    .attr('y', 100)
+    .style('font-size', 25)
+    .style('font-family', 'Arial')
+    .attr('fill', 'grey')
+    .style('font-weight', 700)
+    .style('opacity', 1)
+    .text('Family income over 300% FPL');
 
   group12
     .append('text')
-    .attr('x', 260)
-    .attr('y', 452.5)
-    .style('font-size', 15)
+    .attr('x', 200)
+    .attr('y', 380)
+    .style('font-size', 25)
     .style('font-family', 'Arial')
-    .attr('fill', 'black')
+    .attr('fill', 'grey')
+    .style('font-weight', 700)
     .style('opacity', 1)
-    .text('>300% FPL');
-
-  group12
-    .append('text')
-    .attr('x', 260)
-    .attr('y', 472.5)
-    .style('font-size', 15)
-    .style('font-family', 'Arial')
-    .attr('fill', 'black')
-    .style('opacity', 1)
-    .text('<300% FPL');
+    .text('Family income less than 300% FPL');
 }
 
 function draw14() {
@@ -1979,36 +1951,26 @@ function draw14() {
 
   group13
     .append('rect')
-    .attr('x', 300)
+    .attr('x', 310)
     .attr('y', 440)
-    .attr('height', 15)
-    .attr('width', 30)
-    .attr('fill', '#005280')
-    .attr('rx', 7.5);
-
-  group13
-    .append('rect')
-    .attr('x', 300)
-    .attr('y', 460)
     .attr('height', 15)
     .attr('width', 30)
     .attr('fill', 'lightgrey')
     .attr('rx', 7.5);
 
   group13
-    .append('text')
-    .attr('x', 340)
-    .attr('y', 452.5)
-    .style('font-size', 15)
-    .style('font-family', 'Arial')
-    .attr('fill', 'black')
-    .style('opacity', 1)
-    .text('HDHP');
+    .append('rect')
+    .attr('x', 310)
+    .attr('y', 460)
+    .attr('height', 15)
+    .attr('width', 30)
+    .attr('fill', '#005280')
+    .attr('rx', 7.5);
 
   group13
     .append('text')
-    .attr('x', 340)
-    .attr('y', 472.5)
+    .attr('x', 350)
+    .attr('y', 452.5)
     .style('font-size', 15)
     .style('font-family', 'Arial')
     .attr('fill', 'black')
@@ -2016,8 +1978,18 @@ function draw14() {
     .text('None-HDHP');
 
   group13
+    .append('text')
+    .attr('x', 350)
+    .attr('y', 472.5)
+    .style('font-size', 15)
+    .style('font-family', 'Arial')
+    .attr('fill', 'black')
+    .style('opacity', 1)
+    .text('HDHP');
+
+  group13
     .append('rect')
-    .attr('x', 290)
+    .attr('x', 300)
     .attr('y', 432.5)
     .attr('width', 150)
     .attr('height', 50)
@@ -2104,6 +2076,7 @@ show15
 show15
   .append('rect')
   .attr('class', 'rect16')
+  .attr('id', 'first16')
   .attr('x', 100)
   .attr('y', 350)
   .attr('height', 30)
@@ -2117,6 +2090,7 @@ show15
 show15
   .append('rect')
   .attr('class', 'rect16')
+  .attr('id', 'second16')
   .attr('x', 100)
   .attr('y', 400)
   .attr('height', 30)
@@ -2154,44 +2128,87 @@ show15
 
 function draw15() {
   clean('group14');
-  show15.selectAll('.rect15').transition().duration(1000).style('opacity', 0.2);
-  show15.selectAll('.rect16').transition().duration(1000).style('opacity', 0.2);
-  show15.selectAll('circle').transition().duration(1000).style('opacity', 0.2);
+  show15.selectAll('.rect15').transition().duration(1000).style('opacity', 0);
+  show15.selectAll('.rect16').transition().duration(1000).style('opacity', 0);
+  show15.selectAll('circle').transition().duration(1000).style('opacity', 0);
 
-  d3.select('#first15').attr('width', 30);
+  d3.select('#first15')
+    .transition()
+    .duration(500)
+    .attr('width', 30)
+    .style('opacity', 0);
+
+  d3.select('#second15')
+    .transition()
+    .duration(500)
+    .attr('width', 30)
+    .style('opacity', 0);
 }
 
 function draw16() {
   // clean('group15');
 
   show15.selectAll('.rect16').transition().duration(1000).style('opacity', 0.2);
-  show15.selectAll('.text16').transition().duration(1000).style('opacity', 0.2);
+  show15.selectAll('.text16').transition().duration(1000).style('opacity', 0);
 
   show15.selectAll('.rect15').transition().duration(1000).style('opacity', 1);
   show15.selectAll('.text15').transition().duration(1000).style('opacity', 1);
   show15.selectAll('.cir15').transition().duration(1000).style('opacity', 1);
 
-  show15
-    .select('#first15')
+  d3.select('#first15')
     .transition()
     .duration(500)
     .attr('width', 420)
     .style('opacity', 1);
 
-  show15
-    .select('#second15')
+  d3.select('#second15')
     .transition()
     .duration(500)
     .attr('width', 340)
     .style('opacity', 1);
+
+  d3.select('#first16')
+    .transition()
+    .duration(500)
+    .attr('width', 30)
+    .style('opacity', 0.2);
+
+  d3.select('#second16')
+    .transition()
+    .duration(500)
+    .attr('width', 30)
+    .style('opacity', 0.2);
 }
 
 function draw17() {
   // clean('group16');
-  d3.select('#first15').transition().duration(500).attr('width', 30);
+  d3.select('#first15')
+    .transition()
+    .duration(500)
+    .attr('width', 30)
+    .style('opacity', 0.2);
 
-  show15.selectAll('.show16').transition().duration(1000).style('opacity', 1);
-  show15.selectAll('.show15').transition().duration(1000).style('opacity', 0.2);
+  d3.select('#second15')
+    .transition()
+    .duration(500)
+    .attr('width', 30)
+    .style('opacity', 0.2);
+
+  d3.select('#first16')
+    .transition()
+    .duration(500)
+    .attr('width', 205)
+    .style('opacity', 1);
+
+  d3.select('#second16')
+    .transition()
+    .duration(500)
+    .attr('width', 145)
+    .style('opacity', 1);
+
+  show15.selectAll('.cir15').transition().duration(1000).style('opacity', 0);
+  show15.selectAll('.text15').transition().duration(1000).style('opacity', 0);
+  show15.selectAll('.text16').transition().duration(1000).style('opacity', 1);
 }
 
 let activationFunctions = [
