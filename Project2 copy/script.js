@@ -1873,6 +1873,46 @@ function draw13() {
     .style('font-weight', 700)
     .style('opacity', 1)
     .text('Family income less than 300% FPL');
+
+  group12
+    .append('text')
+    .attr('x', 600)
+    .attr('y', 145)
+    .style('font-size', 25)
+    .style('font-family', 'Arial')
+    .attr('fill', '#005280')
+    .style('opacity', 1)
+    .text('39%');
+
+  group12
+    .append('text')
+    .attr('x', 590)
+    .attr('y', 205)
+    .style('font-size', 25)
+    .style('font-family', 'Arial')
+    .attr('fill', '#005280')
+    .style('opacity', 1)
+    .text('35%');
+
+  group12
+    .append('text')
+    .attr('x', 510)
+    .attr('y', 425)
+    .style('font-size', 25)
+    .style('font-family', 'Arial')
+    .attr('fill', '#005280')
+    .style('opacity', 1)
+    .text('28%');
+
+  group12
+    .append('text')
+    .attr('x', 510)
+    .attr('y', 485)
+    .style('font-size', 25)
+    .style('font-family', 'Arial')
+    .attr('fill', '#005280')
+    .style('opacity', 1)
+    .text('29%');
 }
 
 function draw14() {
@@ -1883,7 +1923,7 @@ function draw14() {
     .attr('x', 300)
     .attr('y', 100)
     .attr('height', 30)
-    .attr('fill', '#005280')
+    .attr('fill', 'lightgrey')
 
     .attr('rx', '15px')
     .transition()
@@ -1895,7 +1935,7 @@ function draw14() {
     .attr('x', 300)
     .attr('y', 150)
     .attr('height', 30)
-    .attr('fill', 'lightgrey')
+    .attr('fill', '#005280')
 
     .style('opacity', 1)
     .attr('rx', '15px')
@@ -1908,7 +1948,7 @@ function draw14() {
     .attr('x', 300)
     .attr('y', 300)
     .attr('height', 30)
-    .attr('fill', '#005280')
+    .attr('fill', 'lightgrey')
 
     .style('opacity', 1)
     .attr('rx', '15px')
@@ -1921,7 +1961,7 @@ function draw14() {
     .attr('x', 300)
     .attr('y', 350)
     .attr('height', 30)
-    .attr('fill', 'lightgrey')
+    .attr('fill', '#005280')
 
     .style('opacity', 1)
     .attr('rx', '15px')
@@ -1997,6 +2037,45 @@ function draw14() {
     .attr('stroke', 'grey')
     .attr('stroke-width', 3)
     .style('opacity', 0.5);
+
+  group13
+    .append('text')
+    .attr('x', 470)
+    .attr('y', 122.5)
+    .style('font-size', 20)
+    .style('font-family', 'Arial')
+    .attr('fill', 'grey')
+    .style('opacity', 1)
+    .text('16%');
+  group13
+    .append('text')
+    .attr('x', 530)
+    .attr('y', 172.5)
+    .style('font-size', 20)
+    .style('font-family', 'Arial')
+    .attr('fill', '#005280')
+    .style('opacity', 1)
+    .text('22%');
+
+  group13
+    .append('text')
+    .attr('x', 420)
+    .attr('y', 322.5)
+    .style('font-size', 20)
+    .style('font-family', 'Arial')
+    .attr('fill', 'grey')
+    .style('opacity', 1)
+    .text('11%');
+
+  group13
+    .append('text')
+    .attr('x', 500)
+    .attr('y', 372.5)
+    .style('font-size', 20)
+    .style('font-family', 'Arial')
+    .attr('fill', '#005280')
+    .style('opacity', 1)
+    .text('19%');
 }
 
 let show15 = group14.append('g');
