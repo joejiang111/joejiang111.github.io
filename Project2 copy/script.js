@@ -2079,7 +2079,7 @@ function draw14() {
 }
 
 let show15 = group14.append('g');
-let show16 = group14.append('g');
+let legendHDHP = group14.append('g');
 
 show15
   .append('rect')
@@ -2205,6 +2205,59 @@ show15
   .style('opacity', 0)
   .text('29%');
 
+legendHDHP
+  .append('rect')
+  .attr('x', 120)
+  .attr('y', 250)
+  .attr('height', 15)
+  .attr('width', 30)
+  .attr('stroke', '#005280')
+  .attr('stroke-width', '3px')
+  .attr('fill', 'none')
+  .attr('rx', 7.5);
+
+legendHDHP
+  .append('rect')
+  .attr('x', 120)
+  .attr('y', 270)
+  .attr('height', 15)
+  .attr('width', 30)
+  .attr('stroke', 'grey')
+  .attr('stroke-width', '3px')
+  .attr('fill', 'none')
+  .attr('rx', 7.5);
+
+legendHDHP
+  .append('text')
+  .attr('x', 160)
+  .attr('y', 262.5)
+  .style('font-size', 15)
+  .style('font-family', 'Arial')
+  .attr('fill', 'black')
+  .style('opacity', 1)
+  .text('HDHP');
+
+legendHDHP
+  .append('text')
+  .attr('x', 160)
+  .attr('y', 282.5)
+  .style('font-size', 15)
+  .style('font-family', 'Arial')
+  .attr('fill', 'black')
+  .style('opacity', 1)
+  .text('None-HDHP');
+
+legendHDHP
+  .append('rect')
+  .attr('x', 100)
+  .attr('y', 242.5)
+  .attr('width', 170)
+  .attr('height', 50)
+  .attr('fill', 'none')
+  .attr('stroke', 'lightgrey')
+  .attr('stroke-width', 3)
+  .style('opacity', 0.5);
+
 function draw15() {
   clean('group14');
   show15.selectAll('.rect15').transition().duration(1000).style('opacity', 0);
@@ -2233,6 +2286,8 @@ function draw16() {
   show15.selectAll('.rect15').transition().duration(1000).style('opacity', 1);
   show15.selectAll('.text15').transition().duration(1000).style('opacity', 1);
   show15.selectAll('.cir15').transition().duration(1000).style('opacity', 1);
+  legendHDHP.selectAll('rect').transition().duration(1000).style('opacity', 1);
+  legendHDHP.selectAll('text').transition().duration(1000).style('opacity', 1);
 
   d3.select('#first15')
     .transition()
@@ -2261,6 +2316,7 @@ function draw16() {
 
 function draw17() {
   // clean('group16');
+
   d3.select('#first15')
     .transition()
     .duration(500)
