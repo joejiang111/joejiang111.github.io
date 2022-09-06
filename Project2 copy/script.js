@@ -127,6 +127,20 @@ function clean(chartType) {
     group14.selectAll('circle').transition().style('opacity', 0);
     group14.selectAll('text').transition().style('opacity', 0);
   }
+
+  // if (chartType !== 'group16' || chartType !== 'group17') {
+  //   // group14.selectAll('text').transition().style('opacity', 0);
+  //   legendHDHP
+  //     .selectAll('rect')
+  //     .transition()
+  //     .duration(1000)
+  //     .style('opacity', 0);
+  //   legendHDHP
+  //     .selectAll('text')
+  //     .transition()
+  //     .duration(1000)
+  //     .style('opacity', 0);
+  // }
 }
 
 function draw1() {
@@ -2214,7 +2228,8 @@ legendHDHP
   .attr('stroke', '#005280')
   .attr('stroke-width', '3px')
   .attr('fill', 'none')
-  .attr('rx', 7.5);
+  .attr('rx', 7.5)
+  .style('opacity', 0);
 
 legendHDHP
   .append('rect')
@@ -2225,7 +2240,8 @@ legendHDHP
   .attr('stroke', 'grey')
   .attr('stroke-width', '3px')
   .attr('fill', 'none')
-  .attr('rx', 7.5);
+  .attr('rx', 7.5)
+  .style('opacity', 0);
 
 legendHDHP
   .append('text')
@@ -2234,7 +2250,7 @@ legendHDHP
   .style('font-size', 15)
   .style('font-family', 'Arial')
   .attr('fill', 'black')
-  .style('opacity', 1)
+  .style('opacity', 0)
   .text('HDHP');
 
 legendHDHP
@@ -2244,7 +2260,7 @@ legendHDHP
   .style('font-size', 15)
   .style('font-family', 'Arial')
   .attr('fill', 'black')
-  .style('opacity', 1)
+  .style('opacity', 0)
   .text('None-HDHP');
 
 legendHDHP
@@ -2256,7 +2272,7 @@ legendHDHP
   .attr('fill', 'none')
   .attr('stroke', 'lightgrey')
   .attr('stroke-width', 3)
-  .style('opacity', 0.5);
+  .style('opacity', 0);
 
 function draw15() {
   clean('group14');
