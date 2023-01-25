@@ -1,12 +1,37 @@
+body {
+  background-image: url('back2.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 #titletext {
   font-size: 60px;
   font-family: 'futura', sans-serif;
-  color: 'black';
   text-align: center;
   font-weight: 600;
   letter-spacing: 20px;
+  margin: 0;
 }
 
 #banner {
   height: 200px;
+}
+
+.assign1 {
+  font-family: 'futura', sans-serif;
+  text-align: center;
+  font-size: 20px;
+  color: black;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  transition: 0.5s;
+}
+
+a:hover {
+  color: orangered;
+  transition: 0.5s;
 }
