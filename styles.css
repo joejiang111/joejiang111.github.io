@@ -20,18 +20,32 @@ body {
 .assign1 {
   font-family: 'futura', sans-serif;
   text-align: center;
-  font-size: 20px;
-  color: black;
 }
 
-a {
+.assigns {
   text-decoration: none;
   color: black;
   font-weight: bold;
+
+  transition: 0.5s;
+  display: none;
+}
+
+.btn1 {
+  border: none;
+  background-color: transparent;
+  font-family: 'futura', sans-serif;
+  font-weight: bold;
+  font-size: 25px;
   transition: 0.5s;
 }
 
-a:hover {
+.assign1:hover .assigns {
+  display: block;
+  transition: 0.5s;
+}
+
+.btn1:hover {
   color: orangered;
   transition: 0.5s;
 }
