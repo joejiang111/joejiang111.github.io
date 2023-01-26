@@ -18,8 +18,10 @@ body {
 }
 
 .assign1 {
-  font-family: 'futura', sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
   text-align: center;
+  font-weight: bold;
 }
 
 .assigns {
@@ -46,6 +48,7 @@ body {
 }
 
 .btn1:hover {
-  color: orangered;
+  text-decoration: underline orangered;
+
   transition: 0.5s;
 }
