@@ -18,3 +18,26 @@ function parseToNum(d) {
     'land area': +d['land area'],
   };
 }
+
+d3.csv('./dataset/cities-sm.csv').then(function (data) {
+  console.log(data[0]);
+
+  data.forEach((d) => {
+    d.population = +d.population;
+    d['land area'] = +d['land area'];
+  });
+
+  let filtered_data = data.filter(function (d) {
+    return d.state === 'WA';
+  });
+
+  console.log(filtered_data);
+
+  let group_data = d3.group(data, function (d) {
+    return d.city;
+  });
+
+  console.log(group_data);
+
+  console.log(group_data.get('boston'));
+});
