@@ -1,0 +1,28 @@
+#viz {
+  display: block;
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  left: 50%;
+  height: 800px;
+  width: 1200px;
+  background-color: darkgrey;
+  border-radius: 20px;
+  margin: -350px 0 0 -600px;
+}
+
+.axis {
+  font-family: 'futura', sans-serif;
+}
+
+#age path,
+line {
+  display: none;
+}
+/* .axis path {
+  display: none;
+} */
+
+/* .axis line {
+  display: none;
+} */

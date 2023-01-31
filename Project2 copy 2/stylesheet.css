@@ -1,0 +1,102 @@
+#sections {
+  position: relative;
+  display: inline-block;
+  width: 500px;
+  top: 0;
+  z-index: 90;
+  left: 10%;
+}
+
+.setup p {
+  width: 600px;
+}
+
+.step {
+  margin-top: 200px;
+  margin-bottom: 500px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: grey;
+  line-height: 200%;
+}
+
+.step .title {
+  font-size: 35px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: grey;
+  line-height: 120%;
+}
+
+#viz {
+  display: inline-block;
+  position: fixed;
+  top: 20%;
+  z-index: 1;
+  left: 50%;
+  height: 1000px;
+  width: 1000px;
+  background-color: white;
+  border-radius: 50px;
+}
+
+#graphic {
+  padding: 60px;
+  margin: 100px;
+}
+
+#setup {
+  font-size: 10vh;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: -500;
+  margin-top: 30px;
+
+  line-height: normal;
+  color: rgb(0, 84, 128);
+}
+
+#p1 {
+  margin-bottom: 700px;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 450px;
+  line-height: 150%;
+}
+
+hr {
+  border-radius: 10px;
+  color: red;
+}
+
+#arrow {
+  height: -0px;
+  position: absolute;
+  top: 15%;
+  left: -40%;
+  width: 100%;
+}
+
+#arrow::before {
+  animation: bounce 2s ease infinite;
+  bottom: 1rem;
+  color: black;
+  content: '╲╱';
+  font-size: 2rem;
+  height: 2rem;
+  left: 50%;
+  letter-spacing: -1px;
+  line-height: 4rem;
+  margin-left: -3rem;
+  opacity: 1;
+  position: absolute;
+  text-align: center;
+  width: 1rem;
+}
+
+@keyframes bounce {
+  50% {
+    transform: translateY(-50%);
+  }
+}
+
+.button {
+}
