@@ -4,7 +4,7 @@ let svg = d3
   .attr('height', 1000)
   .attr('width', 1500);
 
-let axisGroup = svg.append('g').attr('height', 1000).attr('width', 1000);
+let axisGroup = svg.append('g').attr('height', 1000).attr('width', 2500);
 let group1_2000 = svg.append('g').attr('height', 1000).attr('width', 1500);
 let group2_2000 = svg.append('g').attr('height', 1000).attr('width', 1500);
 let group1_1900 = svg.append('g').attr('height', 1000).attr('width', 1500);
@@ -93,8 +93,8 @@ d3.csv('USpop.csv').then(function (data) {
   //   .ticks(18);
 
   const yAxis = d3.axisLeft().scale(y_1900).ticks(19);
-  const xAxis1 = d3.axisBottom().scale(x_1900).ticks(5);
-  const xAxis2 = d3.axisBottom().scale(x2).ticks(5);
+  const xAxis1 = d3.axisBottom().scale(x_1900).ticks(8);
+  const xAxis2 = d3.axisBottom().scale(x2).ticks(8);
   //   .append('g')
   //   .attr('class', 'axis')
   //   .attr('transform', `translate(0,${height - margin.bottom})`)
