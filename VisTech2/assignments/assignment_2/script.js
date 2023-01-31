@@ -5,10 +5,54 @@ let svg = d3
   .attr('width', 1500);
 
 let axisGroup = svg.append('g').attr('height', 1000).attr('width', 2500);
+let lgdGroup = svg.append('g').attr('height', 1000).attr('width', 2500);
 let group1_2000 = svg.append('g').attr('height', 1000).attr('width', 1500);
 let group2_2000 = svg.append('g').attr('height', 1000).attr('width', 1500);
 let group1_1900 = svg.append('g').attr('height', 1000).attr('width', 1500);
 let group2_1900 = svg.append('g').attr('height', 1000).attr('width', 1500);
+
+lgdGroup
+  .append('rect')
+  .attr('x', 40)
+  .attr('y', 640)
+  .attr('height', 40)
+  .attr('width', 80)
+  .attr('rx', 5)
+  .attr('fill', 'white');
+
+lgdGroup
+  .append('rect')
+  .attr('x', 90)
+  .attr('y', 650)
+  .attr('height', 5)
+  .attr('width', 20)
+  .attr('fill', '#DD7230');
+
+lgdGroup
+  .append('rect')
+  .attr('x', 90)
+  .attr('y', 665)
+  .attr('height', 5)
+  .attr('width', 20)
+  .attr('fill', '#5B443E');
+
+lgdGroup
+  .append('text')
+  .attr('x', 50)
+  .attr('y', 655)
+  .style('font-size', 10)
+  .style('font-family', 'Futura')
+  .attr('fill', 'black')
+  .text('Female');
+
+lgdGroup
+  .append('text')
+  .attr('x', 50)
+  .attr('y', 670)
+  .style('font-size', 10)
+  .style('font-family', 'Futura')
+  .attr('fill', 'black')
+  .text('Male');
 
 axisGroup
   .append('rect')
@@ -150,7 +194,7 @@ d3.csv('USpop.csv').then(function (data) {
     .attr('width', function (d) {
       return x_1900(0) - x_1900(+d.People);
     })
-    .attr('fill', '#CD6858');
+    .attr('fill', '#DD7230');
 
   group1_2000
     .selectAll('rect')
@@ -184,5 +228,5 @@ d3.csv('USpop.csv').then(function (data) {
     .attr('width', function (d) {
       return x_1900(0) - x_1900(+d.People);
     })
-    .attr('fill', '#CD6858');
+    .attr('fill', '#DD7230');
 });
