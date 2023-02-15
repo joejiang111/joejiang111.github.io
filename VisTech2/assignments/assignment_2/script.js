@@ -1,15 +1,20 @@
+const height = 800;
+const width = 1200;
+
 let svg = d3
   .select('#viz')
   .append('svg')
-  .attr('height', 1000)
-  .attr('width', 1500);
+  .attr('viewBox', `0 0 ${width} ${height}`)
+  .attr('preserveAspectRatio', 'xMidYMid meet');
+// .attr('transform', 'translate(100,0)');
+// .attr('transform', 'translate(300,0)');
 
-let axisGroup = svg.append('g').attr('height', 1000).attr('width', 2500);
-let lgdGroup = svg.append('g').attr('height', 1000).attr('width', 2500);
-let group1_2000 = svg.append('g').attr('height', 1000).attr('width', 1500);
-let group2_2000 = svg.append('g').attr('height', 1000).attr('width', 1500);
-let group1_1900 = svg.append('g').attr('height', 1000).attr('width', 1500);
-let group2_1900 = svg.append('g').attr('height', 1000).attr('width', 1500);
+let axisGroup = svg.append('g').attr('height', height).attr('width', width);
+let lgdGroup = svg.append('g').attr('height', height).attr('width', width);
+let group1_2000 = svg.append('g').attr('height', height).attr('width', width);
+let group2_2000 = svg.append('g').attr('height', height).attr('width', width);
+let group1_1900 = svg.append('g').attr('height', height).attr('width', width);
+let group2_1900 = svg.append('g').attr('height', height).attr('width', width);
 
 lgdGroup
   .append('rect')
