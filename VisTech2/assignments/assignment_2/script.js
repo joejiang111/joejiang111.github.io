@@ -9,8 +9,16 @@ let svg = d3
 // .attr('transform', 'translate(100,0)');
 // .attr('transform', 'translate(300,0)');
 
-let axisGroup = svg.append('g').attr('height', height).attr('width', width);
-let lgdGroup = svg.append('g').attr('height', height).attr('width', width);
+let axisGroup = svg
+  .append('g')
+  .attr('height', height)
+  .attr('width', width)
+  .attr('class', 'axisGroup');
+let lgdGroup = svg
+  .append('g')
+  .attr('height', height)
+  .attr('width', width)
+  .attr('class', 'lgd');
 let group1_2000 = svg.append('g').attr('height', height).attr('width', width);
 let group2_2000 = svg.append('g').attr('height', height).attr('width', width);
 let group1_1900 = svg.append('g').attr('height', height).attr('width', width);
@@ -23,6 +31,7 @@ lgdGroup
   .attr('height', 40)
   .attr('width', 80)
   .attr('rx', 5)
+  .attr('id', 'bgdRect')
   .attr('fill', 'white');
 
 lgdGroup

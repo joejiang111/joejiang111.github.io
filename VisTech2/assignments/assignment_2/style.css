@@ -49,6 +49,26 @@ h1 {
     max-width: 200px;
   } */
 }
+@media only screen and (max-width: 800px) {
+  h1 {
+    font: size 23px;
+  }
+
+  .axisGroup text {
+    font-size: 12px;
+  }
+
+  .lgd text {
+    font-weight: bold;
+    transform: translate(0, 5px);
+  }
+  .lgd rect {
+    height: 15px;
+  }
+  #bgdRect {
+    height: 50px;
+  }
+}
 
 @media only screen and (max-width: 500px) {
   #viz {
@@ -56,6 +76,10 @@ h1 {
     top: 100px;
 
     width: 95%;
+  }
+
+  .axisGroup text {
+    font-size: 15px;
   }
 
   h1 {
