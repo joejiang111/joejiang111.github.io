@@ -21,7 +21,10 @@ h1 {
 
 .axis line,
 text {
-  color: darkred;
+  color: red;
+}
+.axis path{
+  opacity: 0;
 }
 .axis text {
   font-weight: 700;
