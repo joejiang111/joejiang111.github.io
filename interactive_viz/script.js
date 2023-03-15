@@ -146,7 +146,7 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
   circle
     .transition()
     .duration(function (d) {
-      return (200 - d.bpm) * 10;
+      return (1 / d.bpm) *1000000;
     })
     .attr('r', 3)
     .attr('fill', 'white');
