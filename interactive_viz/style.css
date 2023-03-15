@@ -1,0 +1,45 @@
+#viz {
+  height: 800px;
+  width: 1200px;
+  background-color: black;
+  margin-top: 0%;
+  margin-left: 12%;
+  margin-bottom: 0;
+}
+
+body {
+  background-color: black;
+}
+
+h1 {
+  color: white;
+  font-family: 'Proxima Nova', sans-serif;
+  font-weight: 700;
+  text-align: center;
+  margin: 0;
+}
+
+.axis line,
+text {
+  color: darkred;
+}
+.axis text {
+  font-weight: 700;
+  font-size: 12px;
+}
+.tooltip {
+  position: fixed;
+  visibility: hidden;
+  top: 0px;
+  left: 0px;
+
+  padding: 5px;
+  padding-left: 10px;
+  /* background-color: rgba(255, 255, 255, 0.8); */
+  font-size: 15pt;
+  font-family: 'overpass', sans-serif;
+  color: white;
+  border-radius: 15px;
+}
+
+
