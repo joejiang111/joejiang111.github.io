@@ -37,6 +37,11 @@ function parseCSV(d) {
   }
 }
 
+
+
+
+
+
 d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
   console.log(data);
   // let count_edm = 0;
@@ -101,9 +106,27 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
   console.log(hours);
   console.log(bpm);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
   const yScale = d3
     .scaleLinear()
     .domain([score.min, score.max])
+    .range([height - margin.bottom, margin.top]);
+
+  const yScale2 = d3
+    .scaleLinear()
+    .domain([0, 16])
     .range([height - margin.bottom, margin.top]);
 
   const xScale = d3
@@ -119,12 +142,14 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
   const xAxis = svg
     .append('g')
     .attr('class', 'axis')
+    .attr('id', 'x_axis1')
     .attr('transform', `translate(0,${height - margin.bottom})`)
     .call(d3.axisBottom().scale(xScale));
 
   const yAxis = svg
     .append('g')
     .attr('class', 'axis')
+    .attr('id', 'y_axis1')
     .attr('transform', `translate(${margin.left},0)`)
     .call(d3.axisLeft().scale(yScale));
 
@@ -152,6 +177,7 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
     .attr('fill', 'white');
 
   //mouseover effect
+  
   circle
     .on('mouseover', function (e, d) {
       circle.transition().duration(500).attr('opacity', 0);
@@ -184,9 +210,7 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
         .append('path')
         .attr('transform', `translate(${posX},${posY})`)
         .attr('class', 'arc')
-
         .attr('d', arc)
-
         .attr('fill', '#8D6A9F');
 
       console.log(d.bpm);
@@ -213,7 +237,21 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
 
       d3.select('.arc').remove();
       tooltip.style('visibility', 'hidden');
-    });
+    })
+
+    .on('click', function(e,d){
+
+      tooltip.style('visibility', 'hidden')
+
+      d3.select(this)
+        .transition()
+        .duration(1000)
+        
+        .attr('r', 100)
+      
+      console.log(d);
+      
+    })
 
   button1 = svg
     .append('g')
@@ -237,6 +275,28 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
     button1.transition().duration(200).attr('width', 110);
   });
 
+  button2 = svg
+    .append('g')
+    .append('rect')
+    .attr('x', 0)
+    .attr('y', 300)
+    .attr('fill', 'white')
+    .attr('height', 30)
+    .attr('width', 10);
+
+  text_btn2 = svg
+    .append('g')
+    .append('text')
+    .attr('x', 10)
+    .attr('y', 320)
+    .text('Age vs Fav Genre')
+    .attr('fill', 'black')
+    .style('font-family', 'Overpass')
+    .style('font-weight', 700);
+  button2.on('mouseover', function (d) {
+    button2.transition().duration(200).attr('width', 150);
+  });
+
   // svg
   //   .append('svg:defs')
   //   .append('svg:marker')
@@ -254,6 +314,7 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
     // button1.transition().duration(200).attr('width', 10);
   });
   text_btn1.on('click', changeColor);
+  text_btn2.on('click', redraw1)
   function changeColor() {
     circle
       .transition()
@@ -267,6 +328,23 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
           return 'white';
         }
       });
+  }
+
+  function redraw1(){
+
+    d3.select('#y_axis1').attr('opacity', 0)
+
+    circle
+    .transition()
+    .duration(1000)
+
+    .attr('cy', function(d){
+      return 
+    })
+    
+
+
+
   }
   // function repeat() {
   //   circle
