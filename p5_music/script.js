@@ -4,20 +4,20 @@ let volHistory2 = [];
 let colors = [];
 
 function preload() {
-  song1 = loadSound('./music/langlang_firsttwo.mp4');
-  song2 = loadSound('./music/richter_firsttwo.mp4');
+  song1 = loadSound('./music/richter_cut.mp4');
+  
   getAudioContext().resume();
 }
 
 function setup() {
   createCanvas(1200, 1000);
   song1.play();
-  song2.play();
+  // song2.play();
 
   // amp1 = new p5.Amplitude();
   fft = new p5.FFT();
-  fft2 = new p5.FFT();
-  console.log(fft, fft2);
+
+  // console.log(fft, fft2);
   amp1 = new p5.Amplitude();
 }
 
@@ -56,7 +56,7 @@ function draw() {
     // console.log(x);
     // console.log(color[x]);
     let from = color(0, 0, 0);
-    let to = color(255, 69, 0);
+    let to = color(255,255,0);
     let intercolor = lerpColor(from, to, colors[x]);
     // console.log(intercolor);
 
