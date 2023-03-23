@@ -32,6 +32,7 @@ function parseCSV(d) {
       Insomnia: +d.Insomnia,
       OCD: +d.OCD,
       effect: d.Music_effects,
+      favGenre: d.Fav_genre,
       score: (+d.Anxiety + +d.Depression + +d.Insomnia + +d.OCD) / 4,
     };
   }
@@ -116,8 +117,8 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
 
 
 
-
-
+  const scaleFav = d3.scaleOrdinal().domain(['Classical', 'Country', 'EDM', 'Folk', 'Gospel',
+'Hiphop', 'Jazz', 'Kpop', 'Latin', 'Lofi', 'Metal', 'Pop', 'R_B', 'Rap', 'Rock', 'Game']).range([height - margin.bottom, margin.top])
 
   const yScale = d3
     .scaleLinear()
@@ -234,7 +235,8 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
         .attr('opacity', 1)
 
         .attr('r', 3);
-
+      
+      
       d3.select('.arc').remove();
       tooltip.style('visibility', 'hidden');
     })
@@ -244,9 +246,12 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
       tooltip.style('visibility', 'hidden')
 
       d3.select(this)
+      .attr('selected', 'True')
+
+      d3.select(this)
         .transition()
         .duration(1000)
-        
+        .attr('cy', 500)
         .attr('r', 100)
       
       console.log(d);
@@ -339,10 +344,11 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
     .duration(1000)
 
     .attr('cy', function(d){
-      return 
+      
+      return(scaleFav(d.favGenre));
     })
     
-
+    console.log(scaleFav(d.FavGenre));
 
 
   }
