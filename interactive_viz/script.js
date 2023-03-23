@@ -118,7 +118,7 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
 
 
   const scaleFav = d3.scaleBand().domain(['Classical', 'Country', 'EDM', 'Folk', 'Gospel',
-'Hiphop', 'Jazz', 'Kpop', 'Latin', 'Lofi', 'Metal', 'Pop', 'R_B', 'Rap', 'Rock', 'Game']).range([height - margin.bottom, margin.top])
+'Hiphop', 'Jazz', 'Kpop', 'Latin', 'Lofi', 'Metal', 'Pop', 'R_B', 'Rap', 'Rock', 'Game']).range([margin.top,height - margin.bottom])
 
   const yScale = d3
     .scaleLinear()
@@ -340,9 +340,10 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
     d3.select('#y_axis1').attr('opacity', 0)
 
     circle
+    .attr('opacity', 0.5)
     .transition()
     .duration(1000)
-
+    
     .attr('cy', function(d){
       
       return(scaleFav(d.favGenre));
