@@ -117,7 +117,7 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
 
 
 
-  const scaleFav = d3.scaleOrdinal().domain(['Classical', 'Country', 'EDM', 'Folk', 'Gospel',
+  const scaleFav = d3.scaleBand().domain(['Classical', 'Country', 'EDM', 'Folk', 'Gospel',
 'Hiphop', 'Jazz', 'Kpop', 'Latin', 'Lofi', 'Metal', 'Pop', 'R_B', 'Rap', 'Rock', 'Game']).range([height - margin.bottom, margin.top])
 
   const yScale = d3
