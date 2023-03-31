@@ -16,7 +16,7 @@ function setup() {
 
   // amp1 = new p5.Amplitude();
   fft = new p5.FFT();
-
+  
   // console.log(fft, fft2);
   amp1 = new p5.Amplitude();
 }
