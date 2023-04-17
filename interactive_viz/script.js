@@ -57,7 +57,8 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
     .select('#viz')
     .append('svg')
     .attr('width', width + 200)
-    .attr('height', height);
+    .attr('height', height)
+    .property("value", [])
 
   let group1 = svg
     .append('g')
@@ -118,7 +119,7 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
 
 
   const scaleFav = d3.scaleBand().domain(['Classical', 'Country', 'EDM', 'Folk', 'Gospel',
-'Hiphop', 'Jazz', 'Kpop', 'Latin', 'Lofi', 'Metal', 'Pop', 'R_B', 'Rap', 'Rock', 'Game']).range([margin.top,height - margin.bottom])
+'Hip hop', 'Jazz', 'K pop', 'Latin', 'Lofi', 'Metal', 'Pop', 'R&B', 'Rap', 'Rock', 'Video game music']).range([50, height - margin.top-50])
 
   const yScale = d3
     .scaleLinear()
@@ -158,6 +159,7 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
 
   //draw circles
   const circle = svg
+    .append('g')
     .selectAll('circle')
     .data(data)
     .enter()
@@ -172,7 +174,7 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
   circle
     .transition()
     .duration(function (d) {
-      return (1 / d.bpm) *1000000;
+      return (1 / d.bpm) *100000;
     })
     .attr('r', 3)
     .attr('fill', 'white');
@@ -181,6 +183,7 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
   
   circle
     .on('mouseover', function (e, d) {
+      
       circle.transition().duration(500).attr('opacity', 0);
       let hours = d.Hours;
       let posX = d3.select(this).attr('cx');
@@ -226,6 +229,7 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
         .html(
           `<p>BPM: <b>${d.bpm}</b><br>Hours: ${d.Hours}<br>Mental Score: ${d.score}</p>`
         );
+      
     })
 
     .on('mouseout', function (e, d) {
@@ -251,7 +255,7 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
       d3.select(this)
         .transition()
         .duration(1000)
-        .attr('cy', 500)
+        
         .attr('r', 100)
       
       console.log(d);
@@ -276,6 +280,7 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
     .attr('fill', 'black')
     .style('font-family', 'Overpass')
     .style('font-weight', 700);
+    
   button1.on('mouseover', function (d) {
     button1.transition().duration(200).attr('width', 110);
   });
@@ -298,8 +303,31 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
     .attr('fill', 'black')
     .style('font-family', 'Overpass')
     .style('font-weight', 700);
+
+  button3 = svg
+    .append('g')
+    .append('rect')
+    .attr('x', 0)
+    .attr('y', 400)
+    .attr('fill', 'white')
+    .attr('height', 30)
+    .attr('width', 10);
+
+  text_btn3 = svg
+    .append('g')
+    .append('text')
+    .attr('x', 10)
+    .attr('y', 420)
+    .text('Play with Brush')
+    .attr('fill', 'black')
+    .style('font-family', 'Overpass')
+    .style('font-weight', 700);
+
   button2.on('mouseover', function (d) {
     button2.transition().duration(200).attr('width', 150);
+  });
+  button3.on('mouseover', function (d) {
+    button3.transition().duration(200).attr('width', 150);
   });
 
   // svg
@@ -319,7 +347,9 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
     // button1.transition().duration(200).attr('width', 10);
   });
   text_btn1.on('click', changeColor);
-  text_btn2.on('click', redraw1)
+  text_btn2.on('click', redraw1);
+  text_btn3.on('click', playBrush);
+
   function changeColor() {
     circle
       .transition()
@@ -336,11 +366,13 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
   }
 
   function redraw1(){
+    
+    circle.attr("fill", 'white')
 
     d3.select('#y_axis1').attr('opacity', 0)
-
+    d3.select('.brush').remove()
     circle
-    .attr('opacity', 0.5)
+    .attr('opacity', 1)
     .transition()
     .duration(1000)
     
@@ -353,6 +385,74 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
 
 
   }
+  // Define the brush
+  let gBrush;
+
+  function playBrush(){
+
+    reset()
+    d3.select('#y_axis1').attr('opacity', 1)
+  const brush = d3.brush()
+  .extent([[200, 0], [width, height]])
+  .on("brush", brushended);
+
+// Append the brush to the SVG
+  gBrush = svg.append("g")
+  .attr("class", "brush")
+  .call(brush);
+
+// Define the brushended function
+  function brushended({selection}) {
+    let value = [];
+    if (selection) {
+      const [[x0, x1], [y0, y1]] = selection;
+      console.log(selection)
+      circle.attr("class", "non_brushed");
+      circle.attr('fill', 'white')
+      var brush_coords = d3.brushSelection(this);
+      circle.filter(function (){
+
+        var cx = d3.select(this).attr("cx"),
+            cy = d3.select(this).attr("cy");
+
+        return isBrushed(brush_coords, cx, cy);
+    })
+    .attr("class", "brushed")
+        .attr("fill", "red")
+        .data(data);
+  } 
+
+  function isBrushed(brush_coords, cx, cy) {
+
+    var x0 = brush_coords[0][0],
+        x1 = brush_coords[1][0],
+        y0 = brush_coords[0][1],
+        y1 = brush_coords[1][1];
+
+   return x0 <= cx && cx <= x1 && y0 <= cy && cy <= y1;
+  }
+}
+  }
+
+  function reset(){
+    circle
+    
+    .transition()
+    .duration(1000)
+    .attr('cx', function (d) {
+      return xScale(d.Age);
+    })
+    .attr('cy', function (d) {
+      return yScale(d.score);
+    })
+    .attr('fill', 'white');
+
+
+  }
+
+  
+  
+
   // function repeat() {
   //   circle
   //     .transition()

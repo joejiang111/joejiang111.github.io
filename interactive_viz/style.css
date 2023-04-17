@@ -45,4 +45,6 @@ text {
   border-radius: 15px;
 }
 
-
+.brush .selection{
+  fill:red
+}

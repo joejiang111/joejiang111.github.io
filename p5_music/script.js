@@ -22,7 +22,7 @@ function setup() {
 }
 
 function draw() {
-  background('white');
+  background('black');
   let vol1 = amp1.getLevel();
   let vol2 = fft.analyze();
 
@@ -33,7 +33,7 @@ function draw() {
   let centroid;
   centroid = fft.getCentroid();
 
-  let color_cal = map(centroid, 0, 4186.01, 0, 1);
+  let color_cal = map(centroid, 27.5, 4186.01, 0, 1);
 
   colors.push(color_cal);
   // console.log(colors);
@@ -55,8 +55,8 @@ function draw() {
     noStroke();
     // console.log(x);
     // console.log(color[x]);
-    let from = color(0, 0, 0);
-    let to = color(255,69,0);
+    let from = color(3,205,255);
+    let to = color(255,90,19);
     let intercolor = lerpColor(from, to, colors[x]);
     // console.log(intercolor);
 
