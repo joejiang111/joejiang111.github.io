@@ -10,6 +10,8 @@ function parseCSV(d) {
       Age: +d.Age,
       Hours: +d.Hours_per_day,
       bpm: +d.BPM,
+      working: d.working,
+      stream: d.stream,
       Explo: d.Exploratory,
       Classical: d.Frequency_Classical,
       Country: d.Frequency_Country,
@@ -368,7 +370,7 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
   function redraw1(){
     
     circle.attr("fill", 'white')
-
+    
     d3.select('#y_axis1').attr('opacity', 0)
     d3.select('.brush').remove()
     circle
@@ -401,8 +403,10 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
   .attr("class", "brush")
   .call(brush);
 
+  let sideViz = svg.append('g').attr('transform', 'translate(1200, 200)')
 // Define the brushended function
   function brushended({selection}) {
+    sideViz.selectAll('circle').remove();
     let value = [];
     if (selection) {
       const [[x0, x1], [y0, y1]] = selection;
@@ -410,16 +414,151 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
       circle.attr("class", "non_brushed");
       circle.attr('fill', 'white')
       var brush_coords = d3.brushSelection(this);
-      circle.filter(function (){
+      let selectCirs = circle.filter(function (){
 
         var cx = d3.select(this).attr("cx"),
             cy = d3.select(this).attr("cy");
 
         return isBrushed(brush_coords, cx, cy);
     })
+    selectCirs
     .attr("class", "brushed")
         .attr("fill", "red")
         .data(data);
+    
+    
+    // let count_1 =  d3.count(selectCirs, function(d){
+    //   return d.stream === 'Spotify';
+    // })
+
+   
+    // console.log(count_1)
+    let selectedData = selectCirs.data();
+    let spo = selectedData.filter(function(d){
+      return d.stream === 'Spotify';
+    })
+    count_spo = spo.length;
+
+    let apl = selectedData.filter(function(d){
+      return d.stream === 'Apple Music';
+    })
+    count_apl = apl.length;
+
+    let youtube = selectedData.filter(function(d){
+      return d.stream === 'Youtube Music';
+    })
+    count_youtube = youtube.length;
+    
+    let pandora = selectedData.filter(function(d){
+      return d.stream === 'Pandora';
+    })
+    count_pandora = pandora.length;
+    
+    count_other = selectedData.length - count_spo - count_apl - count_youtube - count_pandora
+
+    let work = selectedData.filter(function(d){
+      return d.working === 'Yes'
+    })
+    count_work = work.length;
+
+    let work_no = selectedData.filter(function(d){
+      return d.working === 'No'
+    })
+    count_nowork = work_no.length;
+
+    console.log(count_nowork)
+    console.log(count_work)
+
+    sideViz.append('circle')
+    .attr('r', Math.log(count_work)*10)
+    .attr('cy', 200)
+    .attr('cx', 0)
+    .attr('fill', 'yellow')
+  
+    sideViz.append('circle')
+    .attr('r', Math.log(count_nowork)*10)
+    .attr('cy', 200)
+    .attr('cx', 40)
+    .attr('fill', 'purple')
+
+    svg.append('text')
+    .style('font-size', 10)
+    .style('font-family', 'Libre Franklin')
+    .style('font-weight', 0)
+    .attr('fill', 'white')
+    .attr('y', 500)
+    .attr('x', 1150)
+    .text('Yellow: While Working')
+
+    svg.append('text')
+    .style('font-size', 10)
+    .style('font-family', 'Libre Franklin')
+    .style('font-weight', 0)
+    .attr('fill', 'white')
+    .attr('y', 520)
+    .attr('x', 1150)
+    .text('Purple: While Not Working')
+  
+
+
+
+
+
+
+
+    
+
+
+
+    //create words for word cloud
+    let words = [
+      {word: 'Spotify', size: count_spo},
+      {word: 'Youtube Music', size: count_youtube},
+      {word: 'Apple Music', size: count_apl},
+      {word: 'Pandora', size: count_pandora},
+      {word: 'Other', size: count_other},
+    ]
+
+    let layout = d3.layout.cloud()
+      .size([200, 200])
+      .words(words.map(function(d) { return {text: d.word, size:d.size}; }))
+      .padding(10)        //space between words
+      .rotate(function() { return ~~(Math.random() * 2) ; })
+      .fontSize(function(d) { return Math.log(d.size)*10; })      // font size of words
+      .on("end", drawWord);
+    layout.start();
+
+    function drawWord(words){
+      d3.selectAll('.words').remove()
+      
+
+      sideViz
+      // .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
+      .selectAll("text")
+      .data(words)
+      .enter().append("text")
+        .style("font-size", function(d) { return d.size ; })
+        .style("fill", "white")
+        .attr("text-anchor", "middle")
+        .style("font-family", "Satoshi")
+        .attr('class', 'words')
+        .attr("transform", function(d) {
+          return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+        })
+        .text(function(d) { return d.text; });
+    }
+    
+    console.log(count_spo)
+    console.log(count_apl)
+    console.log(count_youtube)
+    console.log(count_pandora)
+    console.log(count_other)
+
+
+    // Log the data to the console:
+    console.log("Selected data: ", selectedData);
+    
+    console.log(selectCirs)
   } 
 
   function isBrushed(brush_coords, cx, cy) {
