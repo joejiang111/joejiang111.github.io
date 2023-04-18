@@ -368,7 +368,8 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
   }
 
   function redraw1(){
-    
+    d3.select('.legend1').remove()
+    d3.select('.legend2').remove()
     circle.attr("fill", 'white')
     
     d3.select('#y_axis1').attr('opacity', 0)
@@ -486,6 +487,7 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
     .style('font-family', 'Libre Franklin')
     .style('font-weight', 0)
     .attr('fill', 'white')
+    .attr('class', 'legend1')
     .attr('y', 500)
     .attr('x', 1150)
     .text('Yellow: While Working')
@@ -495,6 +497,7 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
     .style('font-family', 'Libre Franklin')
     .style('font-weight', 0)
     .attr('fill', 'white')
+    .attr('class', 'legend2')
     .attr('y', 520)
     .attr('x', 1150)
     .text('Purple: While Not Working')
@@ -536,6 +539,7 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
       // .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
       .selectAll("text")
       .data(words)
+      .attr('class', 'words')
       .enter().append("text")
         .style("font-size", function(d) { return d.size ; })
         .style("fill", "white")

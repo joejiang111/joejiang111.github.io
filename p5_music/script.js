@@ -4,7 +4,7 @@ let volHistory2 = [];
 let colors = [];
 
 function preload() {
-  song1 = loadSound('./music/zimerman_cut copy.mp4');
+  song1 = loadSound('./music/richter_cut.mp4');
   
   getAudioContext().resume();
 }
@@ -55,8 +55,8 @@ function draw() {
     noStroke();
     // console.log(x);
     // console.log(color[x]);
-    let from = color(3,205,255);
-    let to = color(255,90,19);
+    let from = color(255,0,257);
+    let to = color(0,248,255);
     let intercolor = lerpColor(from, to, colors[x]);
     // console.log(intercolor);
 
