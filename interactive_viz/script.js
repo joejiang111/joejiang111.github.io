@@ -393,9 +393,9 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
   }
 
   function redraw1(){
-    d3.select('.legend1').remove()
-    d3.select('.legend2').remove()
-
+    
+    
+    d3.select('#left_label').attr('opacity', 0)
     const rightScale = svg.append('g')
     .call(d3.axisRight().scale(scaleFav))
     .attr('transform', `translate(1000,-20)`)
@@ -405,7 +405,7 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
       .attr('translate', 'transform(-20, 10)' )
   
 
-    circle.attr("fill", 'white')
+    // circle.attr("fill", 'white')
     
     d3.select('#y_axis1').attr('opacity', 0)
     d3.select('.brush').remove()
@@ -431,9 +431,9 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
   let gBrush;
 
   function playBrush(){
-
+    d3.select('#left_label').attr('opacity',1)
     reset()
-    d3.select('#rightScale').attr('opacity',0)
+    d3.select('#rightScale').remove()
     d3.select('#y_axis1').attr('opacity', 1)
   const brush = d3.brush()
   .extent([[200, 0], [width, height]])
@@ -528,7 +528,7 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
     .style('font-family', 'Libre Franklin')
     .style('font-weight', 0)
     .attr('fill', 'white')
-    .attr('class', 'legend1')
+    .attr('id', 'legend1')
     .attr('y', 500)
     .attr('x', 1150)
     .text('Yellow: While Working')
@@ -619,6 +619,7 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
   }
 
   function reset(){
+    
     circle
     
     .transition()
