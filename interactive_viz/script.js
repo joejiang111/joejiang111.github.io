@@ -67,6 +67,31 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
     .attr('width', width + 200)
     .attr('height', height);
 
+  let label_bottom = svg.append('text')
+  .attr('x', 550)
+  .attr('y', 750)
+  .attr('id', 'bottom_label')
+  .text('AGE')
+  .style('font-family', 'Satoshi')
+  .style('font-size', '12pt')
+  .attr("fill", 'red')
+
+  let label_left = svg.append('text')
+  .attr('x', 800)
+  .attr('y', -130)
+  .attr("id", 'left_label')
+  .text('Mental Health Index')
+  .style('font-family', 'Satoshi')
+  .attr('transform', 'rotate(-90)')
+  .style("text-anchor", 'end')
+  .style('transform-origin', 'center')
+  
+  .style('font-size', '12pt')
+  .attr("fill", 'red')
+
+ 
+
+
   let size = 736;
 
   const age = {
