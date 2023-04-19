@@ -370,21 +370,35 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
   function redraw1(){
     d3.select('.legend1').remove()
     d3.select('.legend2').remove()
+
+    const rightScale = svg.append('g')
+    .call(d3.axisRight().scale(scaleFav))
+    .attr('transform', `translate(1000,-20)`)
+    .attr('id', 'rightScale')
+    .attr('class', 'axis')
+    .selectAll('text')
+      .attr('translate', 'transform(-20, 10)' )
+  
+
     circle.attr("fill", 'white')
     
     d3.select('#y_axis1').attr('opacity', 0)
     d3.select('.brush').remove()
     circle
-    .attr('opacity', 1)
-    .transition()
-    .duration(1000)
-    
-    .attr('cy', function(d){
+      .attr('opacity', 1)
+      .transition()
+      .duration(1000)
       
-      return(scaleFav(d.favGenre));
-    })
-    
-    console.log(scaleFav(d.FavGenre));
+      .attr('cy', function(d){
+        
+        return(scaleFav(d.favGenre));
+      })
+      .attr('r', function(d){
+        return d.bpm / 25
+      })
+   
+      
+      
 
 
   }
@@ -394,6 +408,7 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
   function playBrush(){
 
     reset()
+    d3.select('#rightScale').attr('opacity',0)
     d3.select('#y_axis1').attr('opacity', 1)
   const brush = d3.brush()
   .extent([[200, 0], [width, height]])
@@ -435,6 +450,7 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
    
     // console.log(count_1)
     let selectedData = selectCirs.data();
+    console.log(selectedData)
     let spo = selectedData.filter(function(d){
       return d.stream === 'Spotify';
     })
@@ -588,6 +604,7 @@ d3.csv('./mxmh_survey_results.csv', parseCSV).then(function (data) {
     .attr('cy', function (d) {
       return yScale(d.score);
     })
+    .attr('r', 3)
     .attr('fill', 'white');
 
 

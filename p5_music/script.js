@@ -4,7 +4,7 @@ let volHistory2 = [];
 let colors = [];
 
 function preload() {
-  song1 = loadSound('./music/richter_cut.mp4');
+  song1 = loadSound('./music/Yuja_cut.mp4');
   
   getAudioContext().resume();
 }
@@ -63,7 +63,7 @@ function draw() {
     fill(intercolor);
     // fill(colors[tracker]);
     // console.log(x % 100);
-    ellipse((x % 100) * 1.8 + 500, tracker4 + posY, volHistory1[x] * 35);
+    ellipse((x % 100) * 1.8 + 500, tracker4 + posY, volHistory1[x] * 75);
   }
 }
 
