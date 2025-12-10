@@ -1,0 +1,212 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* Bauhaus Color Palette */
+:root {
+	--bauhaus-red: #e63946;
+	--bauhaus-blue: #1d3557;
+	--bauhaus-yellow: #f1c40f;
+	--bauhaus-black: #000000;
+	--bauhaus-white: #ffffff;
+	--bauhaus-cream: #f5f1e8;
+	--bauhaus-cream-dark: #e8e3d8;
+}
+
+body {
+	/* font-family: "Helvetica Neue", "Arial", sans-serif; */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	overflow-x: hidden;
+	background: var(--bauhaus-cream);
+	color: var(--bauhaus-black);
+	position: relative;
+}
+
+/* Art Wall Texture Background */
+body::before {
+	content: "";
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: radial-gradient(circle at 20% 30%, rgba(232, 227, 216, 0.3) 0%, transparent 50%),
+		radial-gradient(circle at 80% 70%, rgba(232, 227, 216, 0.2) 0%, transparent 50%),
+		linear-gradient(180deg, var(--bauhaus-cream) 0%, var(--bauhaus-cream-dark) 100%);
+	background-size: 100% 100%;
+	z-index: 0;
+	pointer-events: none;
+}
+
+.app {
+	position: relative;
+	min-height: 100vh;
+	z-index: 1;
+}
+
+/* Particle Canvas */
+.particle-canvas {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	pointer-events: none;
+}
+
+/* Audio Player */
+.audio-player {
+	position: fixed;
+	top: 2rem;
+	right: 75rem;
+	z-index: 10;
+	display: flex;
+	gap: 0.5rem;
+	align-items: left;
+}
+
+.play-button {
+	width: 50px;
+	height: 50px;
+	border: none;
+	background: transparent;
+	color: var(--bauhaus-black);
+	font-size: 1.2rem;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.3s ease;
+	border-radius: 0;
+}
+
+.play-button:hover:not(:disabled) {
+	/* background: var(--bauhaus-black); */
+	color: var(--bauhaus-cream);
+	transform: scale(1.5);
+}
+
+.play-button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.random-button {
+	width: 50px;
+	height: 50px;
+	border: none;
+	background: transparent;
+	/* color: var(--bauhaus-black); */
+	font-size: 1.5rem;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.3s ease;
+	border-radius: 0;
+	/* font-family: "Helvetica Neue", "Arial", sans-serif; */
+}
+
+.random-button:hover {
+	/* background: var(--bauhaus-black); */
+	color: var(--bauhaus-cream);
+	transform: scale(1.5);
+}
+
+/* Hero Section */
+.hero {
+	position: relative;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	z-index: 2;
+	padding: 2rem;
+}
+
+.hero-content {
+	text-align: left;
+	position: relative;
+	z-index: 3;
+}
+
+.hero-name {
+	font-size: 40px;
+	font-weight: 900;
+	margin-bottom: 1.5rem;
+	color: var(--bauhaus-black);
+	/* text-transform: uppercase; */
+	line-height: 0.1;
+	font-family: "Caslon", sans-serif;
+}
+
+.hero-subtitle {
+	font-family: "lato", sans-serif;
+	font-size: clamp(1rem, 2.5vw, 1.3rem);
+	color: var(--bauhaus-blue);
+	font-weight: 400;
+	letter-spacing: 0.05em;
+	line-height: 1.6;
+	min-height: 1.5em;
+}
+
+/* Typing Effect Styles */
+.typing-cursor {
+	display: inline-block;
+	animation: blink 1s infinite;
+	margin-left: 3px;
+	color: var(--bauhaus-black);
+	font-weight: 900;
+}
+
+@keyframes blink {
+	0%,
+	50% {
+		opacity: 1;
+	}
+	51%,
+	100% {
+		opacity: 0;
+	}
+}
+
+.typing-error {
+	color: var(--bauhaus-red);
+	text-decoration: underline;
+	animation: error-shake 0.6s;
+	font-weight: 900;
+}
+
+@keyframes error-shake {
+	0%,
+	100% {
+		transform: translateX(0);
+	}
+	25% {
+		transform: translateX(-5px);
+	}
+	75% {
+		transform: translateX(5px);
+	}
+}
+
+/* Smooth Scrolling */
+html {
+	scroll-behavior: smooth;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+	.hero {
+		padding: 1.5rem;
+	}
+
+	.hero-name {
+		margin-bottom: 1rem;
+	}
+}
