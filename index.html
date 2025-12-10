@@ -1,25 +1,26 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>My personal website!!!</title>
-    <script src="http://d3js.org/d3.v7.min.js"></script>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div id="banner"></div>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Yuhan's Portfolio</title>
+		<link rel="stylesheet" href="portfolio.css" />
+	</head>
+	<body>
+		<div id="root"></div>
 
-    <p id="titletext">YUHAN'S PAGE</p>
-    <br />
-    <br />
-    <div class="assign1">
-      <button class="btn1">VIZ TECH 2</button> <br /><br />
-      <a class="assigns" href="./VisTech2/01-25/index.html">ASSIGNMENT 1</a>
-      <br />
-      <a class="assigns" href="./VisTech2/assignments/assignment_2/index.html"
-        >ASSIGNMENT 2</a
-      >
-      <br />
-      <a class="assigns" href="./interactive_viz/index.html">Final Project</a>
-    </div>
-  </body>
+		<!-- React -->
+		<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+		<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+		<!-- Three.js -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+		<!-- D3.js -->
+		<script src="https://d3js.org/d3.v7.min.js"></script>
+
+		<!-- Main App -->
+		<script type="text/babel" src="portfolio.js"></script>
+	</body>
 </html>

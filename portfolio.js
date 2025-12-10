@@ -403,6 +403,17 @@ const App = () => {
 						/>
 					</p>
 				</div>
+				<a href="#venn-section" className="scroll-down-arrow">
+					<span className="arrow-down">↓</span>
+				</a>
+			</section>
+
+			<section id="venn-section" className="venn-section">
+				<div className="container">
+					<h2 className="section-title">Path of My Journey...</h2>
+
+					<div className="venn-container">{/* Your content here */}</div>
+				</div>
 			</section>
 		</div>
 	);
