@@ -72,6 +72,7 @@ const AudioPlayer = ({ onAudioData }) => {
 		"./music/mnmjd.mp3",
 		"./music/ClairdeLune.mp3",
 		"./music/tlj.mp3",
+		"./music/mo.mp3",
 		// "./music/track2.mp3",
 		// "./music/track3.mp3",
 		// Add more tracks as needed
@@ -244,7 +245,7 @@ const ParticleSystem = ({ audioData = { amplitude: 0, bass: 0, mid: 0, treble: 0
 		if (!canvas) return;
 
 		const ctx = canvas.getContext("2d");
-		const particleCount = 60;
+		const particleCount = 70;
 
 		// Set canvas size
 		const resizeCanvas = () => {
@@ -263,11 +264,11 @@ const ParticleSystem = ({ audioData = { amplitude: 0, bass: 0, mid: 0, treble: 0
 				particlesRef.current.push({
 					x: baseX,
 					y: baseY,
-					radius: Math.random() * 300,
+					radius: Math.random() * 400,
 					currentRadius: Math.random() * 300,
 					baseX,
 					baseY,
-					speed: Math.random() * 0.01 + 0.2,
+					speed: Math.random() * 0.08 + 0.2,
 					opacity: Math.random() * 0.5 + 0.1,
 					index: i, // Store index for consistent music movement
 				});
@@ -331,8 +332,8 @@ const ParticleSystem = ({ audioData = { amplitude: 0, bass: 0, mid: 0, treble: 0
 				const r = Math.min(255, 120 + bass * 300);
 				const g = Math.min(255, 60 + mid * 300);
 				const b = Math.min(255, 30 + treble * 300);
-				const outerAlpha = 0.05 + amplitude * 0.25;
-				const innerAlpha = 0.4 + amplitude * 2;
+				const outerAlpha = 0.02 + amplitude * 0.25;
+				const innerAlpha = amplitude * 2;
 
 				// Create gradient for glass effect with dynamic colors
 				const gradient = ctx.createRadialGradient(
@@ -399,7 +400,7 @@ const App = () => {
 						<TypingEffect
 							text="Data Visualization • Interactive Design • Creative Coding"
 							speed={50}
-							errorPosition={15}
+							errorPosition={10}
 						/>
 					</p>
 				</div>
