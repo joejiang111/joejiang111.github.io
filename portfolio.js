@@ -328,9 +328,9 @@ const ParticleSystem = ({ audioData = { amplitude: 0, bass: 0, mid: 0, treble: 0
 				// Calculate color based on audio data
 				const { amplitude, bass, mid, treble } = smoothedAudioRef.current;
 				// Make the palette swing dramatically with the music
-				const r = Math.min(255, 120 + bass * 220);
-				const g = Math.min(255, 60 + mid * 220);
-				const b = Math.min(255, 30 + treble * 220);
+				const r = Math.min(255, 120 + bass * 300);
+				const g = Math.min(255, 60 + mid * 300);
+				const b = Math.min(255, 30 + treble * 300);
 				const outerAlpha = 0.05 + amplitude * 0.25;
 				const innerAlpha = 0.4 + amplitude * 2;
 
